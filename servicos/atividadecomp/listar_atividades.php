@@ -3,10 +3,8 @@
 $quant_horas = 300;
 $total_horas = 0;
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "followedu";
+//pegando informação do banco de dados
+require_once '../../database/datanoob.php';
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -62,11 +60,12 @@ if ($result->num_rows > 0) {
         
         <form action='deletar_atividade.php' method='GET'>
         <input type='hidden' name='id' value=".$row["id"].">
+        <input type='hidden' name='status' value=".$row["status"].">
         <td>".$row["atividade"]. "</td>
         <td>".$row["hora"]."</td>
         <td>". $row["id"]. "</td>
         <td>". $status. "</td>"
-        ."<td><input type='submit' onclick='return confirm(\"Are you sure?\")' value='Deletar' /></td>". "</tr></form>";
+        ."<td><input type='submit' onclick='return confirm(\"Tem certeza que deseja deletar esse item?\")' value='Deletar' /></td>". "</tr></form>";
         
         
         

@@ -1,9 +1,8 @@
 <?php
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "followedu";
+
+//pegando informação do banco de dados
+require_once '../../database/datanoob.php';
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -20,25 +19,26 @@ if(!Yii::app()->user->isGuest){
 }
 
 //Pegando informações do formulário
+
+$instituicao = $_POST["instituicao"];
+$data = $_POST["data"];
+$modalidade = $_POST["modalidade"];
 $atividade = $_POST["atividade"];
 $hora = $_POST["hora"];
 
-//Atribuindo valores numéricos pras atividades
-if($atividade == "Chupar"){
-    $atividade = 0;
-    
-}
 
-$sql = "INSERT INTO `user_atividadecomp`(`user_id`, `atividade`, `hora`) VALUES ($user_id,$atividade,$hora)";
+$sql = "INSERT INTO `user_atividadecomp`(`user_id`, `atividade`, `hora`, `modalidade`, `instituicao`, `data`, `status`) VALUES ('$user_id','$atividade','$hora','$modalidade', '$instituicao', '$data', 0)";
 
-if ($conn->query($sql) === TRUE) {
-    echo "Registro inserido com sucesso!";
+if (mysqli_query($conn, $sql)) {
+    echo "Atividade inseridade com êxito!";
 } else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
+    echo "Erro na inserção da atividade. Certifique de que preencheu os campos corretamente. Erro: " . $sql . "<br>" . mysqli_error($conn);
+    //Lembrar de não mostrar erro ao usuári no produto final
+    
 }
 
 $conn->close();
 
-echo "<a href='atividade_complementar.php'>Voltar</a>";
+echo "<br><br><a href='atividade_complementar.php'>Voltar</a>";
 
 ?>

@@ -1,8 +1,7 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "followedu";
+
+//pegando informação do banco de dados
+require_once '../../database/datanoob.php';
 
 // Create connection
 $conn = mysqli_connect($servername, $username, $password, $dbname);

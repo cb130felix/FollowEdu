@@ -1,9 +1,7 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "followedu";
 
+//pegando informação do banco de dados
+require_once '../../database/datanoob.php';
 // Create connection
 $conn = mysqli_connect($servername, $username, $password, $dbname);
 // Check connection
@@ -12,15 +10,23 @@ if (!$conn) {
 }
 
 $id = $_GET["id"];
+$status = $_GET["status"];
 
 // sql to delete a record
 $sql = "DELETE FROM `user_atividadecomp` WHERE id = $id";
 
-if (mysqli_query($conn, $sql)) {
-    echo "Record deleted successfully";
-} else {
-    echo "Error deleting record: " . mysqli_error($conn);
+if($status == 0){
+    if (mysqli_query($conn, $sql)) {
+        echo "Deleção realizada com sucesso.";
+    } else {
+        echo "Erro ao deletar registro. Erro: " . mysqli_error($conn);
+    }
+}else{
+    echo "Essa atividade já foi processada, não é possível realizar a deleção.";
+    
 }
+
+echo "<br><br><a href='atividade_complementar.php'>Voltar</a>";
 
 mysqli_close($conn);
 ?>

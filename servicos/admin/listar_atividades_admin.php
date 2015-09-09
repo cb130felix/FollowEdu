@@ -1,9 +1,7 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "followedu";
 
+//pegando informação do banco de dados
+require_once '../../database/datanoob.php';
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 // Check connection
@@ -53,7 +51,7 @@ if ($result->num_rows > 0) {
     
     
 } else {
-    echo "0 results";
+    echo "Não há atividades a serem aprovadas. ";
 }
 $conn->close();
 ?>
