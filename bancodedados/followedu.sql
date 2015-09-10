@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.1.14
+-- version 4.0.10deb1
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: 07-Set-2015 às 21:05
--- Versão do servidor: 5.6.17
--- PHP Version: 5.5.12
+-- Máquina: localhost
+-- Data de Criação: 10-Set-2015 às 20:35
+-- Versão do servidor: 5.5.44-0ubuntu0.14.04.1
+-- versão do PHP: 5.5.9-1ubuntu4.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `humhub`
+-- Base de Dados: `followedu`
 --
 
 -- --------------------------------------------------------
@@ -281,7 +281,7 @@ CREATE TABLE IF NOT EXISTS `logging` (
   `logtime` int(11) DEFAULT NULL,
   `message` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=23 ;
 
 --
 -- Extraindo dados da tabela `logging`
@@ -299,7 +299,17 @@ INSERT INTO `logging` (`id`, `level`, `category`, `logtime`, `message`) VALUES
 (9, 'error', 'exception.CHttpException.404', 1441508620, 'exception ''CHttpException'' with message ''Token not found!'' in C:\\wamp\\www\\humhub-master\\protected\\modules_core\\user\\controllers\\AuthController.php:244\nStack trace:\n#0 C:\\wamp\\www\\humhub-master\\protected\\vendors\\yii\\web\\actions\\CInlineAction.php(49): AuthController->actionCreateAccount()\n#1 C:\\wamp\\www\\humhub-master\\protected\\vendors\\yii\\web\\CController.php(308): CInlineAction->runWithParams(Array)\n#2 C:\\wamp\\www\\humhub-master\\protected\\vendors\\yii\\web\\CController.php(286): CController->runAction(Object(CInlineAction))\n#3 C:\\wamp\\www\\humhub-master\\protected\\vendors\\yii\\web\\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)\n#4 C:\\wamp\\www\\humhub-master\\protected\\vendors\\yii\\web\\CWebApplication.php(282): CController->run(''createAccount'')\n#5 C:\\wamp\\www\\humhub-master\\protected\\vendors\\yii\\web\\CWebApplication.php(141): CWebApplication->runController(''user/auth/creat...'')\n#6 C:\\wamp\\www\\humhub-master\\protected\\vendors\\yii\\base\\CApplication.php(180): CWebApplication->processRequest()\n#7 C:\\wamp\\www\\humhub-master\\index.php(39): CApplication->run()\n#8 {main}\nREQUEST_URI=/humhub-master/index.php?r=user/auth/createAccount/token/55e74e1b73fa93422779\n---'),
 (10, 'error', 'exception.CHttpException.401', 1441514820, 'exception ''CHttpException'' with message ''Your are already logged in! - Logout first!'' in C:\\wamp\\www\\humhub-master\\protected\\modules_core\\user\\controllers\\AuthController.php:239\nStack trace:\n#0 C:\\wamp\\www\\humhub-master\\protected\\vendors\\yii\\web\\actions\\CInlineAction.php(49): AuthController->actionCreateAccount()\n#1 C:\\wamp\\www\\humhub-master\\protected\\vendors\\yii\\web\\CController.php(308): CInlineAction->runWithParams(Array)\n#2 C:\\wamp\\www\\humhub-master\\protected\\vendors\\yii\\web\\CController.php(286): CController->runAction(Object(CInlineAction))\n#3 C:\\wamp\\www\\humhub-master\\protected\\vendors\\yii\\web\\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)\n#4 C:\\wamp\\www\\humhub-master\\protected\\vendors\\yii\\web\\CWebApplication.php(282): CController->run(''createAccount'')\n#5 C:\\wamp\\www\\humhub-master\\protected\\vendors\\yii\\web\\CWebApplication.php(141): CWebApplication->runController(''user/auth/creat...'')\n#6 C:\\wamp\\www\\humhub-master\\protected\\vendors\\yii\\base\\CApplication.php(180): CWebApplication->processRequest()\n#7 C:\\wamp\\www\\humhub-master\\index.php(39): CApplication->run()\n#8 {main}\nREQUEST_URI=/humhub-master/index.php?r=user/auth/createAccount/token/55e74e1b73fa9342277990\nHTTP_REFERER=http://localhost/humhub-master/index.php?r=user/auth/createAccount/token/55e74e1b73fa9342277990\n---'),
 (11, 'error', 'exception.CHttpException.403', 1441595823, 'exception ''CHttpException'' with message ''Access denied!'' in C:\\wamp\\www\\humhub-master\\protected\\modules\\custom_pages\\controllers\\ViewController.php:66\nStack trace:\n#0 C:\\wamp\\www\\humhub-master\\protected\\vendors\\yii\\web\\actions\\CInlineAction.php(49): ViewController->actionIndex()\n#1 C:\\wamp\\www\\humhub-master\\protected\\vendors\\yii\\web\\CController.php(308): CInlineAction->runWithParams(Array)\n#2 C:\\wamp\\www\\humhub-master\\protected\\vendors\\yii\\web\\filters\\CFilterChain.php(133): CController->runAction(Object(CInlineAction))\n#3 C:\\wamp\\www\\humhub-master\\protected\\vendors\\yii\\web\\filters\\CFilter.php(40): CFilterChain->run()\n#4 C:\\wamp\\www\\humhub-master\\protected\\vendors\\yii\\web\\CController.php(1145): CFilter->filter(Object(CFilterChain))\n#5 C:\\wamp\\www\\humhub-master\\protected\\vendors\\yii\\web\\filters\\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))\n#6 C:\\wamp\\www\\humhub-master\\protected\\vendors\\yii\\web\\filters\\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))\n#7 C:\\wamp\\www\\humhub-master\\protected\\vendors\\yii\\web\\CController.php(291): CFilterChain->run()\n#8 C:\\wamp\\www\\humhub-master\\protected\\vendors\\yii\\web\\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)\n#9 C:\\wamp\\www\\humhub-master\\protected\\vendors\\yii\\web\\CWebApplication.php(282): CController->run('''')\n#10 C:\\wamp\\www\\humhub-master\\protected\\vendors\\yii\\web\\CWebApplication.php(141): CWebApplication->runController(''custom_pages/vi...'')\n#11 C:\\wamp\\www\\humhub-master\\protected\\vendors\\yii\\base\\CApplication.php(180): CWebApplication->processRequest()\n#12 C:\\wamp\\www\\humhub-master\\index.php(39): CApplication->run()\n#13 {main}\nREQUEST_URI=/humhub-master/index.php?r=custom_pages/view&id=6\n---'),
-(12, 'error', 'exception.CHttpException.403', 1441595840, 'exception ''CHttpException'' with message ''Access denied!'' in C:\\wamp\\www\\humhub-master\\protected\\modules\\custom_pages\\controllers\\ViewController.php:66\nStack trace:\n#0 C:\\wamp\\www\\humhub-master\\protected\\vendors\\yii\\web\\actions\\CInlineAction.php(49): ViewController->actionIndex()\n#1 C:\\wamp\\www\\humhub-master\\protected\\vendors\\yii\\web\\CController.php(308): CInlineAction->runWithParams(Array)\n#2 C:\\wamp\\www\\humhub-master\\protected\\vendors\\yii\\web\\filters\\CFilterChain.php(133): CController->runAction(Object(CInlineAction))\n#3 C:\\wamp\\www\\humhub-master\\protected\\vendors\\yii\\web\\filters\\CFilter.php(40): CFilterChain->run()\n#4 C:\\wamp\\www\\humhub-master\\protected\\vendors\\yii\\web\\CController.php(1145): CFilter->filter(Object(CFilterChain))\n#5 C:\\wamp\\www\\humhub-master\\protected\\vendors\\yii\\web\\filters\\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))\n#6 C:\\wamp\\www\\humhub-master\\protected\\vendors\\yii\\web\\filters\\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))\n#7 C:\\wamp\\www\\humhub-master\\protected\\vendors\\yii\\web\\CController.php(291): CFilterChain->run()\n#8 C:\\wamp\\www\\humhub-master\\protected\\vendors\\yii\\web\\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)\n#9 C:\\wamp\\www\\humhub-master\\protected\\vendors\\yii\\web\\CWebApplication.php(282): CController->run('''')\n#10 C:\\wamp\\www\\humhub-master\\protected\\vendors\\yii\\web\\CWebApplication.php(141): CWebApplication->runController(''custom_pages/vi...'')\n#11 C:\\wamp\\www\\humhub-master\\protected\\vendors\\yii\\base\\CApplication.php(180): CWebApplication->processRequest()\n#12 C:\\wamp\\www\\humhub-master\\index.php(39): CApplication->run()\n#13 {main}\nREQUEST_URI=/humhub-master/index.php?r=custom_pages/view&id=6\n---');
+(12, 'error', 'exception.CHttpException.403', 1441595840, 'exception ''CHttpException'' with message ''Access denied!'' in C:\\wamp\\www\\humhub-master\\protected\\modules\\custom_pages\\controllers\\ViewController.php:66\nStack trace:\n#0 C:\\wamp\\www\\humhub-master\\protected\\vendors\\yii\\web\\actions\\CInlineAction.php(49): ViewController->actionIndex()\n#1 C:\\wamp\\www\\humhub-master\\protected\\vendors\\yii\\web\\CController.php(308): CInlineAction->runWithParams(Array)\n#2 C:\\wamp\\www\\humhub-master\\protected\\vendors\\yii\\web\\filters\\CFilterChain.php(133): CController->runAction(Object(CInlineAction))\n#3 C:\\wamp\\www\\humhub-master\\protected\\vendors\\yii\\web\\filters\\CFilter.php(40): CFilterChain->run()\n#4 C:\\wamp\\www\\humhub-master\\protected\\vendors\\yii\\web\\CController.php(1145): CFilter->filter(Object(CFilterChain))\n#5 C:\\wamp\\www\\humhub-master\\protected\\vendors\\yii\\web\\filters\\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))\n#6 C:\\wamp\\www\\humhub-master\\protected\\vendors\\yii\\web\\filters\\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))\n#7 C:\\wamp\\www\\humhub-master\\protected\\vendors\\yii\\web\\CController.php(291): CFilterChain->run()\n#8 C:\\wamp\\www\\humhub-master\\protected\\vendors\\yii\\web\\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)\n#9 C:\\wamp\\www\\humhub-master\\protected\\vendors\\yii\\web\\CWebApplication.php(282): CController->run('''')\n#10 C:\\wamp\\www\\humhub-master\\protected\\vendors\\yii\\web\\CWebApplication.php(141): CWebApplication->runController(''custom_pages/vi...'')\n#11 C:\\wamp\\www\\humhub-master\\protected\\vendors\\yii\\base\\CApplication.php(180): CWebApplication->processRequest()\n#12 C:\\wamp\\www\\humhub-master\\index.php(39): CApplication->run()\n#13 {main}\nREQUEST_URI=/humhub-master/index.php?r=custom_pages/view&id=6\n---'),
+(13, 'error', 'exception.CHttpException.404', 1441919068, 'exception ''CHttpException'' with message ''The system is unable to find the requested action "login=55f1ed0c32e26493743274".'' in /var/www/FollowEdu/protected/vendors/yii/web/CController.php:483\nStack trace:\n#0 /var/www/FollowEdu/protected/vendors/yii/web/CController.php(270): CController->missingAction(''login=55f1ed0c3...'')\n#1 /var/www/FollowEdu/protected/vendors/yii/web/CWebApplication.php(282): CController->run(''login=55f1ed0c3...'')\n#2 /var/www/FollowEdu/protected/vendors/yii/web/CWebApplication.php(141): CWebApplication->runController(''user/auth/login...'')\n#3 /var/www/FollowEdu/protected/vendors/yii/base/CApplication.php(180): CWebApplication->processRequest()\n#4 /var/www/FollowEdu/index.php(39): CApplication->run()\n#5 {main}\nREQUEST_URI=/FollowEdu/index.php?r=user/auth/login=55f1ed0c32e26493743274\n---'),
+(14, 'error', 'exception.CHttpException.404', 1441919076, 'exception ''CHttpException'' with message ''The system is unable to find the requested action "login=55f1ed0c32e26493743274".'' in /var/www/FollowEdu/protected/vendors/yii/web/CController.php:483\nStack trace:\n#0 /var/www/FollowEdu/protected/vendors/yii/web/CController.php(270): CController->missingAction(''login=55f1ed0c3...'')\n#1 /var/www/FollowEdu/protected/vendors/yii/web/CWebApplication.php(282): CController->run(''login=55f1ed0c3...'')\n#2 /var/www/FollowEdu/protected/vendors/yii/web/CWebApplication.php(141): CWebApplication->runController(''user/auth/login...'')\n#3 /var/www/FollowEdu/protected/vendors/yii/base/CApplication.php(180): CWebApplication->processRequest()\n#4 /var/www/FollowEdu/index.php(39): CApplication->run()\n#5 {main}\nREQUEST_URI=/FollowEdu/index.php?r=user/auth/login=55f1ed0c32e26493743274\n---'),
+(15, 'error', 'exception.CHttpException.404', 1441919079, 'exception ''CHttpException'' with message ''The system is unable to find the requested action "55f1ed0c32e26493743274".'' in /var/www/FollowEdu/protected/vendors/yii/web/CController.php:483\nStack trace:\n#0 /var/www/FollowEdu/protected/vendors/yii/web/CController.php(270): CController->missingAction(''55f1ed0c32e2649...'')\n#1 /var/www/FollowEdu/protected/vendors/yii/web/CWebApplication.php(282): CController->run(''55f1ed0c32e2649...'')\n#2 /var/www/FollowEdu/protected/vendors/yii/web/CWebApplication.php(141): CWebApplication->runController(''user/auth/55f1e...'')\n#3 /var/www/FollowEdu/protected/vendors/yii/base/CApplication.php(180): CWebApplication->processRequest()\n#4 /var/www/FollowEdu/index.php(39): CApplication->run()\n#5 {main}\nREQUEST_URI=/FollowEdu/index.php?r=user/auth/55f1ed0c32e26493743274\n---'),
+(16, 'warning', 'application', 1441919783, 'Failed to set unsafe attribute "description" of "ProfileFieldCategory".\nin /var/www/FollowEdu/protected/modules_core/admin/controllers/UserprofileController.php (79)\nin /var/www/FollowEdu/index.php (39)'),
+(17, 'warning', 'application', 1441920773, 'Failed to set unsafe attribute "description" of "ProfileFieldCategory".\nin /var/www/FollowEdu/protected/modules_core/admin/controllers/UserprofileController.php (79)\nin /var/www/FollowEdu/index.php (39)'),
+(18, 'warning', 'application', 1441920778, 'Failed to set unsafe attribute "description" of "ProfileFieldCategory".\nin /var/www/FollowEdu/protected/modules_core/admin/controllers/UserprofileController.php (79)\nin /var/www/FollowEdu/index.php (39)'),
+(19, 'error', 'exception.CHttpException.401', 1441922686, 'exception ''CHttpException'' with message ''Your are already logged in! - Logout first!'' in /var/www/FollowEdu/protected/modules_core/user/controllers/AuthController.php:239\nStack trace:\n#0 /var/www/FollowEdu/protected/vendors/yii/web/actions/CInlineAction.php(49): AuthController->actionCreateAccount()\n#1 /var/www/FollowEdu/protected/vendors/yii/web/CController.php(308): CInlineAction->runWithParams(Array)\n#2 /var/www/FollowEdu/protected/vendors/yii/web/CController.php(286): CController->runAction(Object(CInlineAction))\n#3 /var/www/FollowEdu/protected/vendors/yii/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)\n#4 /var/www/FollowEdu/protected/vendors/yii/web/CWebApplication.php(282): CController->run(''createAccount'')\n#5 /var/www/FollowEdu/protected/vendors/yii/web/CWebApplication.php(141): CWebApplication->runController(''user/auth/creat...'')\n#6 /var/www/FollowEdu/protected/vendors/yii/base/CApplication.php(180): CWebApplication->processRequest()\n#7 /var/www/FollowEdu/index.php(39): CApplication->run()\n#8 {main}\nREQUEST_URI=/FollowEdu/index.php?r=user/auth/createAccount/token/55f1ed0c32e26493743274\n---'),
+(20, 'error', 'exception.CHttpException.401', 1441922691, 'exception ''CHttpException'' with message ''Your are already logged in! - Logout first!'' in /var/www/FollowEdu/protected/modules_core/user/controllers/AuthController.php:239\nStack trace:\n#0 /var/www/FollowEdu/protected/vendors/yii/web/actions/CInlineAction.php(49): AuthController->actionCreateAccount()\n#1 /var/www/FollowEdu/protected/vendors/yii/web/CController.php(308): CInlineAction->runWithParams(Array)\n#2 /var/www/FollowEdu/protected/vendors/yii/web/CController.php(286): CController->runAction(Object(CInlineAction))\n#3 /var/www/FollowEdu/protected/vendors/yii/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)\n#4 /var/www/FollowEdu/protected/vendors/yii/web/CWebApplication.php(282): CController->run(''createAccount'')\n#5 /var/www/FollowEdu/protected/vendors/yii/web/CWebApplication.php(141): CWebApplication->runController(''user/auth/creat...'')\n#6 /var/www/FollowEdu/protected/vendors/yii/base/CApplication.php(180): CWebApplication->processRequest()\n#7 /var/www/FollowEdu/index.php(39): CApplication->run()\n#8 {main}\nREQUEST_URI=/FollowEdu/index.php?r=user/auth/createAccount/token/55f1ed0c32e26493743274\n---'),
+(21, 'error', 'exception.CHttpException.401', 1441922692, 'exception ''CHttpException'' with message ''Your are already logged in! - Logout first!'' in /var/www/FollowEdu/protected/modules_core/user/controllers/AuthController.php:239\nStack trace:\n#0 /var/www/FollowEdu/protected/vendors/yii/web/actions/CInlineAction.php(49): AuthController->actionCreateAccount()\n#1 /var/www/FollowEdu/protected/vendors/yii/web/CController.php(308): CInlineAction->runWithParams(Array)\n#2 /var/www/FollowEdu/protected/vendors/yii/web/CController.php(286): CController->runAction(Object(CInlineAction))\n#3 /var/www/FollowEdu/protected/vendors/yii/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)\n#4 /var/www/FollowEdu/protected/vendors/yii/web/CWebApplication.php(282): CController->run(''createAccount'')\n#5 /var/www/FollowEdu/protected/vendors/yii/web/CWebApplication.php(141): CWebApplication->runController(''user/auth/creat...'')\n#6 /var/www/FollowEdu/protected/vendors/yii/base/CApplication.php(180): CWebApplication->processRequest()\n#7 /var/www/FollowEdu/index.php(39): CApplication->run()\n#8 {main}\nREQUEST_URI=/FollowEdu/index.php?r=user/auth/createAccount/token/55f1ed0c32e26493743274\n---'),
+(22, 'error', 'exception.CHttpException.401', 1441922694, 'exception ''CHttpException'' with message ''Your are already logged in! - Logout first!'' in /var/www/FollowEdu/protected/modules_core/user/controllers/AuthController.php:239\nStack trace:\n#0 /var/www/FollowEdu/protected/vendors/yii/web/actions/CInlineAction.php(49): AuthController->actionCreateAccount()\n#1 /var/www/FollowEdu/protected/vendors/yii/web/CController.php(308): CInlineAction->runWithParams(Array)\n#2 /var/www/FollowEdu/protected/vendors/yii/web/CController.php(286): CController->runAction(Object(CInlineAction))\n#3 /var/www/FollowEdu/protected/vendors/yii/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)\n#4 /var/www/FollowEdu/protected/vendors/yii/web/CWebApplication.php(282): CController->run(''createAccount'')\n#5 /var/www/FollowEdu/protected/vendors/yii/web/CWebApplication.php(141): CWebApplication->runController(''user/auth/creat...'')\n#6 /var/www/FollowEdu/protected/vendors/yii/base/CApplication.php(180): CWebApplication->processRequest()\n#7 /var/www/FollowEdu/index.php(39): CApplication->run()\n#8 {main}\nREQUEST_URI=/FollowEdu/index.php?r=user/auth/createAccount/token/55f1ed0c32e26493743274\n---');
 
 -- --------------------------------------------------------
 
@@ -515,6 +525,9 @@ CREATE TABLE IF NOT EXISTS `profile` (
   `url_myspace` varchar(255) DEFAULT NULL,
   `url_googleplus` varchar(255) DEFAULT NULL,
   `url_twitter` varchar(255) DEFAULT NULL,
+  `perfil` varchar(255) DEFAULT NULL,
+  `entrada` varchar(255) DEFAULT NULL,
+  `cpf` int(11) DEFAULT NULL,
   PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -522,10 +535,10 @@ CREATE TABLE IF NOT EXISTS `profile` (
 -- Extraindo dados da tabela `profile`
 --
 
-INSERT INTO `profile` (`user_id`, `firstname`, `lastname`, `title`, `gender`, `street`, `zip`, `city`, `country`, `state`, `birthday_hide_year`, `birthday`, `about`, `phone_private`, `phone_work`, `mobile`, `fax`, `im_skype`, `im_msn`, `im_icq`, `im_xmpp`, `url`, `url_facebook`, `url_linkedin`, `url_xing`, `url_youtube`, `url_vimeo`, `url_flickr`, `url_myspace`, `url_googleplus`, `url_twitter`) VALUES
-(1, 'Renan', 'Felix', 'System Administration', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(2, 'Luiz', 'Renandro', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(3, 'Rola', 'Nandro', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `profile` (`user_id`, `firstname`, `lastname`, `title`, `gender`, `street`, `zip`, `city`, `country`, `state`, `birthday_hide_year`, `birthday`, `about`, `phone_private`, `phone_work`, `mobile`, `fax`, `im_skype`, `im_msn`, `im_icq`, `im_xmpp`, `url`, `url_facebook`, `url_linkedin`, `url_xing`, `url_youtube`, `url_vimeo`, `url_flickr`, `url_myspace`, `url_googleplus`, `url_twitter`, `perfil`, `entrada`, `cpf`) VALUES
+(1, 'Renan', 'Felix', 'System Administration', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2, 'Luiz', 'Renandro', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(3, 'Rola', 'Nandro', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -556,42 +569,45 @@ CREATE TABLE IF NOT EXISTS `profile_field` (
   `is_system` int(1) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `index_profile_field_category` (`profile_field_category_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=30 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=33 ;
 
 --
 -- Extraindo dados da tabela `profile_field`
 --
 
 INSERT INTO `profile_field` (`id`, `profile_field_category_id`, `module_id`, `field_type_class`, `field_type_config`, `internal_name`, `title`, `description`, `sort_order`, `required`, `show_at_registration`, `editable`, `visible`, `created_at`, `created_by`, `updated_at`, `updated_by`, `ldap_attribute`, `translation_category`, `is_system`) VALUES
-(1, 1, NULL, 'ProfileFieldTypeText', '{"minLength":null,"maxLength":20,"validator":null,"default":null,"regexp":null,"regexpErrorMessage":null,"fieldTypes":[]}', 'firstname', 'Firstname', NULL, 100, 1, 1, 1, 1, '2015-09-02 15:59:02', NULL, '2015-09-02 15:59:02', NULL, 'givenName', NULL, 1),
-(2, 1, NULL, 'ProfileFieldTypeText', '{"minLength":null,"maxLength":30,"validator":null,"default":null,"regexp":null,"regexpErrorMessage":null,"fieldTypes":[]}', 'lastname', 'Lastname', NULL, 200, 1, 1, 1, 1, '2015-09-02 15:59:03', NULL, '2015-09-02 15:59:03', NULL, 'sn', NULL, 1),
-(3, 1, NULL, 'ProfileFieldTypeText', '{"minLength":null,"maxLength":50,"validator":null,"default":null,"regexp":null,"regexpErrorMessage":null,"fieldTypes":[]}', 'title', 'Title', NULL, 300, NULL, 0, 1, 1, '2015-09-02 15:59:03', NULL, '2015-09-02 15:59:03', NULL, 'title', NULL, 1),
-(4, 1, NULL, 'ProfileFieldTypeSelect', '{"options":"male=>Male\\nfemale=>Female\\ncustom=>Custom","fieldTypes":[]}', 'gender', 'Gender', NULL, 300, NULL, 0, 1, 1, '2015-09-02 15:59:04', NULL, '2015-09-02 15:59:04', NULL, NULL, NULL, 1),
-(5, 1, NULL, 'ProfileFieldTypeText', '{"minLength":null,"maxLength":150,"validator":null,"default":null,"regexp":null,"regexpErrorMessage":null,"fieldTypes":[]}', 'street', 'Street', NULL, 400, NULL, 0, 1, 1, '2015-09-02 15:59:04', NULL, '2015-09-02 15:59:04', NULL, NULL, NULL, 1),
-(6, 1, NULL, 'ProfileFieldTypeText', '{"minLength":null,"maxLength":10,"validator":null,"default":null,"regexp":null,"regexpErrorMessage":null,"fieldTypes":[]}', 'zip', 'Zip', NULL, 500, NULL, 0, 1, 1, '2015-09-02 15:59:05', NULL, '2015-09-02 15:59:05', NULL, NULL, NULL, 1),
-(7, 1, NULL, 'ProfileFieldTypeText', '{"minLength":null,"maxLength":100,"validator":null,"default":null,"regexp":null,"regexpErrorMessage":null,"fieldTypes":[]}', 'city', 'City', NULL, 600, NULL, 0, 1, 1, '2015-09-02 15:59:05', NULL, '2015-09-02 15:59:05', NULL, NULL, NULL, 1),
-(8, 1, NULL, 'ProfileFieldTypeText', '{"minLength":null,"maxLength":100,"validator":null,"default":null,"regexp":null,"regexpErrorMessage":null,"fieldTypes":[]}', 'country', 'Country', NULL, 700, NULL, 0, 1, 1, '2015-09-02 15:59:06', NULL, '2015-09-02 15:59:06', NULL, NULL, NULL, 1),
-(9, 1, NULL, 'ProfileFieldTypeText', '{"minLength":null,"maxLength":100,"validator":null,"default":null,"regexp":null,"regexpErrorMessage":null,"fieldTypes":[]}', 'state', 'State', NULL, 800, NULL, 0, 1, 1, '2015-09-02 15:59:06', NULL, '2015-09-02 15:59:06', NULL, NULL, NULL, 1),
-(10, 1, NULL, 'ProfileFieldTypeBirthday', '{"showTimePicker":false,"fieldTypes":[]}', 'birthday', 'Birthday', NULL, 900, NULL, 0, 1, 1, '2015-09-02 15:59:07', NULL, '2015-09-02 15:59:07', NULL, NULL, NULL, 1),
-(11, 1, NULL, 'ProfileFieldTypeTextArea', '{"fieldTypes":[]}', 'about', 'About', NULL, 900, NULL, 0, 1, 1, '2015-09-02 15:59:08', NULL, '2015-09-02 15:59:08', NULL, NULL, NULL, 1),
-(12, 2, NULL, 'ProfileFieldTypeText', '{"minLength":null,"maxLength":100,"validator":null,"default":null,"regexp":null,"regexpErrorMessage":null,"fieldTypes":[]}', 'phone_private', 'Phone Private', NULL, 100, NULL, 0, 1, 1, '2015-09-02 15:59:09', NULL, '2015-09-02 15:59:09', NULL, NULL, NULL, 1),
-(13, 2, NULL, 'ProfileFieldTypeText', '{"minLength":null,"maxLength":100,"validator":null,"default":null,"regexp":null,"regexpErrorMessage":null,"fieldTypes":[]}', 'phone_work', 'Phone Work', NULL, 200, NULL, 0, 1, 1, '2015-09-02 15:59:09', NULL, '2015-09-02 15:59:09', NULL, NULL, NULL, 1),
-(14, 2, NULL, 'ProfileFieldTypeText', '{"minLength":null,"maxLength":100,"validator":null,"default":null,"regexp":null,"regexpErrorMessage":null,"fieldTypes":[]}', 'mobile', 'Mobile', NULL, 300, NULL, 0, 1, 1, '2015-09-02 15:59:10', NULL, '2015-09-02 15:59:10', NULL, NULL, NULL, 1),
-(15, 2, NULL, 'ProfileFieldTypeText', '{"minLength":null,"maxLength":100,"validator":null,"default":null,"regexp":null,"regexpErrorMessage":null,"fieldTypes":[]}', 'fax', 'Fax', NULL, 400, NULL, 0, 1, 1, '2015-09-02 15:59:10', NULL, '2015-09-02 15:59:10', NULL, NULL, NULL, 1),
-(16, 2, NULL, 'ProfileFieldTypeText', '{"minLength":null,"maxLength":100,"validator":null,"default":null,"regexp":null,"regexpErrorMessage":null,"fieldTypes":[]}', 'im_skype', 'Skype Nickname', NULL, 500, NULL, 0, 1, 1, '2015-09-02 15:59:11', NULL, '2015-09-02 15:59:11', NULL, NULL, NULL, 1),
-(17, 2, NULL, 'ProfileFieldTypeText', '{"minLength":null,"maxLength":100,"validator":null,"default":null,"regexp":null,"regexpErrorMessage":null,"fieldTypes":[]}', 'im_msn', 'MSN', NULL, 600, NULL, 0, 1, 1, '2015-09-02 15:59:11', NULL, '2015-09-02 15:59:11', NULL, NULL, NULL, 1),
-(18, 2, NULL, 'ProfileFieldTypeNumber', '{"maxValue":null,"minValue":null,"fieldTypes":[]}', 'im_icq', 'ICQ Number', NULL, 700, NULL, 0, 1, 1, '2015-09-02 15:59:12', NULL, '2015-09-02 15:59:12', NULL, NULL, NULL, 1),
-(19, 2, NULL, 'ProfileFieldTypeText', '{"minLength":null,"maxLength":255,"validator":"email","default":null,"regexp":null,"regexpErrorMessage":null,"fieldTypes":[]}', 'im_xmpp', 'XMPP Jabber Address', NULL, 800, NULL, 0, 1, 1, '2015-09-02 15:59:13', NULL, '2015-09-02 15:59:13', NULL, NULL, NULL, 1),
+(1, 1, NULL, 'ProfileFieldTypeText', '{"minLength":"","maxLength":"20","validator":"","default":"","regexp":"","regexpErrorMessage":"","fieldTypes":[]}', 'firstname', 'Nome', '', 100, 1, 1, 1, 1, '2015-09-02 15:59:02', NULL, '2015-09-10 18:15:47', 1, 'givenName', 'UserModule.models_Profile', 1),
+(2, 1, NULL, 'ProfileFieldTypeText', '{"minLength":"","maxLength":"30","validator":"","default":"","regexp":"","regexpErrorMessage":"","fieldTypes":[]}', 'lastname', 'Sobrenome', '', 200, 1, 1, 1, 1, '2015-09-02 15:59:03', NULL, '2015-09-10 18:16:06', 1, 'sn', 'UserModule.models_Profile', 1),
+(3, 1, NULL, 'ProfileFieldTypeText', '{"minLength":"","maxLength":"50","validator":"","default":"","regexp":"","regexpErrorMessage":"","fieldTypes":[]}', 'title', 'Title', '', 999, 0, 0, 1, 0, '2015-09-02 15:59:03', NULL, '2015-09-10 18:23:47', 1, 'title', 'UserModule.models_Profile', 1),
+(4, 1, NULL, 'ProfileFieldTypeSelect', '{"options":"male=>Male\\r\\nfemale=>Female\\r\\ncustom=>Custom","fieldTypes":[]}', 'gender', 'Gender', '', 999, 0, 0, 1, 0, '2015-09-02 15:59:04', NULL, '2015-09-10 18:23:55', 1, '', 'UserModule.models_Profile', 1),
+(5, 1, NULL, 'ProfileFieldTypeText', '{"minLength":"","maxLength":"150","validator":"","default":"","regexp":"","regexpErrorMessage":"","fieldTypes":[]}', 'street', 'Rua', '', 401, 0, 0, 1, 1, '2015-09-02 15:59:04', NULL, '2015-09-10 18:24:35', 1, '', 'UserModule.models_Profile', 1),
+(6, 1, NULL, 'ProfileFieldTypeText', '{"minLength":"","maxLength":"10","validator":"","default":"","regexp":"","regexpErrorMessage":"","fieldTypes":[]}', 'zip', 'Zip', '', 999, 0, 0, 1, 0, '2015-09-02 15:59:05', NULL, '2015-09-10 18:24:45', 1, '', 'UserModule.models_Profile', 1),
+(7, 1, NULL, 'ProfileFieldTypeText', '{"minLength":"","maxLength":"100","validator":"","default":"","regexp":"","regexpErrorMessage":"","fieldTypes":[]}', 'city', 'Cidade', '', 402, 0, 0, 1, 1, '2015-09-02 15:59:05', NULL, '2015-09-10 18:24:54', 1, '', 'UserModule.models_Profile', 1),
+(8, 1, NULL, 'ProfileFieldTypeText', '{"minLength":"","maxLength":"100","validator":"","default":"","regexp":"","regexpErrorMessage":"","fieldTypes":[]}', 'country', 'País', '', 404, 0, 0, 1, 1, '2015-09-02 15:59:06', NULL, '2015-09-10 18:26:15', 1, '', 'UserModule.models_Profile', 1),
+(9, 1, NULL, 'ProfileFieldTypeText', '{"minLength":"","maxLength":"100","validator":"","default":"","regexp":"","regexpErrorMessage":"","fieldTypes":[]}', 'state', 'Estado', '', 403, 0, 0, 1, 1, '2015-09-02 15:59:06', NULL, '2015-09-10 18:26:07', 1, '', 'UserModule.models_Profile', 1),
+(10, 1, NULL, 'ProfileFieldTypeBirthday', '{"showTimePicker":"0","fieldTypes":[]}', 'birthday', 'Aniversário', '', 900, 0, 0, 1, 1, '2015-09-02 15:59:07', NULL, '2015-09-10 18:26:26', 1, '', 'UserModule.models_Profile', 1),
+(11, 1, NULL, 'ProfileFieldTypeTextArea', '{"fieldTypes":[]}', 'about', 'About', '', 999, 0, 0, 1, 0, '2015-09-02 15:59:08', NULL, '2015-09-10 18:26:34', 1, '', 'UserModule.models_Profile', 1),
+(12, 2, NULL, 'ProfileFieldTypeText', '{"minLength":"","maxLength":"100","validator":"","default":"","regexp":"","regexpErrorMessage":"","fieldTypes":[]}', 'phone_private', 'Telefone', '', 100, 0, 0, 1, 1, '2015-09-02 15:59:09', NULL, '2015-09-10 18:27:17', 1, '', 'UserModule.models_Profile', 1),
+(13, 2, NULL, 'ProfileFieldTypeText', '{"minLength":"","maxLength":"100","validator":"","default":"","regexp":"","regexpErrorMessage":"","fieldTypes":[]}', 'phone_work', 'Phone-Work', '', 999, 0, 0, 1, 0, '2015-09-02 15:59:09', NULL, '2015-09-10 18:28:01', 1, '', 'UserModule.models_Profile', 1),
+(14, 2, NULL, 'ProfileFieldTypeText', '{"minLength":"","maxLength":"100","validator":"","default":"","regexp":"","regexpErrorMessage":"","fieldTypes":[]}', 'mobile', 'Celular', '', 300, 0, 0, 1, 1, '2015-09-02 15:59:10', NULL, '2015-09-10 18:27:54', 1, '', 'UserModule.models_Profile', 1),
+(15, 2, NULL, 'ProfileFieldTypeText', '{"minLength":"","maxLength":"100","validator":"","default":"","regexp":"","regexpErrorMessage":"","fieldTypes":[]}', 'fax', 'Fax', '', 999, 0, 0, 1, 0, '2015-09-02 15:59:10', NULL, '2015-09-10 18:28:09', 1, '', 'UserModule.models_Profile', 1),
+(16, 2, NULL, 'ProfileFieldTypeText', '{"minLength":"","maxLength":"100","validator":"","default":"","regexp":"","regexpErrorMessage":"","fieldTypes":[]}', 'im_skype', 'Skype Nickname', '', 999, 0, 0, 1, 0, '2015-09-02 15:59:11', NULL, '2015-09-10 18:28:32', 1, '', 'UserModule.models_Profile', 1),
+(17, 2, NULL, 'ProfileFieldTypeText', '{"minLength":"","maxLength":"100","validator":"","default":"","regexp":"","regexpErrorMessage":"","fieldTypes":[]}', 'im_msn', 'MSN', '', 999, 0, 0, 1, 0, '2015-09-02 15:59:11', NULL, '2015-09-10 18:28:38', 1, '', 'UserModule.models_Profile', 1),
+(18, 2, NULL, 'ProfileFieldTypeNumber', '{"maxValue":"","minValue":"","fieldTypes":[]}', 'im_icq', 'ICQ Number', '', 999, 0, 0, 1, 0, '2015-09-02 15:59:12', NULL, '2015-09-10 18:28:51', 1, '', 'UserModule.models_Profile', 1),
+(19, 2, NULL, 'ProfileFieldTypeText', '{"minLength":"","maxLength":"255","validator":"email","default":"","regexp":"","regexpErrorMessage":"","fieldTypes":[]}', 'im_xmpp', 'XMPP Jabber Address', '', 999, 0, 0, 1, 0, '2015-09-02 15:59:13', NULL, '2015-09-10 18:28:58', 1, '', 'UserModule.models_Profile', 1),
 (20, 3, NULL, 'ProfileFieldTypeText', '{"minLength":null,"maxLength":255,"validator":"url","default":null,"regexp":null,"regexpErrorMessage":null,"fieldTypes":[]}', 'url', 'Url', NULL, 100, NULL, 0, 1, 1, '2015-09-02 15:59:13', NULL, '2015-09-02 15:59:13', NULL, NULL, NULL, 1),
 (21, 3, NULL, 'ProfileFieldTypeText', '{"minLength":null,"maxLength":255,"validator":"url","default":null,"regexp":null,"regexpErrorMessage":null,"fieldTypes":[]}', 'url_facebook', 'Facebook URL', NULL, 200, NULL, 0, 1, 1, '2015-09-02 15:59:14', NULL, '2015-09-02 15:59:14', NULL, NULL, NULL, 1),
 (22, 3, NULL, 'ProfileFieldTypeText', '{"minLength":null,"maxLength":255,"validator":"url","default":null,"regexp":null,"regexpErrorMessage":null,"fieldTypes":[]}', 'url_linkedin', 'LinkedIn URL', NULL, 300, NULL, 0, 1, 1, '2015-09-02 15:59:15', NULL, '2015-09-02 15:59:15', NULL, NULL, NULL, 1),
-(23, 3, NULL, 'ProfileFieldTypeText', '{"minLength":null,"maxLength":255,"validator":"url","default":null,"regexp":null,"regexpErrorMessage":null,"fieldTypes":[]}', 'url_xing', 'Xing URL', NULL, 400, NULL, 0, 1, 1, '2015-09-02 15:59:15', NULL, '2015-09-02 15:59:15', NULL, NULL, NULL, 1),
-(24, 3, NULL, 'ProfileFieldTypeText', '{"minLength":null,"maxLength":255,"validator":"url","default":null,"regexp":null,"regexpErrorMessage":null,"fieldTypes":[]}', 'url_youtube', 'Youtube URL', NULL, 500, NULL, 0, 1, 1, '2015-09-02 15:59:16', NULL, '2015-09-02 15:59:16', NULL, NULL, NULL, 1),
-(25, 3, NULL, 'ProfileFieldTypeText', '{"minLength":null,"maxLength":255,"validator":"url","default":null,"regexp":null,"regexpErrorMessage":null,"fieldTypes":[]}', 'url_vimeo', 'Vimeo URL', NULL, 600, NULL, 0, 1, 1, '2015-09-02 15:59:16', NULL, '2015-09-02 15:59:16', NULL, NULL, NULL, 1),
-(26, 3, NULL, 'ProfileFieldTypeText', '{"minLength":null,"maxLength":255,"validator":"url","default":null,"regexp":null,"regexpErrorMessage":null,"fieldTypes":[]}', 'url_flickr', 'Flickr URL', NULL, 700, NULL, 0, 1, 1, '2015-09-02 15:59:17', NULL, '2015-09-02 15:59:17', NULL, NULL, NULL, 1),
-(27, 3, NULL, 'ProfileFieldTypeText', '{"minLength":null,"maxLength":255,"validator":"url","default":null,"regexp":null,"regexpErrorMessage":null,"fieldTypes":[]}', 'url_myspace', 'MySpace URL', NULL, 800, NULL, 0, 1, 1, '2015-09-02 15:59:18', NULL, '2015-09-02 15:59:18', NULL, NULL, NULL, 1),
-(28, 3, NULL, 'ProfileFieldTypeText', '{"minLength":null,"maxLength":255,"validator":"url","default":null,"regexp":null,"regexpErrorMessage":null,"fieldTypes":[]}', 'url_googleplus', 'Google+ URL', NULL, 900, NULL, 0, 1, 1, '2015-09-02 15:59:18', NULL, '2015-09-02 15:59:18', NULL, NULL, NULL, 1),
-(29, 3, NULL, 'ProfileFieldTypeText', '{"minLength":null,"maxLength":255,"validator":"url","default":null,"regexp":null,"regexpErrorMessage":null,"fieldTypes":[]}', 'url_twitter', 'Twitter URL', NULL, 1000, NULL, 0, 1, 1, '2015-09-02 15:59:19', NULL, '2015-09-02 15:59:19', NULL, NULL, NULL, 1);
+(23, 3, NULL, 'ProfileFieldTypeText', '{"minLength":"","maxLength":"255","validator":"url","default":"","regexp":"","regexpErrorMessage":"","fieldTypes":[]}', 'url_xing', 'Xing URL', '', 1000, 0, 0, 1, 0, '2015-09-02 15:59:15', NULL, '2015-09-10 18:30:27', 1, '', 'UserModule.models_Profile', 1),
+(24, 3, NULL, 'ProfileFieldTypeText', '{"minLength":"","maxLength":"255","validator":"url","default":"","regexp":"","regexpErrorMessage":"","fieldTypes":[]}', 'url_youtube', 'Youtube URL', '', 400, 0, 0, 1, 1, '2015-09-02 15:59:16', NULL, '2015-09-10 18:29:42', 1, '', 'UserModule.models_Profile', 1),
+(25, 3, NULL, 'ProfileFieldTypeText', '{"minLength":"","maxLength":"255","validator":"url","default":"","regexp":"","regexpErrorMessage":"","fieldTypes":[]}', 'url_vimeo', 'Vimeo URL', '', 600, 0, 0, 1, 0, '2015-09-02 15:59:16', NULL, '2015-09-10 18:29:31', 1, '', 'UserModule.models_Profile', 1),
+(26, 3, NULL, 'ProfileFieldTypeText', '{"minLength":"","maxLength":"255","validator":"url","default":"","regexp":"","regexpErrorMessage":"","fieldTypes":[]}', 'url_flickr', 'Flickr URL', '', 700, 0, 0, 1, 0, '2015-09-02 15:59:17', NULL, '2015-09-10 18:29:56', 1, '', 'UserModule.models_Profile', 1),
+(27, 3, NULL, 'ProfileFieldTypeText', '{"minLength":"","maxLength":"255","validator":"url","default":"","regexp":"","regexpErrorMessage":"","fieldTypes":[]}', 'url_myspace', 'MySpace URL', '', 800, 0, 0, 1, 0, '2015-09-02 15:59:18', NULL, '2015-09-10 18:30:02', 1, '', 'UserModule.models_Profile', 1),
+(28, 3, NULL, 'ProfileFieldTypeText', '{"minLength":"","maxLength":"255","validator":"url","default":"","regexp":"","regexpErrorMessage":"","fieldTypes":[]}', 'url_googleplus', 'Google+ URL', '', 900, 0, 0, 1, 0, '2015-09-02 15:59:18', NULL, '2015-09-10 18:30:08', 1, '', 'UserModule.models_Profile', 1),
+(29, 3, NULL, 'ProfileFieldTypeText', '{"minLength":"","maxLength":"255","validator":"url","default":"","regexp":"","regexpErrorMessage":"","fieldTypes":[]}', 'url_twitter', 'Twitter URL', '', 500, 0, 0, 1, 1, '2015-09-02 15:59:19', NULL, '2015-09-10 18:30:21', 1, '', 'UserModule.models_Profile', 1),
+(30, 1, NULL, 'ProfileFieldTypeSelect', '{"options":"Estudante\\r\\nProfessor","fieldTypes":[]}', 'perfil', 'Perfil', '', 300, 1, 1, 1, 1, '2015-09-10 18:18:41', 1, '2015-09-10 18:19:16', 1, '', 'UserModule.models_Profile', NULL),
+(31, 1, NULL, 'ProfileFieldTypeText', '{"minLength":"6","maxLength":"6","validator":"","default":"2015.2","regexp":"2015.2","regexpErrorMessage":"","fieldTypes":[]}', 'entrada', 'Entrada (Ex.: 2015.2)', '', 400, 1, 1, 1, 1, '2015-09-10 18:21:24', 1, '2015-09-10 18:22:54', 1, '', 'UserModule.models_Profile', NULL),
+(32, 1, NULL, 'ProfileFieldTypeNumber', '{"maxValue":"","minValue":"","fieldTypes":[]}', 'cpf', 'CPF', '', 201, 1, 1, 1, 1, '2015-09-10 18:32:08', 1, '2015-09-10 18:32:08', 1, '', 'UserModule.models_Profile', NULL);
 
 -- --------------------------------------------------------
 
@@ -620,9 +636,9 @@ CREATE TABLE IF NOT EXISTS `profile_field_category` (
 --
 
 INSERT INTO `profile_field_category` (`id`, `title`, `description`, `sort_order`, `module_id`, `visibility`, `created_at`, `created_by`, `updated_at`, `updated_by`, `translation_category`, `is_system`) VALUES
-(1, 'General', '', 100, NULL, 1, '2015-09-02 15:59:01', NULL, '2015-09-02 15:59:01', NULL, NULL, 1),
-(2, 'Communication', '', 200, NULL, 1, '2015-09-02 15:59:01', NULL, '2015-09-02 15:59:01', NULL, NULL, 1),
-(3, 'Social bookmarks', '', 300, NULL, 1, '2015-09-02 15:59:01', NULL, '2015-09-02 15:59:01', NULL, NULL, 1);
+(1, 'Geral', '', 100, NULL, 1, '2015-09-02 15:59:01', NULL, '2015-09-10 18:16:23', 1, 'UserModule.models_ProfileFieldCategory', 1),
+(2, 'Comunicação', '', 200, NULL, 1, '2015-09-02 15:59:01', NULL, '2015-09-10 18:32:53', 1, 'UserModule.models_ProfileFieldCategory', 1),
+(3, 'Social', '', 300, NULL, 1, '2015-09-02 15:59:01', NULL, '2015-09-10 18:32:58', 1, 'UserModule.models_ProfileFieldCategory', 1);
 
 -- --------------------------------------------------------
 
@@ -641,7 +657,7 @@ CREATE TABLE IF NOT EXISTS `setting` (
   `updated_at` datetime DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=38 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=39 ;
 
 --
 -- Extraindo dados da tabela `setting`
@@ -651,8 +667,8 @@ INSERT INTO `setting` (`id`, `name`, `value`, `value_text`, `module_id`, `create
 (1, 'oembedProviders', NULL, '{"vimeo.com":"http:\\/\\/vimeo.com\\/api\\/oembed.json?scheme=https&url=%url%&format=json&maxwidth=450","youtube.com":"http:\\/\\/www.youtube.com\\/oembed?scheme=https&url=%url%&format=json&maxwidth=450","youtu.be":"http:\\/\\/www.youtube.com\\/oembed?scheme=https&url=%url%&format=json&maxwidth=450","soundcloud.com":"https:\\/\\/soundcloud.com\\/oembed?url=%url%&format=json&maxwidth=450","slideshare.net":"https:\\/\\/www.slideshare.net\\/api\\/oembed\\/2?url=%url%&format=json&maxwidth=450"}', NULL, NULL, NULL, NULL, NULL),
 (2, 'defaultVisibility', '1', NULL, 'space', NULL, NULL, NULL, NULL),
 (3, 'defaultJoinPolicy', '1', NULL, 'space', NULL, NULL, NULL, NULL),
-(4, 'name', 'HumHub', NULL, NULL, '2015-09-02 15:58:59', 0, '2015-09-02 15:58:59', 0),
-(5, 'baseUrl', 'http://localhost/humhub-master', NULL, NULL, '2015-09-02 15:59:00', 0, '2015-09-02 15:59:00', 0),
+(4, 'name', 'HumHub', NULL, NULL, '2015-09-02 15:58:59', 0, '2015-09-10 18:34:05', 1),
+(5, 'baseUrl', 'http://localhost/humhub-master', NULL, NULL, '2015-09-02 15:59:00', 0, '2015-09-10 18:34:05', 1),
 (6, 'paginationSize', '10', NULL, NULL, '2015-09-02 15:59:00', 0, '2015-09-02 15:59:00', 0),
 (7, 'displayNameFormat', '{profile.firstname} {profile.lastname}', NULL, NULL, '2015-09-02 15:59:00', 0, '2015-09-02 15:59:00', 0),
 (8, 'authInternal', '1', NULL, 'authentication', '2015-09-02 15:59:00', 0, '2015-09-02 15:59:00', 0),
@@ -675,8 +691,8 @@ INSERT INTO `setting` (`id`, `name`, `value`, `value_text`, `module_id`, `create
 (25, 'installationId', 'f73e761e751e47187f66b0393e899544', NULL, 'admin', '2015-09-02 15:59:01', 0, '2015-09-02 15:59:01', 0),
 (26, 'theme', 'HumHub', NULL, NULL, '2015-09-02 15:59:01', 0, '2015-09-02 15:59:01', 0),
 (27, 'spaceOrder', '0', NULL, 'space', '2015-09-02 15:59:01', 0, '2015-09-02 15:59:01', 0),
-(28, 'enable', '1', NULL, 'tour', '2015-09-02 15:59:01', 0, '2015-09-02 15:59:01', 0),
-(29, 'defaultLanguage', 'pt_br', NULL, NULL, '2015-09-02 15:59:01', 0, '2015-09-02 15:59:01', 0),
+(28, 'enable', '1', NULL, 'tour', '2015-09-02 15:59:01', 0, '2015-09-10 18:34:05', 1),
+(29, 'defaultLanguage', 'pt_br', NULL, NULL, '2015-09-02 15:59:01', 0, '2015-09-10 18:34:05', 1),
 (30, 'enable_html5_desktop_notifications', '0', NULL, 'notification', '2015-09-02 15:59:01', 0, '2015-09-02 15:59:01', 0),
 (31, 'secret', 'dbaf2386-e51c-41e2-a162-dac88ee92b50', NULL, NULL, '2015-09-02 16:00:41', 0, '2015-09-02 16:00:41', 0),
 (32, 'hostname', '', NULL, 'mailing', '2015-09-02 16:53:58', 1, '2015-09-02 16:53:58', 1),
@@ -684,7 +700,8 @@ INSERT INTO `setting` (`id`, `name`, `value`, `value_text`, `module_id`, `create
 (34, 'password', '12345', NULL, 'mailing', '2015-09-02 16:53:58', 1, '2015-09-02 16:53:58', 1),
 (35, 'port', '', NULL, 'mailing', '2015-09-02 16:53:58', 1, '2015-09-02 16:53:58', 1),
 (36, 'encryption', '', NULL, 'mailing', '2015-09-02 16:53:58', 1, '2015-09-02 16:53:58', 1),
-(37, 'allowSelfSignedCerts', '0', NULL, 'mailing', '2015-09-02 16:53:58', 1, '2015-09-02 16:53:58', 1);
+(37, 'allowSelfSignedCerts', '0', NULL, 'mailing', '2015-09-02 16:53:58', 1, '2015-09-02 16:53:58', 1),
+(38, 'showProfilePostForm', '0', NULL, 'dashboard', '2015-09-10 18:34:05', 1, '2015-09-10 18:34:05', 1);
 
 -- --------------------------------------------------------
 
@@ -756,7 +773,7 @@ INSERT INTO `space_membership` (`space_id`, `user_id`, `originator_user_id`, `st
 (1, 2, NULL, 3, NULL, '2015-09-02 17:23:09', 0, 0, 0, '2015-09-02 17:10:09', 1, '2015-09-02 17:10:09', 1),
 (1, 3, NULL, 3, NULL, NULL, 0, 0, 0, '2015-09-06 01:46:58', NULL, '2015-09-06 01:46:58', NULL),
 (2, 1, NULL, 3, NULL, '2015-09-02 17:34:35', 1, 1, 1, '2015-09-02 16:07:24', 1, '2015-09-02 16:07:24', 1),
-(3, 1, NULL, 3, NULL, '2015-09-02 17:32:08', 1, 1, 1, '2015-09-02 16:16:30', 1, '2015-09-02 16:16:30', 1),
+(3, 1, NULL, 3, NULL, '2015-09-10 17:19:02', 1, 1, 1, '2015-09-02 16:16:30', 1, '2015-09-02 16:16:30', 1),
 (4, 2, NULL, 3, NULL, '2015-09-02 17:31:24', 1, 1, 1, '2015-09-02 17:14:15', 2, '2015-09-02 17:14:15', 2),
 (5, 1, NULL, 3, NULL, '2015-09-06 16:38:52', 1, 1, 1, '2015-09-06 16:38:01', 1, '2015-09-06 16:38:01', 1);
 
@@ -1457,7 +1474,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 --
 
 INSERT INTO `user` (`id`, `guid`, `wall_id`, `group_id`, `status`, `super_admin`, `username`, `email`, `auth_mode`, `tags`, `language`, `last_activity_email`, `created_at`, `created_by`, `updated_at`, `updated_by`, `last_login`, `visibility`) VALUES
-(1, '9e173f30-2710-4c11-8502-1eeed5bca5ec', 1, 1, 1, 1, 'cb130felix', 'renanfelixrodrigues@hotmail.com', 'local', NULL, '', '2015-09-02 16:00:41', '2015-09-02 16:00:41', NULL, '2015-09-02 16:00:41', NULL, '2015-09-07 07:29:23', 1),
+(1, '9e173f30-2710-4c11-8502-1eeed5bca5ec', 1, 1, 1, 1, 'cb130felix', 'renanfelixrodrigues@hotmail.com', 'local', NULL, '', '2015-09-02 16:00:41', '2015-09-02 16:00:41', NULL, '2015-09-02 16:00:41', NULL, '2015-09-10 17:18:50', 1),
 (2, '5d028996-b43c-4c31-92db-2d01d8ee955a', 5, 1, 1, 0, 'Renandro', 'naotenhoemail@gmail.com', 'local', NULL, NULL, '2015-09-02 17:10:09', '2015-09-02 17:10:09', 1, '2015-09-02 17:10:54', 1, '2015-09-07 00:16:58', 1),
 (3, '1a2def47-4d90-4138-bf32-94202c5ecfd8', 7, 1, 1, 0, 'Rolandro', 'renanfelixrodrigues@gmail.com', 'local', NULL, 'pt_br', '2015-09-06 01:46:57', '2015-09-06 01:46:57', NULL, '2015-09-06 01:46:57', NULL, '2015-09-06 01:46:58', 1);
 
@@ -1545,8 +1562,7 @@ CREATE TABLE IF NOT EXISTS `user_http_session` (
 --
 
 INSERT INTO `user_http_session` (`id`, `expire`, `user_id`, `data`) VALUES
-('3o5jo3pm178v7ari8nuvrthak2', 1441654298, NULL, 0x30323562326231396330633432363636613534316565633632333064306663615f5f72657475726e55726c7c733a34363a222f68756d6875622d6d61737465722f696e6465782e7068703f723d64617368626f6172642f64617368626f617264223b),
-('umaj8pos105pgl6akthigjjn62', 1441654250, NULL, '');
+('osvobpr3bgfh41e33vl66sknp3', 1441929533, 1, 0x65386533316661356537396235316432656130626236343265356531313762335f5f72657475726e55726c7c733a37353a222f466f6c6c6f774564752f696e6465782e7068703f723d757365722f617574682f6372656174654163636f756e742f746f6b656e2f35356631656430633332653236343933373433323734223b65386533316661356537396235316432656130626236343265356531313762335f5f69647c733a313a2231223b65386533316661356537396235316432656130626236343265356531313762335f5f6e616d657c733a31303a22636231333066656c6978223b65386533316661356537396235316432656130626236343265356531313762337469746c657c733a32313a2253797374656d2041646d696e697374726174696f6e223b65386533316661356537396235316432656130626236343265356531313762335f5f7374617465737c613a313a7b733a353a227469746c65223b623a313b7d);
 
 -- --------------------------------------------------------
 
@@ -1569,14 +1585,15 @@ CREATE TABLE IF NOT EXISTS `user_invite` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `unique_email` (`email`),
   UNIQUE KEY `unique_token` (`token`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Extraindo dados da tabela `user_invite`
 --
 
 INSERT INTO `user_invite` (`id`, `user_originator_id`, `space_invite_id`, `email`, `source`, `token`, `created_at`, `created_by`, `updated_at`, `updated_by`, `language`) VALUES
-(2, NULL, NULL, 'renanfelixrodrigues92@gmail.com', 'self', '55e74e80af909421906491', '2015-09-02 16:31:12', NULL, '2015-09-02 16:31:12', NULL, 'pt_br');
+(2, NULL, NULL, 'renanfelixrodrigues92@gmail.com', 'self', '55e74e80af909421906491', '2015-09-02 16:31:12', NULL, '2015-09-02 16:31:12', NULL, 'pt_br'),
+(3, NULL, NULL, 'arthurflor23@gmail.com', 'self', '55f1ed0c32e26493743274', '2015-09-10 17:50:20', NULL, '2015-09-10 17:50:20', NULL, 'en');
 
 -- --------------------------------------------------------
 
