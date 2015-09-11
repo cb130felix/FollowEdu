@@ -47,12 +47,35 @@ class CreateController extends Controller
      */
     public function actionCreate()
     {
+		
+		//Parte editada por Renan ... CUIDADO =P
+		
+		$servername = "localhost";
+		$username = "root";
+		$password = "";
+		$dbname = "followedu";
 
-        if (!Yii::app()->user->canCreateSpace()) {
-            throw new CHttpException(400, 'You are not allowed to create spaces!');
-        }
-
-        $model = new Space('edit');
+		$conn = new mysqli($servername, $username, $password, $dbname);
+		if ($conn->connect_error) {
+			die("Connection failed: " . $conn->connect_error);
+		} 
+		
+		
+		
+		//parte editada por Renan... cuidado :D
+		$user_id = Yii::app()->user->id;
+		$sql = "SELECT perfil FROM profile WHERE user_id = $user_id";
+		$result = $conn->query($sql);
+		$row = $result->fetch_assoc();
+		$perfil = $row["perfil"];
+		
+		
+		$conn->close();
+				
+		//if ($perfil == 'Professor') { comentado por enquanto, até arthur consertar a cagada dele
+		if ($user_id = Yii::app()->user->id == 1) {
+			
+		$model = new Space('edit');
 
         // Ajax Validation
         if (isset($_POST['ajax']) && $_POST['ajax'] === 'space-create-form') {
@@ -76,6 +99,12 @@ class CreateController extends Controller
         }
 
         $this->renderPartial('create', array('model' => $model), false, true);
+		
+		}else{
+			echo '<script>alert("Você não tem permissão para criar grupos!!");</script>';
+		}
+
+        
     }
 
 }
