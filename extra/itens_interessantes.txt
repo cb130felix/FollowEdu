@@ -1,0 +1,3 @@
+caminhos para arquivos a serem editados:
+
+protected\modules_core\space\controllers\CreateController.php -> Arquivo do formulário para criar espaços
