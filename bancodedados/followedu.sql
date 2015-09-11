@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Máquina: localhost
--- Data de Criação: 10-Set-2015 às 20:35
+-- Data de Criação: 11-Set-2015 às 10:01
 -- Versão do servidor: 5.5.44-0ubuntu0.14.04.1
 -- versão do PHP: 5.5.9-1ubuntu4.11
 
@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `activity` (
   `updated_at` datetime DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=21 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=24 ;
 
 --
 -- Extraindo dados da tabela `activity`
@@ -62,7 +62,8 @@ INSERT INTO `activity` (`id`, `type`, `module`, `object_model`, `object_id`, `cr
 (17, 'ActivityUserFollowsUser', '', 'User', '2', '2015-09-05 21:09:21', 1, '2015-09-05 21:09:21', 1),
 (18, 'ActivitySpaceMemberAdded', '', '', '', '2015-09-06 01:46:58', 3, '2015-09-06 01:46:58', NULL),
 (19, 'ActivitySpaceCreated', '', '', '', '2015-09-06 16:38:02', 1, '2015-09-06 16:38:02', 1),
-(20, 'PostCreated', 'post', 'Post', '8', '2015-09-06 16:38:51', 1, '2015-09-06 16:38:51', 1);
+(20, 'PostCreated', 'post', 'Post', '8', '2015-09-06 16:38:51', 1, '2015-09-06 16:38:51', 1),
+(23, 'ActivitySpaceMemberAdded', '', '', '', '2015-09-11 07:14:35', 5, '2015-09-11 07:14:35', 1);
 
 -- --------------------------------------------------------
 
@@ -120,7 +121,7 @@ CREATE TABLE IF NOT EXISTS `content` (
   UNIQUE KEY `index_guid` (`guid`),
   KEY `index_space_id` (`space_id`),
   KEY `index_user_id` (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=28 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=31 ;
 
 --
 -- Extraindo dados da tabela `content`
@@ -152,7 +153,8 @@ INSERT INTO `content` (`id`, `guid`, `object_model`, `object_id`, `visibility`, 
 (24, '0129041b-3b05-4820-8f1e-51fee5ca7514', 'Activity', 18, 0, 0, '0', 1, 3, '2015-09-06 01:46:58', 3, '2015-09-06 01:46:58', NULL),
 (25, '19ce8036-87e3-4194-88f3-a4fb0b8137f1', 'Activity', 19, 1, 0, '0', 5, 1, '2015-09-06 16:38:02', 1, '2015-09-06 16:38:02', 1),
 (26, 'ccb4ff1f-5cee-427c-97a1-fe8871efe8c8', 'Post', 8, 0, 0, '0', 5, 1, '2015-09-06 16:38:51', 1, '2015-09-06 16:38:51', 1),
-(27, '5a1cc6f8-0d54-4a98-8b90-8d598c56c329', 'Activity', 20, 0, 0, '0', 5, 1, '2015-09-06 16:38:51', 1, '2015-09-06 16:38:51', 1);
+(27, '5a1cc6f8-0d54-4a98-8b90-8d598c56c329', 'Activity', 20, 0, 0, '0', 5, 1, '2015-09-06 16:38:51', 1, '2015-09-06 16:38:51', 1),
+(30, '601c4491-2e04-4eba-8d03-5e02461eee82', 'Activity', 23, 0, 0, '0', 1, 5, '2015-09-11 07:14:35', 5, '2015-09-11 07:14:35', 1);
 
 -- --------------------------------------------------------
 
@@ -266,7 +268,7 @@ CREATE TABLE IF NOT EXISTS `like` (
   `updated_by` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `index_object` (`object_model`,`object_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -281,7 +283,7 @@ CREATE TABLE IF NOT EXISTS `logging` (
   `logtime` int(11) DEFAULT NULL,
   `message` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=23 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=24 ;
 
 --
 -- Extraindo dados da tabela `logging`
@@ -309,7 +311,8 @@ INSERT INTO `logging` (`id`, `level`, `category`, `logtime`, `message`) VALUES
 (19, 'error', 'exception.CHttpException.401', 1441922686, 'exception ''CHttpException'' with message ''Your are already logged in! - Logout first!'' in /var/www/FollowEdu/protected/modules_core/user/controllers/AuthController.php:239\nStack trace:\n#0 /var/www/FollowEdu/protected/vendors/yii/web/actions/CInlineAction.php(49): AuthController->actionCreateAccount()\n#1 /var/www/FollowEdu/protected/vendors/yii/web/CController.php(308): CInlineAction->runWithParams(Array)\n#2 /var/www/FollowEdu/protected/vendors/yii/web/CController.php(286): CController->runAction(Object(CInlineAction))\n#3 /var/www/FollowEdu/protected/vendors/yii/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)\n#4 /var/www/FollowEdu/protected/vendors/yii/web/CWebApplication.php(282): CController->run(''createAccount'')\n#5 /var/www/FollowEdu/protected/vendors/yii/web/CWebApplication.php(141): CWebApplication->runController(''user/auth/creat...'')\n#6 /var/www/FollowEdu/protected/vendors/yii/base/CApplication.php(180): CWebApplication->processRequest()\n#7 /var/www/FollowEdu/index.php(39): CApplication->run()\n#8 {main}\nREQUEST_URI=/FollowEdu/index.php?r=user/auth/createAccount/token/55f1ed0c32e26493743274\n---'),
 (20, 'error', 'exception.CHttpException.401', 1441922691, 'exception ''CHttpException'' with message ''Your are already logged in! - Logout first!'' in /var/www/FollowEdu/protected/modules_core/user/controllers/AuthController.php:239\nStack trace:\n#0 /var/www/FollowEdu/protected/vendors/yii/web/actions/CInlineAction.php(49): AuthController->actionCreateAccount()\n#1 /var/www/FollowEdu/protected/vendors/yii/web/CController.php(308): CInlineAction->runWithParams(Array)\n#2 /var/www/FollowEdu/protected/vendors/yii/web/CController.php(286): CController->runAction(Object(CInlineAction))\n#3 /var/www/FollowEdu/protected/vendors/yii/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)\n#4 /var/www/FollowEdu/protected/vendors/yii/web/CWebApplication.php(282): CController->run(''createAccount'')\n#5 /var/www/FollowEdu/protected/vendors/yii/web/CWebApplication.php(141): CWebApplication->runController(''user/auth/creat...'')\n#6 /var/www/FollowEdu/protected/vendors/yii/base/CApplication.php(180): CWebApplication->processRequest()\n#7 /var/www/FollowEdu/index.php(39): CApplication->run()\n#8 {main}\nREQUEST_URI=/FollowEdu/index.php?r=user/auth/createAccount/token/55f1ed0c32e26493743274\n---'),
 (21, 'error', 'exception.CHttpException.401', 1441922692, 'exception ''CHttpException'' with message ''Your are already logged in! - Logout first!'' in /var/www/FollowEdu/protected/modules_core/user/controllers/AuthController.php:239\nStack trace:\n#0 /var/www/FollowEdu/protected/vendors/yii/web/actions/CInlineAction.php(49): AuthController->actionCreateAccount()\n#1 /var/www/FollowEdu/protected/vendors/yii/web/CController.php(308): CInlineAction->runWithParams(Array)\n#2 /var/www/FollowEdu/protected/vendors/yii/web/CController.php(286): CController->runAction(Object(CInlineAction))\n#3 /var/www/FollowEdu/protected/vendors/yii/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)\n#4 /var/www/FollowEdu/protected/vendors/yii/web/CWebApplication.php(282): CController->run(''createAccount'')\n#5 /var/www/FollowEdu/protected/vendors/yii/web/CWebApplication.php(141): CWebApplication->runController(''user/auth/creat...'')\n#6 /var/www/FollowEdu/protected/vendors/yii/base/CApplication.php(180): CWebApplication->processRequest()\n#7 /var/www/FollowEdu/index.php(39): CApplication->run()\n#8 {main}\nREQUEST_URI=/FollowEdu/index.php?r=user/auth/createAccount/token/55f1ed0c32e26493743274\n---'),
-(22, 'error', 'exception.CHttpException.401', 1441922694, 'exception ''CHttpException'' with message ''Your are already logged in! - Logout first!'' in /var/www/FollowEdu/protected/modules_core/user/controllers/AuthController.php:239\nStack trace:\n#0 /var/www/FollowEdu/protected/vendors/yii/web/actions/CInlineAction.php(49): AuthController->actionCreateAccount()\n#1 /var/www/FollowEdu/protected/vendors/yii/web/CController.php(308): CInlineAction->runWithParams(Array)\n#2 /var/www/FollowEdu/protected/vendors/yii/web/CController.php(286): CController->runAction(Object(CInlineAction))\n#3 /var/www/FollowEdu/protected/vendors/yii/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)\n#4 /var/www/FollowEdu/protected/vendors/yii/web/CWebApplication.php(282): CController->run(''createAccount'')\n#5 /var/www/FollowEdu/protected/vendors/yii/web/CWebApplication.php(141): CWebApplication->runController(''user/auth/creat...'')\n#6 /var/www/FollowEdu/protected/vendors/yii/base/CApplication.php(180): CWebApplication->processRequest()\n#7 /var/www/FollowEdu/index.php(39): CApplication->run()\n#8 {main}\nREQUEST_URI=/FollowEdu/index.php?r=user/auth/createAccount/token/55f1ed0c32e26493743274\n---');
+(22, 'error', 'exception.CHttpException.401', 1441922694, 'exception ''CHttpException'' with message ''Your are already logged in! - Logout first!'' in /var/www/FollowEdu/protected/modules_core/user/controllers/AuthController.php:239\nStack trace:\n#0 /var/www/FollowEdu/protected/vendors/yii/web/actions/CInlineAction.php(49): AuthController->actionCreateAccount()\n#1 /var/www/FollowEdu/protected/vendors/yii/web/CController.php(308): CInlineAction->runWithParams(Array)\n#2 /var/www/FollowEdu/protected/vendors/yii/web/CController.php(286): CController->runAction(Object(CInlineAction))\n#3 /var/www/FollowEdu/protected/vendors/yii/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)\n#4 /var/www/FollowEdu/protected/vendors/yii/web/CWebApplication.php(282): CController->run(''createAccount'')\n#5 /var/www/FollowEdu/protected/vendors/yii/web/CWebApplication.php(141): CWebApplication->runController(''user/auth/creat...'')\n#6 /var/www/FollowEdu/protected/vendors/yii/base/CApplication.php(180): CWebApplication->processRequest()\n#7 /var/www/FollowEdu/index.php(39): CApplication->run()\n#8 {main}\nREQUEST_URI=/FollowEdu/index.php?r=user/auth/createAccount/token/55f1ed0c32e26493743274\n---'),
+(23, 'error', 'php', 1441964924, 'preg_match(): Delimiter must not be alphanumeric or backslash (/var/www/FollowEdu/protected/vendors/yii/validators/CRegularExpressionValidator.php:53)\nStack trace:\n#0 /var/www/FollowEdu/protected/vendors/yii/base/CModel.php(159): CRegularExpressionValidator->validate()\n#1 /var/www/FollowEdu/protected/vendors/yii/web/form/CForm.php(226): Profile->validate()\n#2 /var/www/FollowEdu/protected/modules_core/admin/controllers/UserController.php(265): HForm->validate()\n#3 /var/www/FollowEdu/protected/vendors/yii/web/actions/CInlineAction.php(49): UserController->actionAdd()\n#4 /var/www/FollowEdu/protected/vendors/yii/web/CController.php(308): CInlineAction->runWithParams()\n#5 /var/www/FollowEdu/protected/vendors/yii/web/filters/CFilterChain.php(133): UserController->runAction()\n#6 /var/www/FollowEdu/protected/vendors/yii/web/filters/CFilter.php(40): CFilterChain->run()\n#7 /var/www/FollowEdu/protected/vendors/yii/web/CController.php(1145): CAccessControlFilter->filter()\n#8 /var/www/FollowEdu/protected/vendors/yii/web/filters/CInlineFilter.php(58): UserController->filterAccessControl()\n#9 /var/www/FollowEdu/protected/vendors/yii/web/filters/CFilterChain.php(130): CInlineFilter->filter()\n#10 /var/www/FollowEdu/protected/vendors/yii/web/CController.php(291): CFilterChain->run()\n#11 /var/www/FollowEdu/protected/vendors/yii/web/CController.php(265): UserController->runActionWithFilters()\n#12 /var/www/FollowEdu/protected/vendors/yii/web/CWebApplication.php(282): UserController->run()\n#13 /var/www/FollowEdu/protected/vendors/yii/web/CWebApplication.php(141): WebApplication->runController()\n#14 /var/www/FollowEdu/protected/vendors/yii/base/CApplication.php(180): WebApplication->processRequest()\n#15 /var/www/FollowEdu/index.php(39): WebApplication->run()\nREQUEST_URI=/FollowEdu/index.php?r=admin/user/add\nin /var/www/FollowEdu/protected/modules_core/admin/controllers/UserController.php (265)\nin /var/www/FollowEdu/index.php (39)');
 
 -- --------------------------------------------------------
 
@@ -526,8 +529,8 @@ CREATE TABLE IF NOT EXISTS `profile` (
   `url_googleplus` varchar(255) DEFAULT NULL,
   `url_twitter` varchar(255) DEFAULT NULL,
   `perfil` varchar(255) DEFAULT NULL,
-  `entrada` varchar(255) DEFAULT NULL,
   `cpf` int(11) DEFAULT NULL,
+  `ingresso` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -535,10 +538,11 @@ CREATE TABLE IF NOT EXISTS `profile` (
 -- Extraindo dados da tabela `profile`
 --
 
-INSERT INTO `profile` (`user_id`, `firstname`, `lastname`, `title`, `gender`, `street`, `zip`, `city`, `country`, `state`, `birthday_hide_year`, `birthday`, `about`, `phone_private`, `phone_work`, `mobile`, `fax`, `im_skype`, `im_msn`, `im_icq`, `im_xmpp`, `url`, `url_facebook`, `url_linkedin`, `url_xing`, `url_youtube`, `url_vimeo`, `url_flickr`, `url_myspace`, `url_googleplus`, `url_twitter`, `perfil`, `entrada`, `cpf`) VALUES
+INSERT INTO `profile` (`user_id`, `firstname`, `lastname`, `title`, `gender`, `street`, `zip`, `city`, `country`, `state`, `birthday_hide_year`, `birthday`, `about`, `phone_private`, `phone_work`, `mobile`, `fax`, `im_skype`, `im_msn`, `im_icq`, `im_xmpp`, `url`, `url_facebook`, `url_linkedin`, `url_xing`, `url_youtube`, `url_vimeo`, `url_flickr`, `url_myspace`, `url_googleplus`, `url_twitter`, `perfil`, `cpf`, `ingresso`) VALUES
 (1, 'Renan', 'Felix', 'System Administration', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (2, 'Luiz', 'Renandro', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(3, 'Rola', 'Nandro', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+(3, 'Rola', 'Nandro', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(5, 'teste', 'teste', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', 2147483647, '2013.1');
 
 -- --------------------------------------------------------
 
@@ -569,7 +573,7 @@ CREATE TABLE IF NOT EXISTS `profile_field` (
   `is_system` int(1) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `index_profile_field_category` (`profile_field_category_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=33 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=34 ;
 
 --
 -- Extraindo dados da tabela `profile_field`
@@ -600,14 +604,14 @@ INSERT INTO `profile_field` (`id`, `profile_field_category_id`, `module_id`, `fi
 (22, 3, NULL, 'ProfileFieldTypeText', '{"minLength":null,"maxLength":255,"validator":"url","default":null,"regexp":null,"regexpErrorMessage":null,"fieldTypes":[]}', 'url_linkedin', 'LinkedIn URL', NULL, 300, NULL, 0, 1, 1, '2015-09-02 15:59:15', NULL, '2015-09-02 15:59:15', NULL, NULL, NULL, 1),
 (23, 3, NULL, 'ProfileFieldTypeText', '{"minLength":"","maxLength":"255","validator":"url","default":"","regexp":"","regexpErrorMessage":"","fieldTypes":[]}', 'url_xing', 'Xing URL', '', 1000, 0, 0, 1, 0, '2015-09-02 15:59:15', NULL, '2015-09-10 18:30:27', 1, '', 'UserModule.models_Profile', 1),
 (24, 3, NULL, 'ProfileFieldTypeText', '{"minLength":"","maxLength":"255","validator":"url","default":"","regexp":"","regexpErrorMessage":"","fieldTypes":[]}', 'url_youtube', 'Youtube URL', '', 400, 0, 0, 1, 1, '2015-09-02 15:59:16', NULL, '2015-09-10 18:29:42', 1, '', 'UserModule.models_Profile', 1),
-(25, 3, NULL, 'ProfileFieldTypeText', '{"minLength":"","maxLength":"255","validator":"url","default":"","regexp":"","regexpErrorMessage":"","fieldTypes":[]}', 'url_vimeo', 'Vimeo URL', '', 600, 0, 0, 1, 0, '2015-09-02 15:59:16', NULL, '2015-09-10 18:29:31', 1, '', 'UserModule.models_Profile', 1),
+(25, 3, NULL, 'ProfileFieldTypeText', '{"minLength":"","maxLength":"255","validator":"url","default":"","regexp":"","regexpErrorMessage":"","fieldTypes":[]}', 'url_vimeo', 'Vimeo URL', '', 600, 0, 0, 0, 0, '2015-09-02 15:59:16', NULL, '2015-09-11 06:53:25', 1, '', 'UserModule.models_Profile', 1),
 (26, 3, NULL, 'ProfileFieldTypeText', '{"minLength":"","maxLength":"255","validator":"url","default":"","regexp":"","regexpErrorMessage":"","fieldTypes":[]}', 'url_flickr', 'Flickr URL', '', 700, 0, 0, 1, 0, '2015-09-02 15:59:17', NULL, '2015-09-10 18:29:56', 1, '', 'UserModule.models_Profile', 1),
 (27, 3, NULL, 'ProfileFieldTypeText', '{"minLength":"","maxLength":"255","validator":"url","default":"","regexp":"","regexpErrorMessage":"","fieldTypes":[]}', 'url_myspace', 'MySpace URL', '', 800, 0, 0, 1, 0, '2015-09-02 15:59:18', NULL, '2015-09-10 18:30:02', 1, '', 'UserModule.models_Profile', 1),
 (28, 3, NULL, 'ProfileFieldTypeText', '{"minLength":"","maxLength":"255","validator":"url","default":"","regexp":"","regexpErrorMessage":"","fieldTypes":[]}', 'url_googleplus', 'Google+ URL', '', 900, 0, 0, 1, 0, '2015-09-02 15:59:18', NULL, '2015-09-10 18:30:08', 1, '', 'UserModule.models_Profile', 1),
 (29, 3, NULL, 'ProfileFieldTypeText', '{"minLength":"","maxLength":"255","validator":"url","default":"","regexp":"","regexpErrorMessage":"","fieldTypes":[]}', 'url_twitter', 'Twitter URL', '', 500, 0, 0, 1, 1, '2015-09-02 15:59:19', NULL, '2015-09-10 18:30:21', 1, '', 'UserModule.models_Profile', 1),
 (30, 1, NULL, 'ProfileFieldTypeSelect', '{"options":"Estudante\\r\\nProfessor","fieldTypes":[]}', 'perfil', 'Perfil', '', 300, 1, 1, 1, 1, '2015-09-10 18:18:41', 1, '2015-09-10 18:19:16', 1, '', 'UserModule.models_Profile', NULL),
-(31, 1, NULL, 'ProfileFieldTypeText', '{"minLength":"6","maxLength":"6","validator":"","default":"2015.2","regexp":"2015.2","regexpErrorMessage":"","fieldTypes":[]}', 'entrada', 'Entrada (Ex.: 2015.2)', '', 400, 1, 1, 1, 1, '2015-09-10 18:21:24', 1, '2015-09-10 18:22:54', 1, '', 'UserModule.models_Profile', NULL),
-(32, 1, NULL, 'ProfileFieldTypeNumber', '{"maxValue":"","minValue":"","fieldTypes":[]}', 'cpf', 'CPF', '', 201, 1, 1, 1, 1, '2015-09-10 18:32:08', 1, '2015-09-10 18:32:08', 1, '', 'UserModule.models_Profile', NULL);
+(32, 1, NULL, 'ProfileFieldTypeNumber', '{"maxValue":"","minValue":"","fieldTypes":[]}', 'cpf', 'CPF (Somente números)', '', 201, 1, 1, 1, 1, '2015-09-10 18:32:08', 1, '2015-09-11 06:54:33', 1, '', 'UserModule.models_Profile', NULL),
+(33, 1, NULL, 'ProfileFieldTypeText', '{"minLength":"6","maxLength":"6","validator":"","default":"","regexp":"","regexpErrorMessage":"","fieldTypes":[]}', 'ingresso', 'Entrada (Ex.: 2015.2)', '', 400, 1, 1, 1, 1, '2015-09-11 06:58:30', 1, '2015-09-11 06:58:30', 1, '', 'UserModule.models_Profile', NULL);
 
 -- --------------------------------------------------------
 
@@ -769,9 +773,10 @@ CREATE TABLE IF NOT EXISTS `space_membership` (
 --
 
 INSERT INTO `space_membership` (`space_id`, `user_id`, `originator_user_id`, `status`, `request_message`, `last_visit`, `invite_role`, `admin_role`, `share_role`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES
-(1, 1, NULL, 3, NULL, '2015-09-02 17:31:58', 1, 1, 1, '2015-09-02 16:00:43', 1, '2015-09-02 16:00:43', 1),
+(1, 1, NULL, 3, NULL, '2015-09-11 07:14:35', 1, 1, 1, '2015-09-02 16:00:43', 1, '2015-09-02 16:00:43', 1),
 (1, 2, NULL, 3, NULL, '2015-09-02 17:23:09', 0, 0, 0, '2015-09-02 17:10:09', 1, '2015-09-02 17:10:09', 1),
 (1, 3, NULL, 3, NULL, NULL, 0, 0, 0, '2015-09-06 01:46:58', NULL, '2015-09-06 01:46:58', NULL),
+(1, 5, NULL, 3, NULL, NULL, 0, 0, 0, '2015-09-11 07:14:35', 1, '2015-09-11 07:14:35', 1),
 (2, 1, NULL, 3, NULL, '2015-09-02 17:34:35', 1, 1, 1, '2015-09-02 16:07:24', 1, '2015-09-02 16:07:24', 1),
 (3, 1, NULL, 3, NULL, '2015-09-10 17:19:02', 1, 1, 1, '2015-09-02 16:16:30', 1, '2015-09-02 16:16:30', 1),
 (4, 2, NULL, 3, NULL, '2015-09-02 17:31:24', 1, 1, 1, '2015-09-02 17:14:15', 2, '2015-09-02 17:14:15', 2),
@@ -1467,16 +1472,17 @@ CREATE TABLE IF NOT EXISTS `user` (
   UNIQUE KEY `unique_username` (`username`),
   UNIQUE KEY `unique_guid` (`guid`),
   UNIQUE KEY `unique_wall_id` (`wall_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Extraindo dados da tabela `user`
 --
 
 INSERT INTO `user` (`id`, `guid`, `wall_id`, `group_id`, `status`, `super_admin`, `username`, `email`, `auth_mode`, `tags`, `language`, `last_activity_email`, `created_at`, `created_by`, `updated_at`, `updated_by`, `last_login`, `visibility`) VALUES
-(1, '9e173f30-2710-4c11-8502-1eeed5bca5ec', 1, 1, 1, 1, 'cb130felix', 'renanfelixrodrigues@hotmail.com', 'local', NULL, '', '2015-09-02 16:00:41', '2015-09-02 16:00:41', NULL, '2015-09-02 16:00:41', NULL, '2015-09-10 17:18:50', 1),
+(1, '9e173f30-2710-4c11-8502-1eeed5bca5ec', 1, 1, 1, 1, 'cb130felix', 'renanfelixrodrigues@hotmail.com', 'local', NULL, '', '2015-09-02 16:00:41', '2015-09-02 16:00:41', NULL, '2015-09-02 16:00:41', NULL, '2015-09-11 07:06:24', 1),
 (2, '5d028996-b43c-4c31-92db-2d01d8ee955a', 5, 1, 1, 0, 'Renandro', 'naotenhoemail@gmail.com', 'local', NULL, NULL, '2015-09-02 17:10:09', '2015-09-02 17:10:09', 1, '2015-09-02 17:10:54', 1, '2015-09-07 00:16:58', 1),
-(3, '1a2def47-4d90-4138-bf32-94202c5ecfd8', 7, 1, 1, 0, 'Rolandro', 'renanfelixrodrigues@gmail.com', 'local', NULL, 'pt_br', '2015-09-06 01:46:57', '2015-09-06 01:46:57', NULL, '2015-09-06 01:46:57', NULL, '2015-09-06 01:46:58', 1);
+(3, '1a2def47-4d90-4138-bf32-94202c5ecfd8', 7, 1, 1, 0, 'Rolandro', 'renanfelixrodrigues@gmail.com', 'local', NULL, 'pt_br', '2015-09-06 01:46:57', '2015-09-06 01:46:57', NULL, '2015-09-06 01:46:57', NULL, '2015-09-06 01:46:58', 1),
+(5, 'fce16aa8-0566-4479-9733-7463e9b66782', 10, 1, 1, 0, 'teste', 'teste@gmail.com', 'local', NULL, NULL, '2015-09-11 07:14:35', '2015-09-11 07:14:35', 1, '2015-09-11 07:14:35', 1, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -1562,7 +1568,7 @@ CREATE TABLE IF NOT EXISTS `user_http_session` (
 --
 
 INSERT INTO `user_http_session` (`id`, `expire`, `user_id`, `data`) VALUES
-('osvobpr3bgfh41e33vl66sknp3', 1441929533, 1, 0x65386533316661356537396235316432656130626236343265356531313762335f5f72657475726e55726c7c733a37353a222f466f6c6c6f774564752f696e6465782e7068703f723d757365722f617574682f6372656174654163636f756e742f746f6b656e2f35356631656430633332653236343933373433323734223b65386533316661356537396235316432656130626236343265356531313762335f5f69647c733a313a2231223b65386533316661356537396235316432656130626236343265356531313762335f5f6e616d657c733a31303a22636231333066656c6978223b65386533316661356537396235316432656130626236343265356531313762337469746c657c733a32313a2253797374656d2041646d696e697374726174696f6e223b65386533316661356537396235316432656130626236343265356531313762335f5f7374617465737c613a313a7b733a353a227469746c65223b623a313b7d);
+('h9uqkj92eragnv1nedq3cegia5', 1441968036, 1, 0x65386533316661356537396235316432656130626236343265356531313762335f5f72657475726e55726c7c733a34323a222f466f6c6c6f774564752f696e6465782e7068703f723d64617368626f6172642f64617368626f617264223b65386533316661356537396235316432656130626236343265356531313762335f5f69647c733a313a2231223b65386533316661356537396235316432656130626236343265356531313762335f5f6e616d657c733a31303a22636231333066656c6978223b65386533316661356537396235316432656130626236343265356531313762337469746c657c733a32313a2253797374656d2041646d696e697374726174696f6e223b65386533316661356537396235316432656130626236343265356531313762335f5f7374617465737c613a313a7b733a353a227469746c65223b623a313b7d);
 
 -- --------------------------------------------------------
 
@@ -1641,7 +1647,7 @@ CREATE TABLE IF NOT EXISTS `user_password` (
   `created_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `idx_user_id` (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Extraindo dados da tabela `user_password`
@@ -1650,7 +1656,8 @@ CREATE TABLE IF NOT EXISTS `user_password` (
 INSERT INTO `user_password` (`id`, `user_id`, `algorithm`, `password`, `salt`, `created_at`) VALUES
 (1, 1, 'sha512whirlpool', '02d4af24ce74433174fda1758857ab03c908cdf5b2b5d389988731a4c1deb348b91069d67a998c2ae11e1ce644a6679610405c73849d9d632a33d2124c8af6ba', '292b6b58-964e-4a8a-9dc2-404486c508f7', '2015-09-02 16:00:42'),
 (2, 2, 'sha512whirlpool', '5a2b4950e8985529667011e937f0c9d68d3b2844a847c7f54474333f84f4c5b2807f467ff31b7a8290b06d4af422dc82241f7a931098fa4c3a37c61ad62f583a', '28c2f8ec-c356-44f1-afc1-ec91cded3ccf', '2015-09-02 17:10:10'),
-(3, 3, 'sha512whirlpool', 'eff88dc3cf327c4a860388fc5c0040d17b43dd02adcf7db9b48d1179904e43ead6bc7b69bfbb6865373c6c460fc9e87ffd47ba55d83ea2373df0f9521d557fc6', 'bc9a5696-e966-4ed0-83e2-a59cc4bc1514', '2015-09-06 01:46:58');
+(3, 3, 'sha512whirlpool', 'eff88dc3cf327c4a860388fc5c0040d17b43dd02adcf7db9b48d1179904e43ead6bc7b69bfbb6865373c6c460fc9e87ffd47ba55d83ea2373df0f9521d557fc6', 'bc9a5696-e966-4ed0-83e2-a59cc4bc1514', '2015-09-06 01:46:58'),
+(5, 5, 'sha512whirlpool', 'c1d40d35a80c930507c7545a29f8c2f051f644d723cad6759b723869e8ca91de6585feec9cfef61066a7fa84cefbcae128df879f12cbb10d5c5b07563757da04', '361731f6-2f10-4df7-bedc-39914354b80a', '2015-09-11 07:14:35');
 
 -- --------------------------------------------------------
 
@@ -1694,7 +1701,7 @@ CREATE TABLE IF NOT EXISTS `wall` (
   `updated_at` datetime DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
 
 --
 -- Extraindo dados da tabela `wall`
@@ -1708,7 +1715,9 @@ INSERT INTO `wall` (`id`, `object_model`, `object_id`, `created_at`, `created_by
 (5, 'User', 2, '2015-09-02 17:10:10', 1, '2015-09-02 17:10:10', 1),
 (6, 'Space', 4, '2015-09-02 17:14:15', 2, '2015-09-02 17:14:15', 2),
 (7, 'User', 3, '2015-09-06 01:46:58', NULL, '2015-09-06 01:46:58', NULL),
-(8, 'Space', 5, '2015-09-06 16:38:01', 1, '2015-09-06 16:38:01', 1);
+(8, 'Space', 5, '2015-09-06 16:38:01', 1, '2015-09-06 16:38:01', 1),
+(9, 'User', 4, '2015-09-11 06:50:47', 1, '2015-09-11 06:50:47', 1),
+(10, 'User', 5, '2015-09-11 07:14:35', 1, '2015-09-11 07:14:35', 1);
 
 -- --------------------------------------------------------
 
@@ -1725,7 +1734,7 @@ CREATE TABLE IF NOT EXISTS `wall_entry` (
   `updated_at` datetime DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=28 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=31 ;
 
 --
 -- Extraindo dados da tabela `wall_entry`
@@ -1757,7 +1766,8 @@ INSERT INTO `wall_entry` (`id`, `wall_id`, `content_id`, `created_at`, `created_
 (24, 2, 24, '2015-09-06 01:46:58', NULL, '2015-09-06 01:46:58', NULL),
 (25, 8, 25, '2015-09-06 16:38:02', 1, '2015-09-06 16:38:02', 1),
 (26, 8, 26, '2015-09-06 16:38:51', 1, '2015-09-06 16:38:51', 1),
-(27, 8, 27, '2015-09-06 16:38:51', 1, '2015-09-06 16:38:51', 1);
+(27, 8, 27, '2015-09-06 16:38:51', 1, '2015-09-06 16:38:51', 1),
+(30, 2, 30, '2015-09-11 07:14:35', 1, '2015-09-11 07:14:35', 1);
 
 --
 -- Constraints for dumped tables
