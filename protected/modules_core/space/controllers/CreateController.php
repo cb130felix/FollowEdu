@@ -61,8 +61,6 @@ class CreateController extends Controller
 		} 
 		
 		
-		
-		//parte editada por Renan... cuidado :D
 		$user_id = Yii::app()->user->id;
 		$sql = "SELECT perfil FROM profile WHERE user_id = $user_id";
 		$result = $conn->query($sql);
@@ -72,8 +70,8 @@ class CreateController extends Controller
 		
 		$conn->close();
 				
-		//if ($perfil == 'Professor') { comentado por enquanto, até arthur consertar a cagada dele
-		if ($user_id = Yii::app()->user->id == 1) {
+		if ($perfil == 1) {
+		//if ($user_id = Yii::app()->user->id == 1) {
 			
 		$model = new Space('edit');
 

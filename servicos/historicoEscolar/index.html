@@ -1,38 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Historico escolar </title>
-  </head>
-  <body>
 
+<html>
 
+	<head>
 	
-	<form action = "PHP/salvarBanco.php" method = "post">
+		<title>Historico Escolar </title>
+                <meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+                
+	</head>
 	
-		<h3> Preencha com seus dados:</h3>
+	<body>
+            
 	
-		<td>
-			<label for="nome">Nome completo: </label>
-		</td>
-		<td align="left">
+	
+		<form method="post" action="salvarBanco.php">
+			
+			<h3>Digite os seus dados:</h3>
+			<p>Nome:</p>
+			<input type="text" required="required" name="nome"/>
+			<p>CPF:</p>
+			<input type="text" required="required" name="cpf" pattern="[0-9]+$" />
+                        <p>Anexe o seu comprovante de pagamento bancario:</p>
+			<input type="file" name="comprovante" accept="image/*" multiple required>
 			<p>
-			<input type="text" required="required" name="nome">
-		</td>
-	
-		<td>
-			<br>
-			<label for="cpf">CPF:  </label>
-		</td>
-		<p>
-		<td align = "right">
-			<input type="text" required="required" name="CPF" pattern="[0-9]+$" />
-		</td>
+			<input type="submit" value="enviar" class="button special">
+			<input type="reset" value="cancelar" class="button special">
 		
-			<input type = "file" name = "arquivo" id = "comprovante"/>
-		<p>
-		<button type="submit" name ="enviar" >Solicitar &raquo;</button>
+		</form>
 	
-	</form>
-	
-  </body>
+	</body
+
+
+
 </html>
