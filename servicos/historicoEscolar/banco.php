@@ -6,6 +6,7 @@
 	$banco = "teste";
 	$conexao = mysqli_connect($hostname, $usuario, $senha, $banco) or die ("Erro ao conectar!");
 	
+       
 	// Check connection
 	if (mysqli_connect_errno())
 	{
