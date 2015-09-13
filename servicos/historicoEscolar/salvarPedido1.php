@@ -34,6 +34,7 @@
 			
 			echo "<form action=\"../../servicos/menu.php\" method=\"post\">
 					
+					<p>Pedido realizado com sucesso!</p>
 					<input type=\"submit\" value=\"Voltar\" class=\"button special\">
 					
 					

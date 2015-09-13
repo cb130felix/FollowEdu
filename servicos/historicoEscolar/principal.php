@@ -28,7 +28,7 @@
 			if($situacao_historico == NULL){
 				
 				echo "<form action=\"salvarPedido1.php\" method=\"post\">
-							<p>Essa é a sua primeira requisição, nesse período, do histórico escolar, logo não precisa pagar. Clique em continue para prosseguir.</p>
+							<p>Essa é a sua primeira requisição nesse período do histórico escolar, logo não precisa pagar. Clique em continue para prosseguir.</p>
 							
             				<input type=\"submit\" value=\"continue\" class=\"button special\">
 
