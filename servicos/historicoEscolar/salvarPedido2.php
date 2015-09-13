@@ -31,7 +31,7 @@
 				
 				mysqli_free_result($resultado);
 				
-				echo "<form action=\"form.php\" method=\"post\">
+				echo "<form action=\"principal.php\" method=\"post\">
 							<p>Este código já foi utilizado!</p>
 							
             				<input type=\"submit\" value=\"Voltar\" class=\"button special\">
@@ -43,8 +43,21 @@
 				
 				mysqli_free_result($resultado);
 				
-				$sql = "INSERT INTO `codigos_historicos_escolares` (`codigo`)VALUES";
-				$sql = $sql. "('$codigo')";
+				$sql = "SELECT id FROM `historico_escolar` ORDER BY id DESC LIMIT 1"; 
+				$resultado = mysqli_query($conexao,$sql);
+				$id_max;
+				
+				While($row = mysqli_fetch_array($resultado)){
+					
+					$id_max = $row["id"];
+					
+				}
+				
+				$id_max = $id_max + 1;
+				
+				
+				$sql = "INSERT INTO `codigos_historicos_escolares` (`codigo`,`id_historico`)VALUES";
+				$sql = $sql. "('$codigo','$id_max')";
 				$resultado = mysqli_query($conexao,$sql);
 				
 				include "salvarPedido1.php";
