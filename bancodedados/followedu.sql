@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.10deb1
+-- version 4.1.14
 -- http://www.phpmyadmin.net
 --
--- Máquina: localhost
--- Data de Criação: 14-Set-2015 às 13:03
--- Versão do servidor: 5.5.44-0ubuntu0.14.04.1
--- versão do PHP: 5.5.9-1ubuntu4.11
+-- Host: 127.0.0.1
+-- Generation Time: 14-Set-2015 às 17:23
+-- Versão do servidor: 5.6.17
+-- PHP Version: 5.5.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de Dados: `followedu`
+-- Database: `followedu`
 --
 
 -- --------------------------------------------------------
@@ -294,7 +294,7 @@ CREATE TABLE IF NOT EXISTS `logging` (
   `logtime` int(11) DEFAULT NULL,
   `message` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=27 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=26 ;
 
 --
 -- Extraindo dados da tabela `logging`
@@ -325,8 +325,7 @@ INSERT INTO `logging` (`id`, `level`, `category`, `logtime`, `message`) VALUES
 (22, 'error', 'exception.CHttpException.401', 1441922694, 'exception ''CHttpException'' with message ''Your are already logged in! - Logout first!'' in /var/www/FollowEdu/protected/modules_core/user/controllers/AuthController.php:239\nStack trace:\n#0 /var/www/FollowEdu/protected/vendors/yii/web/actions/CInlineAction.php(49): AuthController->actionCreateAccount()\n#1 /var/www/FollowEdu/protected/vendors/yii/web/CController.php(308): CInlineAction->runWithParams(Array)\n#2 /var/www/FollowEdu/protected/vendors/yii/web/CController.php(286): CController->runAction(Object(CInlineAction))\n#3 /var/www/FollowEdu/protected/vendors/yii/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)\n#4 /var/www/FollowEdu/protected/vendors/yii/web/CWebApplication.php(282): CController->run(''createAccount'')\n#5 /var/www/FollowEdu/protected/vendors/yii/web/CWebApplication.php(141): CWebApplication->runController(''user/auth/creat...'')\n#6 /var/www/FollowEdu/protected/vendors/yii/base/CApplication.php(180): CWebApplication->processRequest()\n#7 /var/www/FollowEdu/index.php(39): CApplication->run()\n#8 {main}\nREQUEST_URI=/FollowEdu/index.php?r=user/auth/createAccount/token/55f1ed0c32e26493743274\n---'),
 (23, 'error', 'php', 1441964924, 'preg_match(): Delimiter must not be alphanumeric or backslash (/var/www/FollowEdu/protected/vendors/yii/validators/CRegularExpressionValidator.php:53)\nStack trace:\n#0 /var/www/FollowEdu/protected/vendors/yii/base/CModel.php(159): CRegularExpressionValidator->validate()\n#1 /var/www/FollowEdu/protected/vendors/yii/web/form/CForm.php(226): Profile->validate()\n#2 /var/www/FollowEdu/protected/modules_core/admin/controllers/UserController.php(265): HForm->validate()\n#3 /var/www/FollowEdu/protected/vendors/yii/web/actions/CInlineAction.php(49): UserController->actionAdd()\n#4 /var/www/FollowEdu/protected/vendors/yii/web/CController.php(308): CInlineAction->runWithParams()\n#5 /var/www/FollowEdu/protected/vendors/yii/web/filters/CFilterChain.php(133): UserController->runAction()\n#6 /var/www/FollowEdu/protected/vendors/yii/web/filters/CFilter.php(40): CFilterChain->run()\n#7 /var/www/FollowEdu/protected/vendors/yii/web/CController.php(1145): CAccessControlFilter->filter()\n#8 /var/www/FollowEdu/protected/vendors/yii/web/filters/CInlineFilter.php(58): UserController->filterAccessControl()\n#9 /var/www/FollowEdu/protected/vendors/yii/web/filters/CFilterChain.php(130): CInlineFilter->filter()\n#10 /var/www/FollowEdu/protected/vendors/yii/web/CController.php(291): CFilterChain->run()\n#11 /var/www/FollowEdu/protected/vendors/yii/web/CController.php(265): UserController->runActionWithFilters()\n#12 /var/www/FollowEdu/protected/vendors/yii/web/CWebApplication.php(282): UserController->run()\n#13 /var/www/FollowEdu/protected/vendors/yii/web/CWebApplication.php(141): WebApplication->runController()\n#14 /var/www/FollowEdu/protected/vendors/yii/base/CApplication.php(180): WebApplication->processRequest()\n#15 /var/www/FollowEdu/index.php(39): WebApplication->run()\nREQUEST_URI=/FollowEdu/index.php?r=admin/user/add\nin /var/www/FollowEdu/protected/modules_core/admin/controllers/UserController.php (265)\nin /var/www/FollowEdu/index.php (39)'),
 (24, 'error', 'exception.CException', 1441978308, 'exception ''CException'' with message ''A propriedade "Profile.ingresso" não está definida.'' in C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\base\\CComponent.php:130\nStack trace:\n#0 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\db\\ar\\CActiveRecord.php(145): CComponent->__get(''ingresso'')\n#1 C:\\wamp\\www\\FollowEdu\\protected\\modules_core\\user\\models\\ProfileFieldTypeText.php(178): CActiveRecord->__get(''ingresso'')\n#2 C:\\wamp\\www\\FollowEdu\\protected\\modules_core\\user\\models\\ProfileField.php(333): ProfileFieldTypeText->getUserValue(Object(User), true)\n#3 C:\\wamp\\www\\FollowEdu\\protected\\modules_core\\user\\models\\Profile.php(243): ProfileField->getUserValue(Object(User))\n#4 C:\\wamp\\www\\FollowEdu\\protected\\modules_core\\user\\models\\User.php(577): Profile->getProfileFields()\n#5 C:\\wamp\\www\\FollowEdu\\protected\\libs\\HSearch.php(131): User->getSearchAttributes()\n#6 C:\\wamp\\www\\FollowEdu\\protected\\modules_core\\user\\models\\User.php(355): HSearch->deleteModel(Object(User))\n#7 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\db\\ar\\CActiveRecord.php(1126): User->afterSave()\n#8 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\db\\ar\\CActiveRecord.php(806): CActiveRecord->update(NULL)\n#9 C:\\wamp\\www\\FollowEdu\\protected\\modules_core\\user\\components\\UserIdentity.php(143): CActiveRecord->save()\n#10 C:\\wamp\\www\\FollowEdu\\protected\\modules_core\\user\\components\\UserIdentity.php(52): UserIdentity->onSuccessfulAuthenticate(Object(User))\n#11 C:\\wamp\\www\\FollowEdu\\protected\\modules_core\\user\\forms\\AccountLoginForm.php(56): UserIdentity->authenticate()\n#12 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\validators\\CInlineValidator.php(42): AccountLoginForm->authenticate(''password'', Array)\n#13 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\validators\\CValidator.php(213): CInlineValidator->validateAttribute(Object(AccountLoginForm), ''password'')\n#14 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\base\\CModel.php(159): CValidator->validate(Object(AccountLoginForm), NULL)\n#15 C:\\wamp\\www\\FollowEdu\\protected\\modules_core\\user\\controllers\\AuthController.php(76): CModel->validate()\n#16 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\actions\\CInlineAction.php(49): AuthController->actionLogin()\n#17 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CController.php(308): CInlineAction->runWithParams(Array)\n#18 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CController.php(286): CController->runAction(Object(CInlineAction))\n#19 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)\n#20 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CWebApplication.php(282): CController->run(''login'')\n#21 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CWebApplication.php(141): CWebApplication->runController(''user/auth/login'')\n#22 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\base\\CApplication.php(180): CWebApplication->processRequest()\n#23 C:\\wamp\\www\\FollowEdu\\index.php(39): CApplication->run()\n#24 {main}\nREQUEST_URI=/followedu/index.php?r=user/auth/login\nHTTP_REFERER=http://localhost/followedu/index.php?r=user/auth/login\n---'),
-(25, 'error', 'exception.CException', 1441978407, 'exception ''CException'' with message ''A propriedade "Profile.ingresso" não está definida.'' in C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\base\\CComponent.php:130\nStack trace:\n#0 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\db\\ar\\CActiveRecord.php(145): CComponent->__get(''ingresso'')\n#1 C:\\wamp\\www\\FollowEdu\\protected\\modules_core\\user\\models\\ProfileFieldTypeText.php(178): CActiveRecord->__get(''ingresso'')\n#2 C:\\wamp\\www\\FollowEdu\\protected\\modules_core\\user\\models\\ProfileField.php(333): ProfileFieldTypeText->getUserValue(Object(User), true)\n#3 C:\\wamp\\www\\FollowEdu\\protected\\modules_core\\user\\models\\Profile.php(243): ProfileField->getUserValue(Object(User))\n#4 C:\\wamp\\www\\FollowEdu\\protected\\modules_core\\user\\models\\User.php(577): Profile->getProfileFields()\n#5 C:\\wamp\\www\\FollowEdu\\protected\\libs\\HSearch.php(131): User->getSearchAttributes()\n#6 C:\\wamp\\www\\FollowEdu\\protected\\modules_core\\user\\models\\User.php(355): HSearch->deleteModel(Object(User))\n#7 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\db\\ar\\CActiveRecord.php(1126): User->afterSave()\n#8 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\db\\ar\\CActiveRecord.php(806): CActiveRecord->update(NULL)\n#9 C:\\wamp\\www\\FollowEdu\\protected\\modules_core\\user\\components\\UserIdentity.php(143): CActiveRecord->save()\n#10 C:\\wamp\\www\\FollowEdu\\protected\\modules_core\\user\\components\\UserIdentity.php(52): UserIdentity->onSuccessfulAuthenticate(Object(User))\n#11 C:\\wamp\\www\\FollowEdu\\protected\\modules_core\\user\\forms\\AccountLoginForm.php(56): UserIdentity->authenticate()\n#12 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\validators\\CInlineValidator.php(42): AccountLoginForm->authenticate(''password'', Array)\n#13 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\validators\\CValidator.php(213): CInlineValidator->validateAttribute(Object(AccountLoginForm), ''password'')\n#14 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\base\\CModel.php(159): CValidator->validate(Object(AccountLoginForm), NULL)\n#15 C:\\wamp\\www\\FollowEdu\\protected\\modules_core\\user\\controllers\\AuthController.php(76): CModel->validate()\n#16 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\actions\\CInlineAction.php(49): AuthController->actionLogin()\n#17 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CController.php(308): CInlineAction->runWithParams(Array)\n#18 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CController.php(286): CController->runAction(Object(CInlineAction))\n#19 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)\n#20 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CWebApplication.php(282): CController->run(''login'')\n#21 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CWebApplication.php(141): CWebApplication->runController(''user/auth/login'')\n#22 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\base\\CApplication.php(180): CWebApplication->processRequest()\n#23 C:\\wamp\\www\\FollowEdu\\index.php(39): CApplication->run()\n#24 {main}\nREQUEST_URI=/FollowEdu/index.php?r=user/auth/login\nHTTP_REFERER=http://localhost/FollowEdu/index.php?r=user/auth/login\n---'),
-(26, 'warning', 'application', 1442246444, 'Failed to set unsafe attribute "description" of "ProfileFieldCategory".\nin /var/www/FollowEdu/protected/modules_core/admin/controllers/UserprofileController.php (79)\nin /var/www/FollowEdu/index.php (39)');
+(25, 'error', 'exception.CException', 1441978407, 'exception ''CException'' with message ''A propriedade "Profile.ingresso" não está definida.'' in C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\base\\CComponent.php:130\nStack trace:\n#0 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\db\\ar\\CActiveRecord.php(145): CComponent->__get(''ingresso'')\n#1 C:\\wamp\\www\\FollowEdu\\protected\\modules_core\\user\\models\\ProfileFieldTypeText.php(178): CActiveRecord->__get(''ingresso'')\n#2 C:\\wamp\\www\\FollowEdu\\protected\\modules_core\\user\\models\\ProfileField.php(333): ProfileFieldTypeText->getUserValue(Object(User), true)\n#3 C:\\wamp\\www\\FollowEdu\\protected\\modules_core\\user\\models\\Profile.php(243): ProfileField->getUserValue(Object(User))\n#4 C:\\wamp\\www\\FollowEdu\\protected\\modules_core\\user\\models\\User.php(577): Profile->getProfileFields()\n#5 C:\\wamp\\www\\FollowEdu\\protected\\libs\\HSearch.php(131): User->getSearchAttributes()\n#6 C:\\wamp\\www\\FollowEdu\\protected\\modules_core\\user\\models\\User.php(355): HSearch->deleteModel(Object(User))\n#7 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\db\\ar\\CActiveRecord.php(1126): User->afterSave()\n#8 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\db\\ar\\CActiveRecord.php(806): CActiveRecord->update(NULL)\n#9 C:\\wamp\\www\\FollowEdu\\protected\\modules_core\\user\\components\\UserIdentity.php(143): CActiveRecord->save()\n#10 C:\\wamp\\www\\FollowEdu\\protected\\modules_core\\user\\components\\UserIdentity.php(52): UserIdentity->onSuccessfulAuthenticate(Object(User))\n#11 C:\\wamp\\www\\FollowEdu\\protected\\modules_core\\user\\forms\\AccountLoginForm.php(56): UserIdentity->authenticate()\n#12 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\validators\\CInlineValidator.php(42): AccountLoginForm->authenticate(''password'', Array)\n#13 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\validators\\CValidator.php(213): CInlineValidator->validateAttribute(Object(AccountLoginForm), ''password'')\n#14 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\base\\CModel.php(159): CValidator->validate(Object(AccountLoginForm), NULL)\n#15 C:\\wamp\\www\\FollowEdu\\protected\\modules_core\\user\\controllers\\AuthController.php(76): CModel->validate()\n#16 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\actions\\CInlineAction.php(49): AuthController->actionLogin()\n#17 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CController.php(308): CInlineAction->runWithParams(Array)\n#18 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CController.php(286): CController->runAction(Object(CInlineAction))\n#19 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)\n#20 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CWebApplication.php(282): CController->run(''login'')\n#21 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CWebApplication.php(141): CWebApplication->runController(''user/auth/login'')\n#22 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\base\\CApplication.php(180): CWebApplication->processRequest()\n#23 C:\\wamp\\www\\FollowEdu\\index.php(39): CApplication->run()\n#24 {main}\nREQUEST_URI=/FollowEdu/index.php?r=user/auth/login\nHTTP_REFERER=http://localhost/FollowEdu/index.php?r=user/auth/login\n---');
 
 -- --------------------------------------------------------
 
@@ -551,7 +550,6 @@ CREATE TABLE IF NOT EXISTS `profile` (
   `perfil` varchar(255) DEFAULT NULL,
   `cpf` int(11) DEFAULT NULL,
   `ingresso` varchar(255) DEFAULT NULL,
-  `emissao_historico` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -559,12 +557,12 @@ CREATE TABLE IF NOT EXISTS `profile` (
 -- Extraindo dados da tabela `profile`
 --
 
-INSERT INTO `profile` (`user_id`, `firstname`, `lastname`, `title`, `gender`, `street`, `zip`, `city`, `country`, `state`, `birthday_hide_year`, `birthday`, `about`, `phone_private`, `phone_work`, `mobile`, `fax`, `im_skype`, `im_msn`, `im_icq`, `im_xmpp`, `url`, `url_facebook`, `url_linkedin`, `url_xing`, `url_youtube`, `url_vimeo`, `url_flickr`, `url_myspace`, `url_googleplus`, `url_twitter`, `perfil`, `cpf`, `ingresso`, `emissao_historico`) VALUES
-(1, 'Renan', 'Felix', 'System Administration', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', NULL, NULL, '1'),
-(2, 'Luiz', 'Renandro', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(3, 'Rola', 'Nandro', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(5, 'teste', 'teste', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', 2147483647, '2013.1', NULL),
-(6, 'romulo', 'cesar', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', 2424, '2014.1', NULL);
+INSERT INTO `profile` (`user_id`, `firstname`, `lastname`, `title`, `gender`, `street`, `zip`, `city`, `country`, `state`, `birthday_hide_year`, `birthday`, `about`, `phone_private`, `phone_work`, `mobile`, `fax`, `im_skype`, `im_msn`, `im_icq`, `im_xmpp`, `url`, `url_facebook`, `url_linkedin`, `url_xing`, `url_youtube`, `url_vimeo`, `url_flickr`, `url_myspace`, `url_googleplus`, `url_twitter`, `perfil`, `cpf`, `ingresso`) VALUES
+(1, 'Renan', 'Felix', 'System Administration', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', NULL, NULL),
+(2, 'Luiz', 'Renandro', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(3, 'Rola', 'Nandro', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(5, 'teste', 'teste', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', 2147483647, '2013.1'),
+(6, 'romulo', 'cesar', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', 2424, '2014.1');
 
 -- --------------------------------------------------------
 
@@ -595,7 +593,7 @@ CREATE TABLE IF NOT EXISTS `profile_field` (
   `is_system` int(1) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `index_profile_field_category` (`profile_field_category_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=35 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=34 ;
 
 --
 -- Extraindo dados da tabela `profile_field`
@@ -633,8 +631,7 @@ INSERT INTO `profile_field` (`id`, `profile_field_category_id`, `module_id`, `fi
 (29, 3, NULL, 'ProfileFieldTypeText', '{"minLength":"","maxLength":"255","validator":"url","default":"","regexp":"","regexpErrorMessage":"","fieldTypes":[]}', 'url_twitter', 'Twitter URL', '', 500, 0, 0, 1, 1, '2015-09-02 15:59:19', NULL, '2015-09-10 18:30:21', 1, '', 'UserModule.models_Profile', 1),
 (30, 1, NULL, 'ProfileFieldTypeSelect', '{"options":"Estudante\\r\\nProfessor","fieldTypes":[]}', 'perfil', 'Perfil', '', 300, 1, 1, 1, 1, '2015-09-10 18:18:41', 1, '2015-09-10 18:19:16', 1, '', 'UserModule.models_Profile', NULL),
 (32, 1, NULL, 'ProfileFieldTypeNumber', '{"maxValue":"","minValue":"","fieldTypes":[]}', 'cpf', 'CPF (Somente números)', '', 201, 1, 1, 1, 1, '2015-09-10 18:32:08', 1, '2015-09-11 06:54:33', 1, '', 'UserModule.models_Profile', NULL),
-(33, 1, NULL, 'ProfileFieldTypeText', '{"minLength":"6","maxLength":"6","validator":"","default":"","regexp":"","regexpErrorMessage":"","fieldTypes":[]}', 'ingresso', 'Entrada (Ex.: 2015.2)', '', 400, 1, 1, 1, 1, '2015-09-11 06:58:30', 1, '2015-09-11 06:58:30', 1, '', 'UserModule.models_Profile', NULL),
-(34, 1, NULL, 'ProfileFieldTypeText', '{"minLength":"4","maxLength":"5","validator":"","default":"","regexp":"","regexpErrorMessage":"","fieldTypes":[]}', 'emissao_historico', 'Histórico Emitido', '', 100, 0, 0, 1, 0, '2015-09-14 13:01:48', 1, '2015-09-14 13:01:48', 1, '', 'UserModule.models_Profile', NULL);
+(33, 1, NULL, 'ProfileFieldTypeText', '{"minLength":"6","maxLength":"6","validator":"","default":"","regexp":"","regexpErrorMessage":"","fieldTypes":[]}', 'ingresso', 'Entrada (Ex.: 2015.2)', '', 400, 1, 1, 1, 1, '2015-09-11 06:58:30', 1, '2015-09-11 06:58:30', 1, '', 'UserModule.models_Profile', NULL);
 
 -- --------------------------------------------------------
 
@@ -656,7 +653,7 @@ CREATE TABLE IF NOT EXISTS `profile_field_category` (
   `translation_category` varchar(255) DEFAULT NULL,
   `is_system` int(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Extraindo dados da tabela `profile_field_category`
@@ -665,8 +662,7 @@ CREATE TABLE IF NOT EXISTS `profile_field_category` (
 INSERT INTO `profile_field_category` (`id`, `title`, `description`, `sort_order`, `module_id`, `visibility`, `created_at`, `created_by`, `updated_at`, `updated_by`, `translation_category`, `is_system`) VALUES
 (1, 'Geral', '', 100, NULL, 1, '2015-09-02 15:59:01', NULL, '2015-09-10 18:16:23', 1, 'UserModule.models_ProfileFieldCategory', 1),
 (2, 'Comunicação', '', 200, NULL, 1, '2015-09-02 15:59:01', NULL, '2015-09-10 18:32:53', 1, 'UserModule.models_ProfileFieldCategory', 1),
-(3, 'Social', '', 300, NULL, 1, '2015-09-02 15:59:01', NULL, '2015-09-10 18:32:58', 1, 'UserModule.models_ProfileFieldCategory', 1),
-(4, 'Serviços', '', 400, NULL, 1, '2015-09-14 13:00:44', 1, '2015-09-14 13:00:44', 1, 'UserModule.models_ProfileFieldCategory', NULL);
+(3, 'Social', '', 300, NULL, 1, '2015-09-02 15:59:01', NULL, '2015-09-10 18:32:58', 1, 'UserModule.models_ProfileFieldCategory', 1);
 
 -- --------------------------------------------------------
 
@@ -1519,7 +1515,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 --
 
 INSERT INTO `user` (`id`, `guid`, `wall_id`, `group_id`, `status`, `super_admin`, `username`, `email`, `auth_mode`, `tags`, `language`, `last_activity_email`, `created_at`, `created_by`, `updated_at`, `updated_by`, `last_login`, `visibility`) VALUES
-(1, '9e173f30-2710-4c11-8502-1eeed5bca5ec', 1, 1, 1, 1, 'cb130felix', 'renanfelixrodrigues@hotmail.com', 'local', NULL, '', '2015-09-02 16:00:41', '2015-09-02 16:00:41', NULL, '2015-09-02 16:00:41', NULL, '2015-09-14 12:47:51', 1),
+(1, '9e173f30-2710-4c11-8502-1eeed5bca5ec', 1, 1, 1, 1, 'cb130felix', 'renanfelixrodrigues@hotmail.com', 'local', NULL, '', '2015-09-02 16:00:41', '2015-09-02 16:00:41', NULL, '2015-09-02 16:00:41', NULL, '2015-09-12 19:32:19', 1),
 (2, '5d028996-b43c-4c31-92db-2d01d8ee955a', 5, 1, 1, 0, 'Renandro', 'naotenhoemail@gmail.com', 'local', NULL, NULL, '2015-09-02 17:10:09', '2015-09-02 17:10:09', 1, '2015-09-02 17:10:54', 1, '2015-09-12 13:18:47', 1),
 (3, '1a2def47-4d90-4138-bf32-94202c5ecfd8', 7, 1, 1, 0, 'Rolandro', 'renanfelixrodrigues@gmail.com', 'local', NULL, 'pt_br', '2015-09-06 01:46:57', '2015-09-06 01:46:57', NULL, '2015-09-06 01:46:57', NULL, '2015-09-12 12:50:46', 1),
 (5, 'fce16aa8-0566-4479-9733-7463e9b66782', 10, 1, 1, 0, 'teste', 'teste@gmail.com', 'local', NULL, NULL, '2015-09-11 07:14:35', '2015-09-11 07:14:35', 1, '2015-09-11 07:14:35', 1, NULL, 1),
@@ -1609,7 +1605,7 @@ CREATE TABLE IF NOT EXISTS `user_http_session` (
 --
 
 INSERT INTO `user_http_session` (`id`, `expire`, `user_id`, `data`) VALUES
-('baid8ecdbaoa0ukalo3fd9bep5', 1442247976, 1, 0x65386533316661356537396235316432656130626236343265356531313762335f5f72657475726e55726c7c733a34323a222f466f6c6c6f774564752f696e6465782e7068703f723d64617368626f6172642f64617368626f617264223b65386533316661356537396235316432656130626236343265356531313762335f5f69647c733a313a2231223b65386533316661356537396235316432656130626236343265356531313762335f5f6e616d657c733a31303a22636231333066656c6978223b65386533316661356537396235316432656130626236343265356531313762337469746c657c733a32313a2253797374656d2041646d696e697374726174696f6e223b65386533316661356537396235316432656130626236343265356531313762335f5f7374617465737c613a313a7b733a353a227469746c65223b623a313b7d);
+('k6evrik0odbs2i8uvv6vojcp20', 1442246016, NULL, '');
 
 -- --------------------------------------------------------
 
