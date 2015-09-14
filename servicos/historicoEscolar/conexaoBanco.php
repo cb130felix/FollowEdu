@@ -1,5 +1,6 @@
 <?php 
 
+	// Informações do Banco de Dados
 	$hostname = "localhost";
 	$usuario = "root";
 	$senha = "";

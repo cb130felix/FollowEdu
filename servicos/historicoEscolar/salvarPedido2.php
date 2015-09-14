@@ -18,16 +18,16 @@
 
 		<?php 
 
-			$codigo = $_POST["codigo"];
+			$codigo = $_POST["codigo"];// Pegando o código que o usuário digitou
 	
-			include "conexaoBanco.php";
+			include "conexaoBanco.php"; 
 			
-			$sql = "SELECT * FROM codigos_historicos_escolares WHERE CODIGO = ".$codigo;
+			$sql = "SELECT * FROM codigos_historicos_escolares WHERE CODIGO = ".$codigo; // Aqui ele verifica se o código que o usuário digitou já existe no BD 
 			$resultado = mysqli_query($conexao,$sql); // conexao vem do include
 			
 			//mysqli_close($conexao);
 			
-			if(mysqli_num_rows($resultado) > 0){
+			if(mysqli_num_rows($resultado) > 0){// Se ele achar no BD um código igual ao que o usuário digitou, ele avisará ao mesmo e retornará a tela anterior
 				
 				mysqli_free_result($resultado);
 				
@@ -43,20 +43,35 @@
 				
 				mysqli_free_result($resultado);
 				
-				$sql = "SELECT id FROM `historico_escolar` ORDER BY id DESC LIMIT 1"; 
+				include "salvarArquivo.php"; // Esse script transfere a imagem do comprovante para uma pasta do sistema
+				
+				/* Cada código de comprovante está relacionado com um histórico escolar cadastrado no sistema. Então antes de salvar o código no BD, o
+				   sistema pega o último ID cadastrado e salva, junto com o código do histórico, o seu valor + 1
+				*/
+				$sql = "SELECT id FROM `historico_escolar` ORDER BY id DESC LIMIT 1"; // Pegando o último ID de histórico escolar salvo no BD
 				$resultado = mysqli_query($conexao,$sql);
 				$id_max;
 				
-				While($row = mysqli_fetch_array($resultado)){
+				if(mysqli_num_rows($resultado) == 0){ // Caso não tenha um histórico salvo no sistema
 					
-					$id_max = $row["id"];
+					$id_max = 0; // Será que é 0? 
 					
 				}
 				
-				$id_max = $id_max + 1;
+				else{
+					
+					While($row = mysqli_fetch_array($resultado)){
+					
+						$id_max = $row["id"];
+					
+					}
+				
+					$id_max = $id_max + 1;
+
+				}
 				
 				
-				$sql = "INSERT INTO `codigos_historicos_escolares` (`codigo`,`id_historico`)VALUES";
+				$sql = "INSERT INTO `codigos_historicos_escolares` (`codigo`,`id_historico`)VALUES"; // Salvando o código no BD
 				$sql = $sql. "('$codigo','$id_max')";
 				$resultado = mysqli_query($conexao,$sql);
 				
