@@ -143,7 +143,7 @@ return array(
             'lt' => 'lietuvių kalba',
             'hr' => 'hrvatski'
         ),
-        'dynamicConfigFile' => dirname(__FILE__) . '/local/_settings.php',
+        'dynamicConfigFile' => dirname(__FILE__) . '/local/_settings_online.php',
     ),
 );
 ?>

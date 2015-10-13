@@ -3,10 +3,9 @@
   array (
     'db' => 
     array (
-	//remoto e tal teste...
-      'connectionString' => 'mysql:host=renanfelixrodrigues.com.br;dbname=renan549_followedu',
-      'username' => 'renan549_upe',
-      'password' => 'upe2015',
+      'connectionString' => 'mysql:host=localhost;dbname=followedu',
+      'username' => 'root',
+      'password' => '',
     ),
     'cache' => 
     array (
@@ -30,13 +29,13 @@
     array (
       'db' => 
       array (
-        'installer_hostname' => 'renanfelixrodrigues.com.br',
-        'installer_database' => 'renan549_followedu',
+        'installer_hostname' => 'localhost',
+        'installer_database' => 'followedu',
       ),
     ),
     'installed' => true,
   ),
-  'name' => 'FollowEdu',
+  'name' => 'HumHub',
   'language' => 'pt_br',
   'theme' => 'HumHub',
 ); ?>

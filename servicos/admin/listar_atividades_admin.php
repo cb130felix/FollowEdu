@@ -1,7 +1,7 @@
 <?php
 
 //pegando informação do banco de dados
-require_once '../../database/datanoob.php';
+require_once '../../database/datanoob_online.php';
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 // Check connection
