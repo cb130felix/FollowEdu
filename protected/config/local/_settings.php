@@ -1,11 +1,16 @@
-<?php return array (
+<?php 
+
+
+require '/../../../database/datanoob.php';
+
+return array (
   'components' => 
   array (
     'db' => 
     array (
-      'connectionString' => 'mysql:host=localhost;dbname=followedu',
-      'username' => 'root',
-      'password' => '',
+      'connectionString' => 'mysql:host='.$servername.';dbname='.$dbname,
+      'username' => $username,
+      'password' => $password,
     ),
     'cache' => 
     array (

@@ -1,5 +1,6 @@
 <?php
 
+
 return array(
     'basePath' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..',
     // Default Application Name
@@ -143,7 +144,7 @@ return array(
             'lt' => 'lietuvių kalba',
             'hr' => 'hrvatski'
         ),
-        'dynamicConfigFile' => dirname(__FILE__) . '/local/_settings_online.php',
+        'dynamicConfigFile' => dirname(__FILE__) . '/local/_settings.php',
     ),
 );
 ?>

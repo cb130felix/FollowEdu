@@ -15,7 +15,6 @@ uploads/profile_image/*
 uploads/profile_image/banner/*
 !uploads/profile_image/banner/.gitignore
 
-.htaccess
 nbproject
 .idea/*
 .gitmodules
