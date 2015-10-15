@@ -99,7 +99,7 @@ class CreateController extends Controller
         $this->renderPartial('create', array('model' => $model), false, true);
 		
 		}else{
-			echo '<script>alert("Você não tem permissão para criar grupos!!");</script>';
+			echo '<script>alert("Você não a tem permissão necessária para criar grupos... :/");</script>';
 		}
 
         
