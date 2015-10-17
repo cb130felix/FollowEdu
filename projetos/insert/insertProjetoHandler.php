@@ -70,6 +70,44 @@ if (mysqli_query($conn, $sql_insert_member)) {
     
 }
 
+//insert de tags no projeto
+
+                    $sql = "SELECT id FROM tag";
+                    $result = $conn->query($sql);
+                    
+                    if ($result->num_rows > 0) {
+                        // output data of each row
+                        
+                        while($row = $result->fetch_assoc()) {
+                            
+                            $id = $row["id"];
+                            $sql_insert_tag = "INSERT INTO `space_tag` (`space_id`, `tag_id`) VALUES ($space_id, $id);";
+                            if(isset($_POST[$id])){
+                                echo "valor: " . $_POST[$row["id"]];
+                                if (mysqli_query($conn, $sql_insert_tag)) {
+                                    echo "tag inserida com êxito!";
+                                } else {
+                                    echo "Erro na inserção das tags. Certifique de que preencheu os campos corretamente. Erro: " . $sql . "<br>" . mysqli_error($conn);
+                                    //Lembrar de não mostrar erro ao usuári no produto final
+
+                                }
+
+                            
+                                
+                                
+                                
+                            }
+                            
+                        }
+                    } else {
+                        echo "0 results";
+                    }
+
+
+
+
+
+
 
 
 $conn->close();

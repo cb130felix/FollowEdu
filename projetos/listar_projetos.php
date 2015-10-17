@@ -14,7 +14,7 @@ if ($conn->connect_error) {
 
 // Lista todos os projetos
 
-$sql = "SELECT id, name, description FROM space";
+$sql = "SELECT id, name, description, created_by FROM space";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
@@ -30,6 +30,7 @@ if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
     echo"<form action='requisitar_participacao_projeto.php' method='POST'>";
         echo "<input type='hidden' name='projeto_id' value=".$row["id"].">";
+        echo "<input type='hidden' name='created_by' value=".$row["created_by"].">";
         echo "<tr>";
         echo "<td>".$row["id"]."</td>".
              "<td>" . $row["name"]. "</td>".
