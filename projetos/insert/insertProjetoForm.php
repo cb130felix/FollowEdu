@@ -16,6 +16,7 @@ and open the template in the editor.
        
             <p>Nome do projeto: <input type="text" name="nome_projeto" value="" /></p>
             <p>Descrição do projeto: <input type="text" name="descricao_projeto" value="" /></p>
+            <p>Data de término: <input type="date" name="finish_at" value="" /></p>
             
             
             <div id="select_tag">

@@ -21,6 +21,7 @@ if(!Yii::app()->user->isGuest){
 //Pegando informações do formulário
 
 $date = date("Y/m/d");
+$finish_at = $_POST["finish_at"];
 $nome_projeto = $_POST["nome_projeto"];
 $descricao_projeto = $_POST["descricao_projeto"];
 
@@ -36,7 +37,7 @@ if ($result->num_rows > 0) {
 
 
 //Insert de projeto
-$sql_insert_projeto = "INSERT INTO `space` (`id`, `guid`, `wall_id`, `name`, `description`, `website`, `join_policy`, `visibility`, `status`, `tags`, `created_at`, `created_by`, `updated_at`, `updated_by`, `ldap_dn`, `auto_add_new_members`) VALUES (NULL, 'xxxxxxxxxxxxxx', '$wall_id', '$nome_projeto', '$descricao_projeto', NULL, '2', '2', '1', NULL, '$date', '$user_id', '$date', '1', NULL, '1');";
+$sql_insert_projeto = "INSERT INTO `space` (`id`, `guid`, `wall_id`, `name`, `description`, `website`, `join_policy`, `visibility`, `status`, `tags`, `created_at`, `created_by`, `updated_at`, `updated_by`, `ldap_dn`, `auto_add_new_members`, `finish_at`) VALUES (NULL, 'xxxxxxxxxxxxxx', '$wall_id', '$nome_projeto', '$descricao_projeto', NULL, '2', '2', '1', NULL, '$date', '$user_id', '$date', '1', NULL, '1', '$finish_at');";
 
 if (mysqli_query($conn, $sql_insert_projeto)) {
    
