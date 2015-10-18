@@ -12,6 +12,8 @@ and open the template in the editor.
     </head>
     <body>
        
+        <h1>Inserção de projeto</h1>
+        <p>Entre com os dados referente ao projetoque deseja inserir. Usuários com aptidões equivalentes às requeridas em seu projeto receberão um aviso de que o projeto foi criado.</p>
         <form action="insertProjetoHandler.php" method="POST">
        
             <p>Nome do projeto: <input type="text" name="nome_projeto" value="" /></p>

@@ -28,7 +28,7 @@ $row = $result_perfil->fetch_assoc();
 $perfil = $row["perfil"];
 
 if ($perfil == 1) {
-    echo '<div><p>Gerencie seus projetos: <a href="insert/insertProjetoForm.php"><button type="button">Gerenciar</button></a> </p></div>';               
+    echo '<div>Professoe! <a href="insert/insertProjetoForm.php"><button type="button">Adicione</button></a> um projeto!</p></div>';               
 }
 
 
