@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 18-Out-2015 às 17:57
+-- Generation Time: 20-Out-2015 às 22:05
 -- Versão do servidor: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `activity` (
   `updated_at` datetime DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=36 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=45 ;
 
 --
 -- Extraindo dados da tabela `activity`
@@ -68,7 +68,16 @@ INSERT INTO `activity` (`id`, `type`, `module`, `object_model`, `object_id`, `cr
 (30, 'ActivitySpaceCreated', '', '', '', '2015-10-14 22:57:36', 1, '2015-10-14 22:57:36', 1),
 (31, 'PostCreated', 'post', 'Post', '9', '2015-10-14 23:01:01', 1, '2015-10-14 23:01:01', 1),
 (32, 'ActivitySpaceCreated', '', '', '', '2015-10-15 00:51:52', 1, '2015-10-15 00:51:52', 1),
-(34, 'ActivitySpaceMemberAdded', '', '', '', '2015-10-16 15:39:20', 9, '2015-10-16 15:39:20', 1);
+(34, 'ActivitySpaceMemberAdded', '', '', '', '2015-10-16 15:39:20', 9, '2015-10-16 15:39:20', 1),
+(36, 'PostCreated', 'post', 'Post', '11', '2015-10-18 18:25:55', 9, '2015-10-18 18:25:55', 9),
+(37, 'CommentCreated', 'comment', 'Comment', '7', '2015-10-18 18:26:19', 1, '2015-10-18 18:26:19', 1),
+(38, 'ActivitySpaceMemberRemoved', '', '', '', '2015-10-18 18:27:00', 2, '2015-10-18 18:27:00', 2),
+(39, 'ActivitySpaceCreated', '', '', '', '2015-10-18 18:29:59', 1, '2015-10-18 18:29:59', 1),
+(40, 'PostCreated', 'post', 'Post', '12', '2015-10-18 18:33:58', 1, '2015-10-18 18:33:58', 1),
+(41, 'ActivitySpaceMemberAdded', '', '', '', '2015-10-18 18:53:57', 10, '2015-10-18 18:53:57', 1),
+(42, 'ActivitySpaceCreated', '', '', '', '2015-10-18 23:40:04', 1, '2015-10-18 23:40:04', 1),
+(43, 'ActivitySpaceCreated', '', '', '', '2015-10-18 23:40:27', 1, '2015-10-18 23:40:27', 1),
+(44, 'ActivitySpaceMemberRemoved', '', '', '', '2015-10-18 23:43:59', 10, '2015-10-18 23:43:59', 10);
 
 -- --------------------------------------------------------
 
@@ -174,7 +183,7 @@ CREATE TABLE IF NOT EXISTS `comment` (
   `updated_at` datetime DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
 -- Extraindo dados da tabela `comment`
@@ -186,7 +195,8 @@ INSERT INTO `comment` (`id`, `message`, `object_model`, `object_id`, `space_id`,
 (3, 'comentário no teste do espaço do renan 2', 'Post', 4, NULL, '2015-09-02 16:15:02', 1, '2015-09-02 16:15:02', 1),
 (4, 'guto chupão', 'Post', 5, NULL, '2015-09-02 16:18:00', 1, '2015-09-02 16:18:00', 1),
 (5, 'teste de comentário em guto', 'Post', 5, NULL, '2015-09-02 00:00:00', 1, '2015-09-02 00:00:00', 1),
-(6, 'Daew mano aqui é o Renandro', 'Post', 1, NULL, '2015-09-02 17:11:45', 2, '2015-09-02 17:11:45', 2);
+(6, 'Daew mano aqui é o Renandro', 'Post', 1, NULL, '2015-09-02 17:11:45', 2, '2015-09-02 17:11:45', 2),
+(7, 'Sei lá, mas o Renandro não poderia ver essa mensagem!', 'Post', 11, NULL, '2015-10-18 18:26:19', 1, '2015-10-18 18:26:19', 1);
 
 -- --------------------------------------------------------
 
@@ -213,7 +223,7 @@ CREATE TABLE IF NOT EXISTS `content` (
   UNIQUE KEY `index_guid` (`guid`),
   KEY `index_space_id` (`space_id`),
   KEY `index_user_id` (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=45 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=56 ;
 
 --
 -- Extraindo dados da tabela `content`
@@ -252,7 +262,18 @@ INSERT INTO `content` (`id`, `guid`, `object_model`, `object_id`, `visibility`, 
 (38, '50f20309-83d4-47f2-be32-dbefc7f0a5e7', 'Post', 9, 0, 0, '0', 7, 1, '2015-10-14 23:01:01', 1, '2015-10-14 23:01:01', 1),
 (39, 'ed2a28e9-a3f3-4210-8f1b-1a1a1b6d5680', 'Activity', 31, 0, 0, '0', 7, 1, '2015-10-14 23:01:01', 1, '2015-10-14 23:01:01', 1),
 (40, '5f95874d-19c2-4371-91d1-39fe3209f9e1', 'Activity', 32, 1, 0, '0', 27, 1, '2015-10-15 00:51:52', 1, '2015-10-15 00:51:52', 1),
-(42, '6ee5bbf8-92cb-495b-b1e4-40ed566f23a6', 'Activity', 34, 0, 0, '0', 1, 9, '2015-10-16 15:39:20', 9, '2015-10-16 15:39:20', 1);
+(42, '6ee5bbf8-92cb-495b-b1e4-40ed566f23a6', 'Activity', 34, 0, 0, '0', 1, 9, '2015-10-16 15:39:20', 9, '2015-10-16 15:39:20', 1),
+(45, 'b0e6b009-adae-4908-94fb-6adcda1c4755', 'Post', 11, 0, 0, '0', 90, 9, '2015-10-18 18:25:55', 9, '2015-10-18 18:25:55', 9),
+(46, '3cef4327-a99a-4203-b0f3-f7bbcef5d7bd', 'Activity', 36, 0, 0, '0', 90, 9, '2015-10-18 18:25:55', 9, '2015-10-18 18:25:55', 9),
+(47, '148bf42e-499b-4ba9-ae67-456fbc53b9a9', 'Activity', 37, 0, 0, '0', 90, 1, '2015-10-18 18:26:19', 1, '2015-10-18 18:26:19', 1),
+(48, '959334f8-5995-4a87-a5d1-906b27a8fb20', 'Activity', 38, 0, 0, '0', 90, 2, '2015-10-18 18:27:00', 2, '2015-10-18 18:27:00', 2),
+(49, '4208aafa-d37f-4efe-add5-be6acce5124f', 'Activity', 39, 1, 0, '0', 91, 1, '2015-10-18 18:29:59', 1, '2015-10-18 18:29:59', 1),
+(50, '9ba404f7-0de7-4fbb-9a22-706e3cf9821c', 'Post', 12, 0, 0, '0', 92, 1, '2015-10-18 18:33:58', 1, '2015-10-18 18:33:58', 1),
+(51, '89541e0d-f95d-4eed-b764-a09192e40699', 'Activity', 40, 0, 0, '0', 92, 1, '2015-10-18 18:33:58', 1, '2015-10-18 18:33:58', 1),
+(52, 'd6827319-e932-4be9-8505-e922dc7bf7e6', 'Activity', 41, 0, 0, '0', 1, 10, '2015-10-18 18:53:57', 10, '2015-10-18 18:53:57', 1),
+(53, 'f35fe082-375e-49dd-af9b-194550a3e7f8', 'Activity', 42, 1, 0, '0', 95, 1, '2015-10-18 23:40:04', 1, '2015-10-18 23:40:04', 1),
+(54, '4ebb448f-17de-4c51-948b-db14eb38d3fc', 'Activity', 43, 1, 0, '0', 96, 1, '2015-10-18 23:40:27', 1, '2015-10-18 23:40:27', 1),
+(55, '5178db3c-e4bd-4e6e-a729-49a3747a6964', 'Activity', 44, 0, 0, '0', 92, 10, '2015-10-18 23:43:59', 10, '2015-10-18 23:43:59', 10);
 
 -- --------------------------------------------------------
 
@@ -277,9 +298,9 @@ CREATE TABLE IF NOT EXISTS `custom_pages_page` (
 --
 
 INSERT INTO `custom_pages_page` (`id`, `type`, `title`, `icon`, `content`, `sort_order`, `navigation_class`, `admin_only`) VALUES
-(5, 3, 'serviços', 'fa-adjust', 'servicos/menu.php', 101, 'TopMenuWidget', 0),
+(5, 3, 'serviços', 'fa-adjust', 'servicos/menu.php', 51, 'TopMenuWidget', 0),
 (6, 3, 'Serviços[ADMINISTRAR]', 'fa-adjust', 'servicos/admin/admin_menu.php', 102, 'TopMenuWidget', 1),
-(7, 3, 'Projetos', 'fa-adjust', 'projetos/main.php', NULL, 'TopMenuWidget', 0),
+(7, 3, 'Projetos', 'fa-paypal', 'projetos/main.php', 50, 'TopMenuWidget', 0),
 (8, 3, 'Minhas Habilidades', 'fa-adjust', 'projetos/tag/tag.php', NULL, 'AccountMenuWidget', 0);
 
 -- --------------------------------------------------------
@@ -432,7 +453,7 @@ CREATE TABLE IF NOT EXISTS `logging` (
   `logtime` int(11) DEFAULT NULL,
   `message` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=50 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=52 ;
 
 --
 -- Extraindo dados da tabela `logging`
@@ -488,7 +509,9 @@ INSERT INTO `logging` (`id`, `level`, `category`, `logtime`, `message`) VALUES
 (46, 'error', 'php', 1445017206, 'Trying to get property of non-object (C:\\wamp\\www\\FollowEdu\\protected\\modules_core\\space\\models\\SpaceMembership.php:127)\nStack trace:\n#0 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CBaseController.php(95): ListController->renderInternal()\n#1 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CController.php(869): ListController->renderFile()\n#2 C:\\wamp\\www\\FollowEdu\\protected\\components\\Controller.php(191): ListController->renderPartial()\n#3 C:\\wamp\\www\\FollowEdu\\protected\\modules_core\\space\\controllers\\ListController.php(55): ListController->renderPartial()\n#4 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\actions\\CInlineAction.php(49): ListController->actionIndex()\n#5 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CController.php(308): CInlineAction->runWithParams()\n#6 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\filters\\CFilterChain.php(133): ListController->runAction()\n#7 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\filters\\CFilter.php(40): CFilterChain->run()\n#8 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CController.php(1145): CAccessControlFilter->filter()\n#9 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\filters\\CInlineFilter.php(58): ListController->filterAccessControl()\n#10 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\filters\\CFilterChain.php(130): CInlineFilter->filter()\n#11 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CController.php(291): CFilterChain->run()\n#12 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CController.php(265): ListController->runActionWithFilters()\n#13 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CWebApplication.php(282): ListController->run()\n#14 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CWebApplication.php(141): WebApplication->runController()\n#15 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\base\\CApplication.php(180): WebApplication->processRequest()\n#16 C:\\wamp\\www\\FollowEdu\\index.php(39): WebApplication->run()\nREQUEST_URI=/FollowEdu/index.php?r=space/list&ajax=1&_=1445017205957\nin C:\\wamp\\www\\FollowEdu\\protected\\modules_core\\space\\models\\SpaceMembership.php (127)\nin C:\\wamp\\www\\FollowEdu\\protected\\modules_core\\space\\views\\list\\index.php (2)\nin C:\\wamp\\www\\FollowEdu\\protected\\components\\Controller.php (191)\nin C:\\wamp\\www\\FollowEdu\\protected\\modules_core\\space\\controllers\\ListController.php (55)\nin C:\\wamp\\www\\FollowEdu\\index.php (39)'),
 (47, 'error', 'php', 1445099793, 'unlink(C:\\wamp\\www\\FollowEdu\\protected\\runtime\\cache_autostart.php): Permission denied (C:\\wamp\\www\\FollowEdu\\protected\\components\\ModuleManager.php:148)\nStack trace:\n#0 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\console\\CConsoleCommandRunner.php(71): ZMigrateCommand->run()\n#1 C:\\wamp\\www\\FollowEdu\\protected\\commands\\shell\\HUpdateCommand.php(92): CConsoleCommandRunner->run()\n#2 C:\\wamp\\www\\FollowEdu\\protected\\commands\\shell\\HUpdateCommand.php(59): HUpdateCommand->runMigrations()\n#3 unknown(0): HUpdateCommand->actionIndex()\n#4 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\console\\CConsoleCommand.php(172): ReflectionMethod->invokeArgs()\n#5 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\console\\CConsoleCommandRunner.php(71): HUpdateCommand->run()\n#6 C:\\wamp\\www\\FollowEdu\\protected\\commands\\shell\\HUpdateCommand.php(149): CConsoleCommandRunner->run()\n#7 C:\\wamp\\www\\FollowEdu\\protected\\modules_core\\admin\\controllers\\SettingController.php(722): AutoUpdate()\n#8 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\actions\\CInlineAction.php(49): SettingController->actionSelfTest()\n#9 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CController.php(308): CInlineAction->runWithParams()\n#10 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\filters\\CFilterChain.php(133): SettingController->runAction()\n#11 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\filters\\CFilter.php(40): CFilterChain->run()\n#12 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CController.php(1145): CAccessControlFilter->filter()\n#13 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\filters\\CInlineFilter.php(58): SettingController->filterAccessControl()\n#14 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\filters\\CFilterChain.php(130): CInlineFilter->filter()\n#15 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CController.php(291): CFilterChain->run()\n#16 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CController.php(265): SettingController->runActionWithFilters()\n#17 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CWebApplication.php(282): SettingController->run()\n#18 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CWebApplication.php(141): WebApplication->runController()\n#19 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\base\\CApplication.php(180): WebApplication->processRequest()\n#20 C:\\wamp\\www\\FollowEdu\\index.php(39): WebApplication->run()\nREQUEST_URI=/FollowEdu/index.php?r=admin/setting/selftest\nin C:\\wamp\\www\\FollowEdu\\protected\\components\\ModuleManager.php (148)\nin C:\\wamp\\www\\FollowEdu\\protected\\commands\\shell\\ZMigrateCommand.php (130)\nin C:\\wamp\\www\\FollowEdu\\protected\\commands\\shell\\HUpdateCommand.php (92)\nin C:\\wamp\\www\\FollowEdu\\protected\\commands\\shell\\HUpdateCommand.php (59)\nin C:\\wamp\\www\\FollowEdu\\protected\\commands\\shell\\HUpdateCommand.php (149)'),
 (48, 'error', 'system.db.CDbCommand', 1445128597, 'Falha ao executar CDbCommand::execute(): SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`followedu`.`space_tag`, CONSTRAINT `fk_st1` FOREIGN KEY (`space_id`) REFERENCES `space` (`id`)). A declaração SQL executada foi: DELETE FROM `space` WHERE `space`.`id`=85.\nin C:\\wamp\\www\\FollowEdu\\protected\\modules_core\\space\\controllers\\AdminController.php (487)\nin C:\\wamp\\www\\FollowEdu\\index.php (39)'),
-(49, 'error', 'exception.CDbException', 1445128597, 'exception ''CDbException'' with message ''CDbCommand falhou ao executar o comando SQL: SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`followedu`.`space_tag`, CONSTRAINT `fk_st1` FOREIGN KEY (`space_id`) REFERENCES `space` (`id`)). The SQL statement executed was: DELETE FROM `space` WHERE `space`.`id`=85'' in C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\db\\CDbCommand.php:358\nStack trace:\n#0 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\db\\ar\\CActiveRecord.php(1802): CDbCommand->execute()\n#1 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\db\\ar\\CActiveRecord.php(1222): CActiveRecord->deleteByPk(''85'')\n#2 C:\\wamp\\www\\FollowEdu\\protected\\modules_core\\space\\controllers\\AdminController.php(487): CActiveRecord->delete()\n#3 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\actions\\CInlineAction.php(49): AdminController->actionDelete()\n#4 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CController.php(308): CInlineAction->runWithParams(Array)\n#5 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\filters\\CFilterChain.php(133): CController->runAction(Object(CInlineAction))\n#6 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\filters\\CFilter.php(40): CFilterChain->run()\n#7 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CController.php(1145): CFilter->filter(Object(CFilterChain))\n#8 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\filters\\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))\n#9 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\filters\\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))\n#10 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CController.php(291): CFilterChain->run()\n#11 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)\n#12 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CWebApplication.php(282): CController->run(''delete'')\n#13 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CWebApplication.php(141): CWebApplication->runController(''space/admin/del...'')\n#14 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\base\\CApplication.php(180): CWebApplication->processRequest()\n#15 C:\\wamp\\www\\FollowEdu\\index.php(39): CApplication->run()\n#16 {main}\nREQUEST_URI=/FollowEdu/index.php?r=space/admin/delete&sguid=xxxxxxxxxxxxxx\nHTTP_REFERER=http://localhost/FollowEdu/index.php?r=space/admin/delete&sguid=xxxxxxxxxxxxxx\n---');
+(49, 'error', 'exception.CDbException', 1445128597, 'exception ''CDbException'' with message ''CDbCommand falhou ao executar o comando SQL: SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`followedu`.`space_tag`, CONSTRAINT `fk_st1` FOREIGN KEY (`space_id`) REFERENCES `space` (`id`)). The SQL statement executed was: DELETE FROM `space` WHERE `space`.`id`=85'' in C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\db\\CDbCommand.php:358\nStack trace:\n#0 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\db\\ar\\CActiveRecord.php(1802): CDbCommand->execute()\n#1 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\db\\ar\\CActiveRecord.php(1222): CActiveRecord->deleteByPk(''85'')\n#2 C:\\wamp\\www\\FollowEdu\\protected\\modules_core\\space\\controllers\\AdminController.php(487): CActiveRecord->delete()\n#3 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\actions\\CInlineAction.php(49): AdminController->actionDelete()\n#4 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CController.php(308): CInlineAction->runWithParams(Array)\n#5 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\filters\\CFilterChain.php(133): CController->runAction(Object(CInlineAction))\n#6 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\filters\\CFilter.php(40): CFilterChain->run()\n#7 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CController.php(1145): CFilter->filter(Object(CFilterChain))\n#8 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\filters\\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))\n#9 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\filters\\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))\n#10 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CController.php(291): CFilterChain->run()\n#11 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)\n#12 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CWebApplication.php(282): CController->run(''delete'')\n#13 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CWebApplication.php(141): CWebApplication->runController(''space/admin/del...'')\n#14 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\base\\CApplication.php(180): CWebApplication->processRequest()\n#15 C:\\wamp\\www\\FollowEdu\\index.php(39): CApplication->run()\n#16 {main}\nREQUEST_URI=/FollowEdu/index.php?r=space/admin/delete&sguid=xxxxxxxxxxxxxx\nHTTP_REFERER=http://localhost/FollowEdu/index.php?r=space/admin/delete&sguid=xxxxxxxxxxxxxx\n---'),
+(50, 'error', 'exception.CHttpException.401', 1445200212, 'exception ''CHttpException'' with message ''You need to login to view contents of this space!'' in C:\\wamp\\www\\FollowEdu\\protected\\modules_core\\space\\behaviors\\SpaceControllerBehavior.php:73\nStack trace:\n#0 [internal function]: SpaceControllerBehavior->checkAccess()\n#1 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\base\\CComponent.php(261): call_user_func_array(Array, Array)\n#2 C:\\wamp\\www\\FollowEdu\\protected\\components\\ContentContainerController.php(185): CComponent->__call(''checkAccess'', Array)\n#3 C:\\wamp\\www\\FollowEdu\\protected\\components\\ContentContainerController.php(185): SpaceController->checkAccess()\n#4 C:\\wamp\\www\\FollowEdu\\protected\\components\\ContentContainerController.php(141): ContentContainerController->checkContainerAccess()\n#5 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CWebApplication.php(281): ContentContainerController->init()\n#6 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CWebApplication.php(141): CWebApplication->runController(''space/space'')\n#7 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\base\\CApplication.php(180): CWebApplication->processRequest()\n#8 C:\\wamp\\www\\FollowEdu\\index.php(39): CApplication->run()\n#9 {main}\nREQUEST_URI=/FollowEdu/index.php?r=space/space&sguid=a67089f9-d6e6-4f7f-b7dd-26c370ae54de\nHTTP_REFERER=http://localhost/FollowEdu/index.php?r=dashboard/dashboard\n---'),
+(51, 'error', 'exception.CHttpException.404', 1445200378, 'exception ''CHttpException'' with message ''Espaço não encontrado!'' in C:\\wamp\\www\\FollowEdu\\protected\\components\\ContentContainerController.php:105\nStack trace:\n#0 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CWebApplication.php(281): ContentContainerController->init()\n#1 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CWebApplication.php(141): CWebApplication->runController(''space/space'')\n#2 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\base\\CApplication.php(180): CWebApplication->processRequest()\n#3 C:\\wamp\\www\\FollowEdu\\index.php(39): CApplication->run()\n#4 {main}\nREQUEST_URI=/FollowEdu/index.php?r=space/space&sguid=92\n---');
 
 -- --------------------------------------------------------
 
@@ -624,7 +647,7 @@ CREATE TABLE IF NOT EXISTS `notification` (
   KEY `index_seen` (`seen`),
   KEY `index_desktop_notified` (`desktop_notified`),
   KEY `index_desktop_emailed` (`emailed`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=35 ;
 
 --
 -- Extraindo dados da tabela `notification`
@@ -634,7 +657,16 @@ INSERT INTO `notification` (`id`, `class`, `user_id`, `seen`, `source_object_mod
 (1, 'NewCommentNotification', 1, 1, 'Comment', 6, 'Post', 1, NULL, 0, '2015-09-02 17:11:45', 2, '2015-10-17 21:35:41', 1, 1),
 (8, 'SpaceApprovalRequestDeclinedNotification', 9, 1, 'User', 1, 'Space', 7, 7, 0, '2015-10-16 20:43:52', 1, '2015-10-16 20:44:30', 9, 1),
 (9, 'SpaceApprovalRequestDeclinedNotification', 9, 1, 'User', 1, 'Space', 2, 2, 0, '2015-10-16 20:54:42', 1, '2015-10-16 20:54:52', 9, 1),
-(11, 'SpaceApprovalRequestAcceptedNotification', 9, 1, 'User', 1, 'Space', 2, 2, 0, '2015-10-16 20:55:27', 1, '2015-10-17 17:40:30', 9, 1);
+(11, 'SpaceApprovalRequestAcceptedNotification', 9, 1, 'User', 1, 'Space', 2, 2, 0, '2015-10-16 20:55:27', 1, '2015-10-17 17:40:30', 9, 1),
+(20, 'SpaceApprovalRequestDeclinedNotification', 9, 1, 'User', 1, 'Space', 90, 90, 0, '2015-10-18 18:23:36', 1, '2015-10-18 18:23:51', 9, 1),
+(22, 'SpaceApprovalRequestAcceptedNotification', 9, 1, 'User', 1, 'Space', 90, 90, 0, '2015-10-18 18:24:13', 1, '2015-10-18 18:24:51', 9, 1),
+(23, 'NewCommentNotification', 9, 1, 'Comment', 7, 'Post', 11, NULL, 0, '2015-10-18 18:26:20', 1, '2015-10-18 18:30:36', 9, 1),
+(25, 'SpaceApprovalRequestAcceptedNotification', 9, 1, 'User', 1, 'Space', 92, 92, 0, '2015-10-18 18:34:26', 1, '2015-10-20 15:48:34', 9, 1),
+(27, 'SpaceApprovalRequestAcceptedNotification', 1, 1, 'User', 10, 'Space', 93, 93, 0, '2015-10-18 18:57:16', 10, '2015-10-18 23:38:35', 1, 1),
+(29, 'SpaceApprovalRequestDeclinedNotification', 10, 1, 'User', 1, 'Space', 92, 92, 0, '2015-10-18 23:44:37', 1, '2015-10-18 23:45:33', 10, 1),
+(31, 'SpaceApprovalRequestDeclinedNotification', 10, 1, 'User', 1, 'Space', 92, 92, 0, '2015-10-18 23:45:16', 1, '2015-10-18 23:45:30', 10, 1),
+(33, 'SpaceRecommend', 9, 1, 'User', 10, 'Space', 96, 96, 0, '2015-10-20 15:46:39', 10, '2015-10-20 15:53:13', 9, 1),
+(34, 'SpaceInviteDeclinedNotification', 10, 1, 'User', 9, 'Space', 96, 96, 0, '2015-10-20 15:48:31', 9, '2015-10-20 15:48:31', 9, 1);
 
 -- --------------------------------------------------------
 
@@ -652,7 +684,7 @@ CREATE TABLE IF NOT EXISTS `post` (
   `updated_at` datetime DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
 
 --
 -- Extraindo dados da tabela `post`
@@ -667,7 +699,9 @@ INSERT INTO `post` (`id`, `message_2trash`, `message`, `url`, `created_at`, `cre
 (6, NULL, 'Iago de fodeu muit nessa historinha ai', NULL, '2015-09-02 17:15:45', 2, '2015-09-02 17:15:45', 2),
 (7, 'NULL', 'teste de post de renandro', 'NULL', '2015-09-02 00:00:00', 2, '2015-09-02 00:00:00', 2),
 (8, NULL, 'Atividades complementares', NULL, '2015-09-06 16:38:51', 1, '2015-09-06 16:38:51', 1),
-(9, NULL, 'teste', NULL, '2015-10-14 23:01:01', 1, '2015-10-14 23:01:01', 1);
+(9, NULL, 'teste', NULL, '2015-10-14 23:01:01', 1, '2015-10-14 23:01:01', 1),
+(11, NULL, 'Ok, como que vai funcionar isso aqui?', NULL, '2015-10-18 18:25:55', 9, '2015-10-18 18:25:55', 9),
+(12, NULL, 'Oieeeeeeee... ;Laughing;', NULL, '2015-10-18 18:33:58', 1, '2015-10-18 18:33:58', 1);
 
 -- --------------------------------------------------------
 
@@ -725,7 +759,8 @@ INSERT INTO `profile` (`user_id`, `firstname`, `lastname`, `title`, `gender`, `s
 (6, 'teste', 'teste', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', 2147483647, '2015.1', NULL, NULL),
 (7, 'Iago', 'Siilva', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 2147483647, '2013.1', NULL, NULL),
 (8, 'Iago', 'Silva', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 1928933300, '2013.1', NULL, '1'),
-(9, 'Jonas', 'Felix', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 123, '2013.2', NULL, NULL);
+(9, 'Jonas', 'Felix', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 123, '2013.2', NULL, NULL),
+(10, 'Izabel', 'Souza', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', 123123, '2000.1', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -856,10 +891,10 @@ INSERT INTO `setting` (`id`, `name`, `value`, `value_text`, `module_id`, `create
 (1, 'oembedProviders', NULL, '{"vimeo.com":"http:\\/\\/vimeo.com\\/api\\/oembed.json?scheme=https&url=%url%&format=json&maxwidth=450","youtube.com":"http:\\/\\/www.youtube.com\\/oembed?scheme=https&url=%url%&format=json&maxwidth=450","youtu.be":"http:\\/\\/www.youtube.com\\/oembed?scheme=https&url=%url%&format=json&maxwidth=450","soundcloud.com":"https:\\/\\/soundcloud.com\\/oembed?url=%url%&format=json&maxwidth=450","slideshare.net":"https:\\/\\/www.slideshare.net\\/api\\/oembed\\/2?url=%url%&format=json&maxwidth=450"}', NULL, NULL, NULL, NULL, NULL),
 (2, 'defaultVisibility', '1', NULL, 'space', NULL, NULL, NULL, NULL),
 (3, 'defaultJoinPolicy', '1', NULL, 'space', NULL, NULL, NULL, NULL),
-(4, 'name', 'FollowEdu2', NULL, NULL, '2015-09-02 15:58:59', 0, '2015-09-12 09:17:19', 1),
-(5, 'baseUrl', 'http://localhost/humhub-master', NULL, NULL, '2015-09-02 15:59:00', 0, '2015-09-12 09:17:19', 1),
-(6, 'paginationSize', '10', NULL, NULL, '2015-09-02 15:59:00', 0, '2015-09-13 13:50:05', 1),
-(7, 'displayNameFormat', '{profile.firstname} {profile.lastname}', NULL, NULL, '2015-09-02 15:59:00', 0, '2015-09-13 13:50:06', 1),
+(4, 'name', 'FollowEdu', NULL, NULL, '2015-09-02 15:58:59', 0, '2015-10-18 23:39:18', 1),
+(5, 'baseUrl', 'http://localhost/humhub-master', NULL, NULL, '2015-09-02 15:59:00', 0, '2015-10-18 23:39:18', 1),
+(6, 'paginationSize', '10', NULL, NULL, '2015-09-02 15:59:00', 0, '2015-10-18 15:28:34', 1),
+(7, 'displayNameFormat', '{profile.firstname} {profile.lastname}', NULL, NULL, '2015-09-02 15:59:00', 0, '2015-10-18 15:28:34', 1),
 (8, 'authInternal', '1', NULL, 'authentication', '2015-09-02 15:59:00', 0, '2015-09-02 15:59:00', 0),
 (9, 'authLdap', '0', NULL, 'authentication', '2015-09-02 15:59:00', 0, '2015-09-02 15:59:00', 0),
 (10, 'refreshUsers', '1', NULL, 'authentication_ldap', '2015-09-02 15:59:00', 0, '2015-09-02 15:59:00', 0),
@@ -878,10 +913,10 @@ INSERT INTO `setting` (`id`, `name`, `value`, `value_text`, `module_id`, `create
 (23, 'type', 'CFileCache', NULL, 'cache', '2015-09-02 15:59:01', 0, '2015-09-02 15:59:01', 0),
 (24, 'expireTime', '3600', NULL, 'cache', '2015-09-02 15:59:01', 0, '2015-09-02 15:59:01', 0),
 (25, 'installationId', 'f73e761e751e47187f66b0393e899544', NULL, 'admin', '2015-09-02 15:59:01', 0, '2015-09-02 15:59:01', 0),
-(26, 'theme', 'HumHub', NULL, NULL, '2015-09-02 15:59:01', 0, '2015-09-13 13:50:05', 1),
-(27, 'spaceOrder', '0', NULL, 'space', '2015-09-02 15:59:01', 0, '2015-09-13 13:50:06', 1),
-(28, 'enable', '1', NULL, 'tour', '2015-09-02 15:59:01', 0, '2015-09-12 09:17:19', 1),
-(29, 'defaultLanguage', 'pt_br', NULL, NULL, '2015-09-02 15:59:01', 0, '2015-09-12 09:17:19', 1),
+(26, 'theme', 'HumHub', NULL, NULL, '2015-09-02 15:59:01', 0, '2015-10-18 15:28:34', 1),
+(27, 'spaceOrder', '0', NULL, 'space', '2015-09-02 15:59:01', 0, '2015-10-18 15:28:34', 1),
+(28, 'enable', '1', NULL, 'tour', '2015-09-02 15:59:01', 0, '2015-10-18 23:39:18', 1),
+(29, 'defaultLanguage', 'pt_br', NULL, NULL, '2015-09-02 15:59:01', 0, '2015-10-18 23:39:18', 1),
 (30, 'enable_html5_desktop_notifications', '0', NULL, 'notification', '2015-09-02 15:59:01', 0, '2015-09-02 15:59:01', 0),
 (31, 'secret', 'dbaf2386-e51c-41e2-a162-dac88ee92b50', NULL, NULL, '2015-09-02 16:00:41', 0, '2015-09-02 16:00:41', 0),
 (32, 'hostname', '', NULL, 'mailing', '2015-09-02 16:53:58', 1, '2015-09-02 16:53:58', 1),
@@ -890,7 +925,7 @@ INSERT INTO `setting` (`id`, `name`, `value`, `value_text`, `module_id`, `create
 (35, 'port', '', NULL, 'mailing', '2015-09-02 16:53:58', 1, '2015-09-02 16:53:58', 1),
 (36, 'encryption', '', NULL, 'mailing', '2015-09-02 16:53:58', 1, '2015-09-02 16:53:58', 1),
 (37, 'allowSelfSignedCerts', '0', NULL, 'mailing', '2015-09-02 16:53:58', 1, '2015-09-02 16:53:58', 1),
-(38, 'showProfilePostForm', '0', NULL, 'dashboard', '2015-09-10 18:34:05', 1, '2015-09-12 09:17:19', 1);
+(38, 'showProfilePostForm', '0', NULL, 'dashboard', '2015-09-10 18:34:05', 1, '2015-10-18 23:39:18', 1);
 
 -- --------------------------------------------------------
 
@@ -917,7 +952,7 @@ CREATE TABLE IF NOT EXISTS `space` (
   `auto_add_new_members` int(4) DEFAULT NULL,
   `finish_at` date NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=88 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=97 ;
 
 --
 -- Extraindo dados da tabela `space`
@@ -930,7 +965,13 @@ INSERT INTO `space` (`id`, `guid`, `wall_id`, `name`, `description`, `website`, 
 (4, '2a7c5bd0-a7be-4e36-80d0-d2b29b62a2e0', 6, 'Espaço do Renandro', 'asdasdaasasdasd', NULL, 1, 1, 1, NULL, '2015-09-02 17:14:14', 2, '2015-09-02 17:14:14', 2, NULL, NULL, '0000-00-00'),
 (5, '5d756b64-36b4-4a3f-a1b3-bf109b60fc56', 8, 'Administração', '', NULL, 1, 1, 1, NULL, '2015-09-06 16:38:01', 1, '2015-09-06 16:38:01', 1, NULL, NULL, '0000-00-00'),
 (6, '3bd19cc4-0808-492f-870f-49be13f7cd81', 14, 'Teste de insert', 'asdadasd', NULL, 1, 1, 1, NULL, '2015-10-14 22:44:40', 1, '2015-10-14 22:44:40', 1, NULL, NULL, '0000-00-00'),
-(7, 'd35f31b6-a3bf-4172-bded-e123f12ae0ef', 15, 'olêêÊê', 'as', NULL, 1, 1, 1, NULL, '2015-10-14 22:57:35', 1, '2015-10-14 22:57:35', 1, NULL, NULL, '0000-00-00');
+(7, 'd35f31b6-a3bf-4172-bded-e123f12ae0ef', 15, 'olêêÊê', 'as', NULL, 1, 1, 1, NULL, '2015-10-14 22:57:35', 1, '2015-10-14 22:57:35', 1, NULL, NULL, '0000-00-00'),
+(90, '75', 75, 'p1', 'asdasdasd', NULL, 2, 2, 1, NULL, '2015-10-18 00:00:00', 1, '2015-10-18 23:39:18', 1, NULL, 0, '2015-10-20'),
+(91, 'a67089f9-d6e6-4f7f-b7dd-26c370ae54de', 76, 'Invisivel', 'asdasdasd', NULL, 0, 1, 1, NULL, '2015-10-18 18:29:58', 1, '2015-10-18 18:29:58', 1, NULL, NULL, '0000-00-00'),
+(92, '77', 77, 'Teste de permissao', 'asdasd', NULL, 0, 2, 1, NULL, '2015-10-18 00:00:00', 1, '2015-10-18 23:39:19', 1, NULL, 0, '2015-10-26'),
+(93, '79', 79, 'Dominando o planeta', 'dshfgcjjhdhfhfj', NULL, 0, 2, 1, NULL, '2015-10-18 00:00:00', 10, '2015-10-18 23:39:19', 1, NULL, 0, '2015-11-04'),
+(95, '9174d2a2-3588-4a08-b195-0c52a86a9690', 81, 'testettttt', 'asdasd', NULL, 1, 1, 1, NULL, '2015-10-18 23:40:04', 1, '2015-10-18 23:40:04', 1, NULL, NULL, '0000-00-00'),
+(96, '83', 83, 'TesteInvite', 'asdasd', NULL, 0, 1, 1, NULL, '2015-10-20 00:00:00', 10, '2015-10-20 00:00:00', 1, NULL, 1, '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -961,24 +1002,36 @@ CREATE TABLE IF NOT EXISTS `space_membership` (
 --
 
 INSERT INTO `space_membership` (`space_id`, `user_id`, `originator_user_id`, `status`, `request_message`, `last_visit`, `invite_role`, `admin_role`, `share_role`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES
-(1, 1, NULL, 3, NULL, '2015-10-17 21:35:52', 1, 1, 1, '2015-09-02 16:00:43', 1, '2015-09-02 16:00:43', 1),
+(1, 1, NULL, 3, NULL, '2015-10-18 18:53:57', 1, 1, 1, '2015-09-02 16:00:43', 1, '2015-09-02 16:00:43', 1),
 (1, 2, NULL, 3, NULL, '2015-09-02 17:23:09', 0, 0, 0, '2015-09-02 17:10:09', 1, '2015-09-02 17:10:09', 1),
 (1, 6, NULL, 3, NULL, NULL, 0, 0, 0, '2015-09-11 18:43:16', 1, '2015-09-11 18:43:16', 1),
 (1, 7, NULL, 3, NULL, NULL, 0, 0, 0, '2015-10-14 12:45:01', 1, '2015-10-14 12:45:01', 1),
 (1, 8, NULL, 3, NULL, NULL, 0, 0, 0, '2015-10-14 12:49:06', 1, '2015-10-14 12:49:06', 1),
-(1, 9, NULL, 3, NULL, NULL, 0, 0, 0, '2015-10-16 15:39:20', 1, '2015-10-16 15:39:20', 1),
-(2, 1, NULL, 3, NULL, '2015-10-16 20:55:29', 1, 1, 1, '2015-09-02 16:07:24', 1, '2015-09-02 16:07:24', 1),
-(2, 9, 'NULL', 3, 'Acita ae pfv', '2015-10-17 17:40:32', 0, 0, 0, '2015-09-12 00:00:00', 9, '2015-10-16 20:55:27', 1),
+(1, 9, NULL, 3, NULL, '2015-10-18 18:25:06', 0, 0, 0, '2015-10-16 15:39:20', 1, '2015-10-16 15:39:20', 1),
+(1, 10, NULL, 3, NULL, NULL, 0, 0, 0, '2015-10-18 18:53:57', 1, '2015-10-18 18:53:57', 1),
+(2, 1, NULL, 3, NULL, '2015-10-18 18:21:32', 1, 1, 1, '2015-09-02 16:07:24', 1, '2015-09-02 16:07:24', 1),
+(2, 9, 'NULL', 3, 'Acita ae pfv', '2015-10-18 18:24:57', 0, 0, 0, '2015-09-12 00:00:00', 9, '2015-10-16 20:55:27', 1),
 (3, 1, NULL, 3, NULL, '2015-10-16 15:41:05', 1, 1, 1, '2015-09-02 16:16:30', 1, '2015-09-02 16:16:30', 1),
 (3, 9, 'NULL', 2, 'Acita ae pfv', '2015-09-12 00:00:00', 0, 0, 0, '2015-09-12 00:00:00', 9, '2015-09-12 00:00:00', 9),
-(4, 2, NULL, 3, NULL, '2015-09-02 17:31:24', 1, 1, 1, '2015-09-02 17:14:15', 2, '2015-09-02 17:14:15', 2),
+(4, 2, NULL, 3, NULL, '2015-10-18 18:27:06', 1, 1, 1, '2015-09-02 17:14:15', 2, '2015-09-02 17:14:15', 2),
 (4, 9, 'NULL', 2, 'Acita ae pfv', '2015-09-12 00:00:00', 0, 0, 0, '2015-09-12 00:00:00', 9, '2015-09-12 00:00:00', 9),
-(5, 1, NULL, 3, NULL, '2015-09-12 09:19:20', 1, 1, 1, '2015-09-06 16:38:01', 1, '2015-09-06 16:38:01', 1),
+(5, 1, NULL, 3, NULL, '2015-10-18 18:21:28', 1, 1, 1, '2015-09-06 16:38:01', 1, '2015-09-06 16:38:01', 1),
 (5, 9, 'NULL', 2, 'Acita ae pfv', '2015-09-12 00:00:00', 0, 0, 0, '2015-09-12 00:00:00', 9, '2015-09-12 00:00:00', 9),
 (6, 1, NULL, 3, NULL, '2015-10-14 22:44:42', 1, 1, 1, '2015-10-14 22:44:41', 1, '2015-10-14 22:44:41', 1),
 (6, 9, 'NULL', 2, 'Acita ae pfv', '2015-09-12 00:00:00', 0, 0, 0, '2015-09-12 00:00:00', 9, '2015-09-12 00:00:00', 9),
 (7, 1, NULL, 3, NULL, '2015-10-16 20:43:54', 1, 1, 1, '2015-10-14 22:57:36', 1, '2015-10-14 22:57:36', 1),
-(7, 9, 'NULL', 2, 'Acita ae pfv', '2015-09-12 00:00:00', 0, 0, 0, '2015-09-12 00:00:00', 9, '2015-09-12 00:00:00', 9);
+(7, 9, 'NULL', 2, 'Acita ae pfv', '2015-09-12 00:00:00', 0, 0, 0, '2015-09-12 00:00:00', 9, '2015-09-12 00:00:00', 9),
+(90, 1, NULL, 3, NULL, '2015-10-18 18:26:19', 1, 1, 1, '2015-10-18 00:00:00', 1, '2015-10-18 00:00:00', 1),
+(90, 9, 'NULL', 3, 'Acita ae pfv', '2015-10-18 18:33:28', 0, 0, 0, '2015-09-12 00:00:00', 9, '2015-10-18 18:24:13', 1),
+(90, 10, NULL, 3, NULL, '2015-10-18 23:47:27', 0, 0, 0, '2015-10-18 18:53:57', 1, '2015-10-18 18:53:57', 1),
+(91, 1, NULL, 3, NULL, '2015-10-18 18:30:24', 1, 1, 1, '2015-10-18 18:29:59', 1, '2015-10-18 18:29:59', 1),
+(92, 1, NULL, 3, NULL, '2015-10-18 23:45:18', 1, 1, 1, '2015-10-18 00:00:00', 1, '2015-10-18 00:00:00', 1),
+(92, 9, 'NULL', 3, 'Acita ae pfv', '2015-10-20 15:48:36', 0, 0, 0, '2015-09-12 00:00:00', 9, '2015-10-18 18:34:26', 1),
+(93, 1, 'NULL', 3, 'Acita ae pfv', '2015-10-18 23:38:36', 0, 0, 0, '2015-09-12 00:00:00', 1, '2015-10-18 18:57:16', 10),
+(93, 10, NULL, 3, NULL, '2015-10-20 15:45:43', 1, 1, 1, '2015-10-18 00:00:00', 10, '2015-10-18 00:00:00', 10),
+(95, 1, NULL, 3, NULL, '2015-10-18 23:40:05', 1, 1, 1, '2015-10-18 23:40:04', 1, '2015-10-18 23:40:04', 1),
+(96, 1, NULL, 3, NULL, '2015-10-18 23:40:28', 1, 1, 1, '2015-10-18 23:40:27', 1, '2015-10-18 23:40:27', 1),
+(96, 10, NULL, 3, NULL, '2015-10-20 15:46:39', 1, 1, 1, '2015-10-20 00:00:00', 10, '2015-10-20 00:00:00', 10);
 
 -- --------------------------------------------------------
 
@@ -1032,7 +1085,11 @@ CREATE TABLE IF NOT EXISTS `space_tag` (
 --
 
 INSERT INTO `space_tag` (`space_id`, `tag_id`) VALUES
-(3, 1);
+(3, 1),
+(92, 1),
+(93, 1),
+(96, 2),
+(90, 4);
 
 -- --------------------------------------------------------
 
@@ -1669,6 +1726,10 @@ INSERT INTO `teste` (`t`) VALUES
 ('1'),
 ('1'),
 ('1'),
+('1'),
+('1'),
+('1'),
+('1'),
 ('1');
 
 -- --------------------------------------------------------
@@ -1713,19 +1774,20 @@ CREATE TABLE IF NOT EXISTS `user` (
   UNIQUE KEY `unique_username` (`username`),
   UNIQUE KEY `unique_guid` (`guid`),
   UNIQUE KEY `unique_wall_id` (`wall_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
 
 --
 -- Extraindo dados da tabela `user`
 --
 
 INSERT INTO `user` (`id`, `guid`, `wall_id`, `group_id`, `status`, `super_admin`, `username`, `email`, `auth_mode`, `tags`, `language`, `last_activity_email`, `created_at`, `created_by`, `updated_at`, `updated_by`, `last_login`, `visibility`) VALUES
-(1, '9e173f30-2710-4c11-8502-1eeed5bca5ec', 1, 1, 1, 1, 'cb130felix', 'renanfelixrodrigues@hotmail.com', 'local', NULL, '', '2015-09-02 16:00:41', '2015-09-02 16:00:41', NULL, '2015-10-17 21:53:46', 1, '2015-10-18 13:20:55', 1),
-(2, '5d028996-b43c-4c31-92db-2d01d8ee955a', 5, 1, 1, 0, 'Renandro', 'naotenhoemail@gmail.com', 'local', NULL, NULL, '2015-09-02 17:10:09', '2015-09-02 17:10:09', 1, '2015-09-02 17:10:54', 1, '2015-10-17 21:34:33', 1),
+(1, '9e173f30-2710-4c11-8502-1eeed5bca5ec', 1, 1, 1, 1, 'cb130felix', 'renanfelixrodrigues@hotmail.com', 'local', NULL, '', '2015-09-02 16:00:41', '2015-09-02 16:00:41', NULL, '2015-10-18 18:23:05', 1, '2015-10-20 13:38:33', 1),
+(2, '5d028996-b43c-4c31-92db-2d01d8ee955a', 5, 1, 1, 0, 'Renandro', 'naotenhoemail@gmail.com', 'local', NULL, NULL, '2015-09-02 17:10:09', '2015-09-02 17:10:09', 1, '2015-09-02 17:10:54', 1, '2015-10-20 13:38:16', 1),
 (6, 'c7bc81db-5d0e-46f9-b7d2-5da1232cf609', 11, 1, 1, 0, 'teste', 'teste@gmail.com', 'local', NULL, NULL, '2015-09-11 18:43:16', '2015-09-11 18:43:16', 1, '2015-10-15 01:38:23', 1, '2015-10-15 01:38:23', 1),
 (7, '615afbde-5b31-42ec-9107-5f1290817473', 12, 1, 1, 0, 'iagorrs', 'iagorichard@hotmail.com', 'local', NULL, NULL, '2015-10-14 12:45:00', '2015-10-14 12:45:00', 1, '2015-10-14 12:45:30', 1, NULL, 1),
 (8, '9798ff4a-9cba-463a-9358-faff9f23fdfb', 13, 1, 1, 0, 'iagorichard', 'iagorichardrodrigues@gmail.com', 'local', NULL, NULL, '2015-10-14 12:49:05', '2015-10-14 12:49:05', 1, '2015-10-14 12:49:05', 1, '2015-10-14 12:49:21', 1),
-(9, '333cbd62-dd4b-4b57-af1b-6e4a1ce9a6e4', 72, 1, 1, 0, 'Jonas', 'jonas@chupao.com', 'local', NULL, NULL, '2015-10-16 15:39:19', '2015-10-16 15:39:19', 1, '2015-10-16 15:39:58', 1, '2015-10-17 21:53:58', 1);
+(9, '333cbd62-dd4b-4b57-af1b-6e4a1ce9a6e4', 72, 1, 1, 0, 'Jonas', 'jonas@chupao.com', 'local', NULL, NULL, '2015-10-16 15:39:19', '2015-10-16 15:39:19', 1, '2015-10-16 15:39:58', 1, '2015-10-20 15:46:48', 1),
+(10, '8289e8c5-b4f0-42e8-8de7-750cc86a78ca', 78, 1, 1, 0, 'Bebelicia', 'bebelicia@hotmail.com', 'local', NULL, NULL, '2015-10-18 18:53:56', '2015-10-18 18:53:56', 1, '2015-10-18 23:43:43', 10, '2015-10-20 15:45:37', 1);
 
 -- --------------------------------------------------------
 
@@ -1781,7 +1843,7 @@ CREATE TABLE IF NOT EXISTS `user_follow` (
   PRIMARY KEY (`id`),
   KEY `index_user` (`user_id`),
   KEY `index_object` (`object_model`,`object_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
 
 --
 -- Extraindo dados da tabela `user_follow`
@@ -1796,7 +1858,10 @@ INSERT INTO `user_follow` (`id`, `object_model`, `object_id`, `user_id`, `send_n
 (6, 'Post', 1, 2, 1),
 (7, 'Post', 6, 2, 1),
 (9, 'Post', 8, 1, 1),
-(10, 'Post', 9, 1, 1);
+(10, 'Post', 9, 1, 1),
+(12, 'Post', 11, 9, 1),
+(13, 'Post', 11, 1, 1),
+(16, 'Post', 12, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -1817,7 +1882,7 @@ CREATE TABLE IF NOT EXISTS `user_http_session` (
 --
 
 INSERT INTO `user_http_session` (`id`, `expire`, `user_id`, `data`) VALUES
-('824r39qhth4k33jdv07grqis26', 1445185642, 1, 0x62343633313535613532386162366266643334366635613532303234323633315f5f72657475726e55726c7c733a34353a222f466f6c6c6f774564752f696e6465782e7068703f723d637573746f6d5f70616765732f766965772669643d37223b62343633313535613532386162366266643334366635613532303234323633315f5f69647c733a313a2231223b62343633313535613532386162366266643334366635613532303234323633315f5f6e616d657c733a31303a22636231333066656c6978223b62343633313535613532386162366266643334366635613532303234323633317469746c657c733a32313a2253797374656d2041646d696e697374726174696f6e223b62343633313535613532386162366266643334366635613532303234323633315f5f7374617465737c613a313a7b733a353a227469746c65223b623a313b7d);
+('jukl6j9m5r6trfb99g5se3lal4', 1445373281, NULL, '');
 
 -- --------------------------------------------------------
 
@@ -1897,7 +1962,7 @@ CREATE TABLE IF NOT EXISTS `user_password` (
   `created_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `idx_user_id` (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
 
 --
 -- Extraindo dados da tabela `user_password`
@@ -1909,7 +1974,8 @@ INSERT INTO `user_password` (`id`, `user_id`, `algorithm`, `password`, `salt`, `
 (6, 6, 'sha512whirlpool', '11fbb1635eed062efb69de3ce39b232591ba9f4c93fbf15fafd4bdea4c58129647ba0b0c7c1c48fed0de90651e601d9267bdb32798e43b856d49e9afed8268ca', 'e887ce7a-1315-42d2-92ec-6274054ea6de', '2015-09-11 18:43:16'),
 (7, 7, 'sha512whirlpool', '4d8c4d93f9dd317c8fa913c1ae5b56e1c84ba8cdcce3efbe821a68ffa4cc7f5c6552cb7267d063e8d3298113baaf7e542db3c9a23b39d5983a10797a737e6f42', '54e287a3-68f9-4196-9bbb-2cea549ca2f9', '2015-10-14 12:45:02'),
 (8, 8, 'sha512whirlpool', '4d0525afbdf82bb371e8ac7f56be0eea091e06c9b2e9748bdca25fb0ae082c331acd6bfd0322f7467aa544198a75fe54654095c57d9c06fac69508788b78be04', 'd72ad286-7f6a-45ac-84a4-aac8755d8a11', '2015-10-14 12:49:06'),
-(9, 9, 'sha512whirlpool', '297067373e94d5d670b0f16202aebaaf1def4707a82d973f667c8e37a03ade99742e371cc97875a37d534be81a5b8b278b3724db3a686db80277b3051af0b5ad', 'ec351a57-8afc-4667-968d-8c2b9bb1c6a3', '2015-10-16 15:39:21');
+(9, 9, 'sha512whirlpool', '297067373e94d5d670b0f16202aebaaf1def4707a82d973f667c8e37a03ade99742e371cc97875a37d534be81a5b8b278b3724db3a686db80277b3051af0b5ad', 'ec351a57-8afc-4667-968d-8c2b9bb1c6a3', '2015-10-16 15:39:21'),
+(10, 10, 'sha512whirlpool', 'ac8fc803acea37842ae1e29a10d2f7ab82961ab17f922e70d3d8caba05d626f541e6c2e75f3c88b816a1edc1d84dd95fefa9a8f58178389a8ae49ccdc9945bbb', 'a260645e-99c3-4851-a24c-574e470d743b', '2015-10-18 18:53:57');
 
 -- --------------------------------------------------------
 
@@ -1959,7 +2025,6 @@ CREATE TABLE IF NOT EXISTS `user_tag` (
 INSERT INTO `user_tag` (`user_id`, `tag_id`) VALUES
 (9, 1),
 (9, 3),
-(1, 4),
 (1, 1),
 (1, 3);
 
@@ -1978,7 +2043,7 @@ CREATE TABLE IF NOT EXISTS `wall` (
   `updated_at` datetime DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=74 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=84 ;
 
 --
 -- Extraindo dados da tabela `wall`
@@ -2001,7 +2066,15 @@ INSERT INTO `wall` (`id`, `object_model`, `object_id`, `created_at`, `created_by
 (14, 'Space', 6, '2015-10-14 22:44:41', 1, '2015-10-14 22:44:41', 1),
 (15, 'Space', 7, '2015-10-14 22:57:36', 1, '2015-10-14 22:57:36', 1),
 (18, 'Space', 27, '2015-10-15 00:51:51', 1, '2015-10-15 00:51:51', 1),
-(72, 'User', 9, '2015-10-16 15:39:20', 1, '2015-10-16 15:39:20', 1);
+(72, 'User', 9, '2015-10-16 15:39:20', 1, '2015-10-16 15:39:20', 1),
+(75, 'Space', 90, '2015-10-18 00:00:00', 1, '2015-10-18 00:00:00', 1),
+(76, 'Space', 91, '2015-10-18 18:29:59', 1, '2015-10-18 18:29:59', 1),
+(77, 'Space', 92, '2015-10-18 00:00:00', 1, '2015-10-18 00:00:00', 1),
+(78, 'User', 10, '2015-10-18 18:53:57', 1, '2015-10-18 18:53:57', 1),
+(79, 'Space', 93, '2015-10-18 00:00:00', 10, '2015-10-18 00:00:00', 10),
+(81, 'Space', 95, '2015-10-18 23:40:04', 1, '2015-10-18 23:40:04', 1),
+(82, 'Space', 96, '2015-10-18 23:40:27', 1, '2015-10-18 23:40:27', 1),
+(83, 'Space', 96, '2015-10-20 00:00:00', 10, '2015-10-20 00:00:00', 10);
 
 -- --------------------------------------------------------
 
@@ -2018,7 +2091,7 @@ CREATE TABLE IF NOT EXISTS `wall_entry` (
   `updated_at` datetime DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=45 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=56 ;
 
 --
 -- Extraindo dados da tabela `wall_entry`
@@ -2057,7 +2130,18 @@ INSERT INTO `wall_entry` (`id`, `wall_id`, `content_id`, `created_at`, `created_
 (38, 15, 38, '2015-10-14 23:01:01', 1, '2015-10-14 23:01:01', 1),
 (39, 15, 39, '2015-10-14 23:01:02', 1, '2015-10-14 23:01:02', 1),
 (40, 18, 40, '2015-10-15 00:51:52', 1, '2015-10-15 00:51:52', 1),
-(42, 2, 42, '2015-10-16 15:39:20', 1, '2015-10-16 15:39:20', 1);
+(42, 2, 42, '2015-10-16 15:39:20', 1, '2015-10-16 15:39:20', 1),
+(45, 75, 45, '2015-10-18 18:25:55', 9, '2015-10-18 18:25:55', 9),
+(46, 75, 46, '2015-10-18 18:25:55', 9, '2015-10-18 18:25:55', 9),
+(47, 75, 47, '2015-10-18 18:26:20', 1, '2015-10-18 18:26:20', 1),
+(48, 75, 48, '2015-10-18 18:27:00', 2, '2015-10-18 18:27:00', 2),
+(49, 76, 49, '2015-10-18 18:29:59', 1, '2015-10-18 18:29:59', 1),
+(50, 77, 50, '2015-10-18 18:33:58', 1, '2015-10-18 18:33:58', 1),
+(51, 77, 51, '2015-10-18 18:33:58', 1, '2015-10-18 18:33:58', 1),
+(52, 2, 52, '2015-10-18 18:53:57', 1, '2015-10-18 18:53:57', 1),
+(53, 81, 53, '2015-10-18 23:40:04', 1, '2015-10-18 23:40:04', 1),
+(54, 82, 54, '2015-10-18 23:40:27', 1, '2015-10-18 23:40:27', 1),
+(55, 77, 55, '2015-10-18 23:43:59', 10, '2015-10-18 23:43:59', 10);
 
 --
 -- Constraints for dumped tables
@@ -2124,14 +2208,14 @@ ALTER TABLE `tb_roles_x_apps`
 -- Limitadores para a tabela `user_tag`
 --
 ALTER TABLE `user_tag`
-  ADD CONSTRAINT `fk1_ut` FOREIGN KEY (`tag_id`) REFERENCES `tag` (`id`),
-  ADD CONSTRAINT `fk0_ut` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
+  ADD CONSTRAINT `fk0_ut` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
+  ADD CONSTRAINT `fk1_ut` FOREIGN KEY (`tag_id`) REFERENCES `tag` (`id`);
 
 DELIMITER $$
 --
 -- Eventos
 --
-CREATE DEFINER=`root`@`localhost` EVENT `Teste` ON SCHEDULE EVERY 10 SECOND STARTS '2015-10-17 00:00:00' ENDS '2015-10-31 00:00:00' ON COMPLETION PRESERVE ENABLE DO INSERT INTO `teste`(`t`) VALUES ("1")$$
+CREATE DEFINER=`root`@`localhost` EVENT `Teste` ON SCHEDULE EVERY 10 SECOND STARTS '2015-10-17 00:00:00' ENDS '2015-10-30 23:00:00' ON COMPLETION PRESERVE ENABLE DO INSERT INTO `teste`(`t`) VALUES ("1")$$
 
 DELIMITER ;
 

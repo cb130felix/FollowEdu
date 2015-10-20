@@ -32,7 +32,6 @@ if ($perfil == 1) {
 }
 
 
-
 require_once('listar_projetos.php');
 
 
