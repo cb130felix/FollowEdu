@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 20-Out-2015 às 22:05
+-- Generation Time: 21-Out-2015 às 21:03
 -- Versão do servidor: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -647,7 +647,7 @@ CREATE TABLE IF NOT EXISTS `notification` (
   KEY `index_seen` (`seen`),
   KEY `index_desktop_notified` (`desktop_notified`),
   KEY `index_desktop_emailed` (`emailed`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=35 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=36 ;
 
 --
 -- Extraindo dados da tabela `notification`
@@ -666,7 +666,8 @@ INSERT INTO `notification` (`id`, `class`, `user_id`, `seen`, `source_object_mod
 (29, 'SpaceApprovalRequestDeclinedNotification', 10, 1, 'User', 1, 'Space', 92, 92, 0, '2015-10-18 23:44:37', 1, '2015-10-18 23:45:33', 10, 1),
 (31, 'SpaceApprovalRequestDeclinedNotification', 10, 1, 'User', 1, 'Space', 92, 92, 0, '2015-10-18 23:45:16', 1, '2015-10-18 23:45:30', 10, 1),
 (33, 'SpaceRecommend', 9, 1, 'User', 10, 'Space', 96, 96, 0, '2015-10-20 15:46:39', 10, '2015-10-20 15:53:13', 9, 1),
-(34, 'SpaceInviteDeclinedNotification', 10, 1, 'User', 9, 'Space', 96, 96, 0, '2015-10-20 15:48:31', 9, '2015-10-20 15:48:31', 9, 1);
+(34, 'SpaceInviteDeclinedNotification', 10, 1, 'User', 9, 'Space', 96, 96, 0, '2015-10-20 15:48:31', 9, '2015-10-20 15:48:31', 9, 1),
+(35, 'SpaceRecommend', 1, 1, 'User', 10, 'Space', 96, 96, 0, '2015-10-20 15:46:39', 10, '2015-10-21 09:03:47', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -1030,7 +1031,7 @@ INSERT INTO `space_membership` (`space_id`, `user_id`, `originator_user_id`, `st
 (93, 1, 'NULL', 3, 'Acita ae pfv', '2015-10-18 23:38:36', 0, 0, 0, '2015-09-12 00:00:00', 1, '2015-10-18 18:57:16', 10),
 (93, 10, NULL, 3, NULL, '2015-10-20 15:45:43', 1, 1, 1, '2015-10-18 00:00:00', 10, '2015-10-18 00:00:00', 10),
 (95, 1, NULL, 3, NULL, '2015-10-18 23:40:05', 1, 1, 1, '2015-10-18 23:40:04', 1, '2015-10-18 23:40:04', 1),
-(96, 1, NULL, 3, NULL, '2015-10-18 23:40:28', 1, 1, 1, '2015-10-18 23:40:27', 1, '2015-10-18 23:40:27', 1),
+(96, 1, NULL, 3, NULL, '2015-10-21 09:04:13', 1, 1, 1, '2015-10-18 23:40:27', 1, '2015-10-18 23:40:27', 1),
 (96, 10, NULL, 3, NULL, '2015-10-20 15:46:39', 1, 1, 1, '2015-10-20 00:00:00', 10, '2015-10-20 00:00:00', 10);
 
 -- --------------------------------------------------------
@@ -1102,7 +1103,7 @@ CREATE TABLE IF NOT EXISTS `tag` (
   `nome` varchar(20) NOT NULL,
   `descricao` varchar(200) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Extraindo dados da tabela `tag`
@@ -1781,7 +1782,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 --
 
 INSERT INTO `user` (`id`, `guid`, `wall_id`, `group_id`, `status`, `super_admin`, `username`, `email`, `auth_mode`, `tags`, `language`, `last_activity_email`, `created_at`, `created_by`, `updated_at`, `updated_by`, `last_login`, `visibility`) VALUES
-(1, '9e173f30-2710-4c11-8502-1eeed5bca5ec', 1, 1, 1, 1, 'cb130felix', 'renanfelixrodrigues@hotmail.com', 'local', NULL, '', '2015-09-02 16:00:41', '2015-09-02 16:00:41', NULL, '2015-10-18 18:23:05', 1, '2015-10-20 13:38:33', 1),
+(1, '9e173f30-2710-4c11-8502-1eeed5bca5ec', 1, 1, 1, 1, 'cb130felix', 'renanfelixrodrigues@hotmail.com', 'local', NULL, '', '2015-09-02 16:00:41', '2015-09-02 16:00:41', NULL, '2015-10-18 18:23:05', 1, '2015-10-21 15:04:56', 1),
 (2, '5d028996-b43c-4c31-92db-2d01d8ee955a', 5, 1, 1, 0, 'Renandro', 'naotenhoemail@gmail.com', 'local', NULL, NULL, '2015-09-02 17:10:09', '2015-09-02 17:10:09', 1, '2015-09-02 17:10:54', 1, '2015-10-20 13:38:16', 1),
 (6, 'c7bc81db-5d0e-46f9-b7d2-5da1232cf609', 11, 1, 1, 0, 'teste', 'teste@gmail.com', 'local', NULL, NULL, '2015-09-11 18:43:16', '2015-09-11 18:43:16', 1, '2015-10-15 01:38:23', 1, '2015-10-15 01:38:23', 1),
 (7, '615afbde-5b31-42ec-9107-5f1290817473', 12, 1, 1, 0, 'iagorrs', 'iagorichard@hotmail.com', 'local', NULL, NULL, '2015-10-14 12:45:00', '2015-10-14 12:45:00', 1, '2015-10-14 12:45:30', 1, NULL, 1),
@@ -1882,7 +1883,7 @@ CREATE TABLE IF NOT EXISTS `user_http_session` (
 --
 
 INSERT INTO `user_http_session` (`id`, `expire`, `user_id`, `data`) VALUES
-('jukl6j9m5r6trfb99g5se3lal4', 1445373281, NULL, '');
+('ddncit9urn9g5iaasftggq5st4', 1445456004, 1, 0x33356237383866316261396165323339656331623561303065363663316464335f5f72657475726e55726c7c733a34323a222f466f6c6c6f774564752f696e6465782e7068703f723d64617368626f6172642f64617368626f617264223b33356237383866316261396165323339656331623561303065363663316464335f5f69647c733a313a2231223b33356237383866316261396165323339656331623561303065363663316464335f5f6e616d657c733a31303a22636231333066656c6978223b33356237383866316261396165323339656331623561303065363663316464337469746c657c733a32313a2253797374656d2041646d696e697374726174696f6e223b33356237383866316261396165323339656331623561303065363663316464335f5f7374617465737c613a313a7b733a353a227469746c65223b623a313b7d);
 
 -- --------------------------------------------------------
 
@@ -2210,14 +2211,6 @@ ALTER TABLE `tb_roles_x_apps`
 ALTER TABLE `user_tag`
   ADD CONSTRAINT `fk0_ut` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
   ADD CONSTRAINT `fk1_ut` FOREIGN KEY (`tag_id`) REFERENCES `tag` (`id`);
-
-DELIMITER $$
---
--- Eventos
---
-CREATE DEFINER=`root`@`localhost` EVENT `Teste` ON SCHEDULE EVERY 10 SECOND STARTS '2015-10-17 00:00:00' ENDS '2015-10-30 23:00:00' ON COMPLETION PRESERVE ENABLE DO INSERT INTO `teste`(`t`) VALUES ("1")$$
-
-DELIMITER ;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
