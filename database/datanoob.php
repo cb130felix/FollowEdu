@@ -2,11 +2,11 @@
 //Arquivo apenas para padronizar informação do banco de dados
 
 
-// //local
-//$servername = "localhost";
-//$username = "root";
-//$password = "";
-//$dbname = "followedu";
+ //local
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "followedu";
 
 
 
