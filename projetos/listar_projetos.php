@@ -27,10 +27,10 @@
                         user.username as user_username,
                         space.finish_at as space_finish_at
 
-        FROM 	space, space_tag, user
+        FROM 	space, space_tag, user, tag
 
         WHERE 	space.id=space_tag.space_id and 
-                        user.id=space.created_by ";
+                        user.id=space.created_by and space_tag.tag_id = tag.id";
         //filtrando por nome do criador
         if(isset($_POST['pesquisa'])){
             $pesquisa = $_POST['pesquisa'];
