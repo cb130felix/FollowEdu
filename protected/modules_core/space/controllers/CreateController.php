@@ -50,10 +50,7 @@ class CreateController extends Controller
 		
 		//Parte editada por Renan ... CUIDADO =P
 		
-		$servername = "localhost";
-		$username = "root";
-		$password = "";
-		$dbname = "followedu";
+		require_once '/../../../../database/datanoob.php';
 
 		$conn = new mysqli($servername, $username, $password, $dbname);
 		if ($conn->connect_error) {
@@ -72,7 +69,7 @@ class CreateController extends Controller
 				
 		if ($perfil == 1) {
 		//if ($user_id = Yii::app()->user->id == 1) {
-			
+		$this->htmlRedirect("/FollowEdu/index.php?r=custom_pages/view&id=7");	
 		$model = new Space('edit');
 
         // Ajax Validation
