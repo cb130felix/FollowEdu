@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 21-Out-2015 às 21:03
+-- Generation Time: 26-Out-2015 às 17:22
 -- Versão do servidor: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -19,6 +19,47 @@ SET time_zone = "+00:00";
 --
 -- Database: `followedu`
 --
+
+DELIMITER $$
+--
+-- Procedures
+--
+CREATE DEFINER=`root`@`localhost` PROCEDURE `rotinaRecommend`()
+BEGIN
+
+		DECLARE count INT default 0;
+		DECLARE recommend INT default 0;
+		DECLARE max INT default (SELECT count(*) as id FROM user);
+		DECLARE last_space INT default (SELECT MAX(ID) as id FROM space);
+		DECLARE last_notification_id INT default (SELECT MAX(ID) as id FROM notification);
+        DECLARE user_created_space INT default (SELECT S.created_by FROM space S WHERE S.id=last_space);
+        DECLARE user_id_atual INT;
+        DECLARE check_user_notification INT default 0;
+        
+		WHILE (count < max) DO
+			SET user_id_atual = (SELECT user.id FROM user LIMIT count,1);
+            
+			SET recommend = (SELECT count(*) FROM (SELECT T.tag_id FROM space_tag T, space S WHERE S.id=last_space and S.id=T.space_id) S,
+							      (SELECT T.tag_id FROM user_tag T, user U WHERE U.id=user_id_atual and U.id=T.user_id) U
+							 WHERE U.tag_id = S.tag_id);
+                             
+			IF (recommend>=1 and user_id_atual!=user_created_space) THEN
+				SET check_user_notification = (SELECT count(*) FROM notification N WHERE N.class="SpaceRecommend" and N.user_id=user_id_atual and N.space_id=last_space);
+
+				IF (check_user_notification=0) THEN
+					SET last_notification_id = last_notification_id+1;
+					INSERT INTO notification VALUES (last_notification_id, "SpaceRecommend", user_id_atual, 0, "User", 10, "Space", last_space, last_space, 0, NOW(), user_id_atual, NOW(), 1, 1);
+					SET recommend=0;
+				END IF;
+                SET check_user_notification=0;
+			END IF;
+            
+			SET count = count+1;
+            
+		END WHILE;
+	END$$
+
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -647,27 +688,41 @@ CREATE TABLE IF NOT EXISTS `notification` (
   KEY `index_seen` (`seen`),
   KEY `index_desktop_notified` (`desktop_notified`),
   KEY `index_desktop_emailed` (`emailed`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=36 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=67 ;
 
 --
 -- Extraindo dados da tabela `notification`
 --
 
 INSERT INTO `notification` (`id`, `class`, `user_id`, `seen`, `source_object_model`, `source_object_id`, `target_object_model`, `target_object_id`, `space_id`, `emailed`, `created_at`, `created_by`, `updated_at`, `updated_by`, `desktop_notified`) VALUES
-(1, 'NewCommentNotification', 1, 1, 'Comment', 6, 'Post', 1, NULL, 0, '2015-09-02 17:11:45', 2, '2015-10-17 21:35:41', 1, 1),
-(8, 'SpaceApprovalRequestDeclinedNotification', 9, 1, 'User', 1, 'Space', 7, 7, 0, '2015-10-16 20:43:52', 1, '2015-10-16 20:44:30', 9, 1),
-(9, 'SpaceApprovalRequestDeclinedNotification', 9, 1, 'User', 1, 'Space', 2, 2, 0, '2015-10-16 20:54:42', 1, '2015-10-16 20:54:52', 9, 1),
-(11, 'SpaceApprovalRequestAcceptedNotification', 9, 1, 'User', 1, 'Space', 2, 2, 0, '2015-10-16 20:55:27', 1, '2015-10-17 17:40:30', 9, 1),
-(20, 'SpaceApprovalRequestDeclinedNotification', 9, 1, 'User', 1, 'Space', 90, 90, 0, '2015-10-18 18:23:36', 1, '2015-10-18 18:23:51', 9, 1),
-(22, 'SpaceApprovalRequestAcceptedNotification', 9, 1, 'User', 1, 'Space', 90, 90, 0, '2015-10-18 18:24:13', 1, '2015-10-18 18:24:51', 9, 1),
-(23, 'NewCommentNotification', 9, 1, 'Comment', 7, 'Post', 11, NULL, 0, '2015-10-18 18:26:20', 1, '2015-10-18 18:30:36', 9, 1),
-(25, 'SpaceApprovalRequestAcceptedNotification', 9, 1, 'User', 1, 'Space', 92, 92, 0, '2015-10-18 18:34:26', 1, '2015-10-20 15:48:34', 9, 1),
-(27, 'SpaceApprovalRequestAcceptedNotification', 1, 1, 'User', 10, 'Space', 93, 93, 0, '2015-10-18 18:57:16', 10, '2015-10-18 23:38:35', 1, 1),
-(29, 'SpaceApprovalRequestDeclinedNotification', 10, 1, 'User', 1, 'Space', 92, 92, 0, '2015-10-18 23:44:37', 1, '2015-10-18 23:45:33', 10, 1),
-(31, 'SpaceApprovalRequestDeclinedNotification', 10, 1, 'User', 1, 'Space', 92, 92, 0, '2015-10-18 23:45:16', 1, '2015-10-18 23:45:30', 10, 1),
-(33, 'SpaceRecommend', 9, 1, 'User', 10, 'Space', 96, 96, 0, '2015-10-20 15:46:39', 10, '2015-10-20 15:53:13', 9, 1),
-(34, 'SpaceInviteDeclinedNotification', 10, 1, 'User', 9, 'Space', 96, 96, 0, '2015-10-20 15:48:31', 9, '2015-10-20 15:48:31', 9, 1),
-(35, 'SpaceRecommend', 1, 1, 'User', 10, 'Space', 96, 96, 0, '2015-10-20 15:46:39', 10, '2015-10-21 09:03:47', 1, 1);
+(36, 'SpaceRecommend', 1, 1, 'User', 10, 'Space', 96, 96, 0, '2015-10-23 21:46:14', 10, '2015-10-23 23:10:31', 1, 1),
+(37, 'SpaceRecommend', 1, 1, 'User', 10, 'Space', 96, 96, 0, '2015-10-23 21:24:30', 10, '2015-10-23 23:10:31', 1, 1),
+(38, 'SpaceRecommend', 1, 1, 'User', 10, 'Space', 97, 97, 0, '2015-10-23 23:06:12', 10, '2015-10-23 23:10:35', 1, 1),
+(39, 'SpaceRecommend', 1, 1, 'User', 10, 'Space', 99, 99, 0, '2015-10-23 23:12:34', 10, '2015-10-23 23:12:34', 1, 1),
+(40, 'SpaceRecommend', 1, 1, 'User', 10, 'Space', 100, 100, 0, '2015-10-23 23:13:52', 10, '2015-10-23 23:13:52', 1, 1),
+(41, 'SpaceRecommend', 9, 1, 'User', 10, 'Space', 101, 101, 0, '2015-10-25 00:53:27', 9, '2015-10-25 00:54:15', 9, 1),
+(42, 'SpaceRecommend', 9, 1, 'User', 10, 'Space', 101, 101, 0, '2015-10-25 00:53:27', 9, '2015-10-25 00:54:16', 9, 1),
+(43, 'SpaceRecommend', 10, 1, 'User', 10, 'Space', 101, 101, 0, '2015-10-25 00:53:27', 10, '2015-10-25 00:53:48', 10, 1),
+(44, 'SpaceRecommend', 9, 1, 'User', 10, 'Space', 101, 101, 0, '2015-10-25 00:53:27', 9, '2015-10-25 00:54:16', 9, 1),
+(45, 'SpaceRecommend', 10, 1, 'User', 10, 'Space', 101, 101, 0, '2015-10-25 00:53:27', 10, '2015-10-25 00:53:48', 10, 1),
+(46, 'SpaceRecommend', 9, 1, 'User', 10, 'Space', 101, 101, 0, '2015-10-25 00:53:27', 9, '2015-10-25 00:54:16', 9, 1),
+(47, 'SpaceRecommend', 10, 1, 'User', 10, 'Space', 101, 101, 0, '2015-10-25 00:53:27', 10, '2015-10-25 00:53:48', 10, 1),
+(48, 'SpaceRecommend', 9, 1, 'User', 10, 'Space', 102, 102, 0, '2015-10-25 00:54:35', 9, '2015-10-25 00:54:44', 9, 1),
+(49, 'SpaceRecommend', 9, 1, 'User', 10, 'Space', 103, 103, 0, '2015-10-25 00:55:45', 9, '2015-10-25 01:08:30', 9, 1),
+(50, 'SpaceRecommend', 9, 1, 'User', 10, 'Space', 103, 103, 0, '2015-10-25 00:55:45', 9, '2015-10-25 01:08:30', 9, 1),
+(51, 'SpaceRecommend', 10, 1, 'User', 10, 'Space', 103, 103, 0, '2015-10-25 00:55:45', 10, '2015-10-25 00:55:53', 10, 1),
+(52, 'SpaceRecommend', 9, 1, 'User', 10, 'Space', 104, 104, 0, '2015-10-25 09:57:46', 9, '2015-10-25 09:58:00', 9, 1),
+(53, 'SpaceRecommend', 10, 1, 'User', 10, 'Space', 104, 104, 0, '2015-10-25 09:57:46', 10, '2015-10-25 09:58:50', 10, 1),
+(54, 'SpaceRecommend', 9, 1, 'User', 10, 'Space', 105, 105, 0, '2015-10-25 09:59:16', 9, '2015-10-25 10:00:38', 9, 1),
+(55, 'SpaceRecommend', 10, 1, 'User', 10, 'Space', 105, 105, 0, '2015-10-25 09:59:16', 10, '2015-10-25 10:00:03', 10, 1),
+(56, 'SpaceRecommend', 9, 1, 'User', 10, 'Space', 106, 106, 0, '2015-10-26 11:45:48', 9, '2015-10-26 11:49:10', 9, 1),
+(57, 'SpaceRecommend', 9, 1, 'User', 10, 'Space', 107, 107, 0, '2015-10-26 11:48:46', 9, '2015-10-26 11:49:03', 9, 1),
+(58, 'SpaceRecommend', 9, 1, 'User', 10, 'Space', 108, 108, 0, '2015-10-26 11:55:03', 9, '2015-10-26 11:56:03', 9, 1),
+(59, 'SpaceRecommend', 1, 1, 'User', 10, 'Space', 110, 110, 0, '2015-10-26 11:55:36', 1, '2015-10-26 11:59:05', 1, 1),
+(60, 'SpaceRecommend', 9, 1, 'User', 10, 'Space', 110, 110, 0, '2015-10-26 11:55:36', 9, '2015-10-26 11:55:56', 9, 1),
+(62, 'SpaceApprovalRequestAcceptedNotification', 9, 1, 'User', 1, 'Space', 108, 108, 0, '2015-10-26 11:57:34', 1, '2015-10-26 11:57:53', 9, 1),
+(64, 'SpaceApprovalRequestDeclinedNotification', 1, 1, 'User', 10, 'Space', 110, 110, 0, '2015-10-26 12:24:00', 10, '2015-10-26 12:24:07', 1, 1),
+(66, 'SpaceApprovalRequestDeclinedNotification', 1, 0, 'User', 10, 'Space', 110, 110, 0, '2015-10-26 12:24:27', 10, '2015-10-26 12:24:27', 10, 1);
 
 -- --------------------------------------------------------
 
@@ -892,8 +947,8 @@ INSERT INTO `setting` (`id`, `name`, `value`, `value_text`, `module_id`, `create
 (1, 'oembedProviders', NULL, '{"vimeo.com":"http:\\/\\/vimeo.com\\/api\\/oembed.json?scheme=https&url=%url%&format=json&maxwidth=450","youtube.com":"http:\\/\\/www.youtube.com\\/oembed?scheme=https&url=%url%&format=json&maxwidth=450","youtu.be":"http:\\/\\/www.youtube.com\\/oembed?scheme=https&url=%url%&format=json&maxwidth=450","soundcloud.com":"https:\\/\\/soundcloud.com\\/oembed?url=%url%&format=json&maxwidth=450","slideshare.net":"https:\\/\\/www.slideshare.net\\/api\\/oembed\\/2?url=%url%&format=json&maxwidth=450"}', NULL, NULL, NULL, NULL, NULL),
 (2, 'defaultVisibility', '1', NULL, 'space', NULL, NULL, NULL, NULL),
 (3, 'defaultJoinPolicy', '1', NULL, 'space', NULL, NULL, NULL, NULL),
-(4, 'name', 'FollowEdu', NULL, NULL, '2015-09-02 15:58:59', 0, '2015-10-18 23:39:18', 1),
-(5, 'baseUrl', 'http://localhost/humhub-master', NULL, NULL, '2015-09-02 15:59:00', 0, '2015-10-18 23:39:18', 1),
+(4, 'name', 'FollowEdu', NULL, NULL, '2015-09-02 15:58:59', 0, '2015-10-26 11:48:27', 1),
+(5, 'baseUrl', 'http://localhost/humhub-master', NULL, NULL, '2015-09-02 15:59:00', 0, '2015-10-26 11:48:27', 1),
 (6, 'paginationSize', '10', NULL, NULL, '2015-09-02 15:59:00', 0, '2015-10-18 15:28:34', 1),
 (7, 'displayNameFormat', '{profile.firstname} {profile.lastname}', NULL, NULL, '2015-09-02 15:59:00', 0, '2015-10-18 15:28:34', 1),
 (8, 'authInternal', '1', NULL, 'authentication', '2015-09-02 15:59:00', 0, '2015-09-02 15:59:00', 0),
@@ -916,8 +971,8 @@ INSERT INTO `setting` (`id`, `name`, `value`, `value_text`, `module_id`, `create
 (25, 'installationId', 'f73e761e751e47187f66b0393e899544', NULL, 'admin', '2015-09-02 15:59:01', 0, '2015-09-02 15:59:01', 0),
 (26, 'theme', 'HumHub', NULL, NULL, '2015-09-02 15:59:01', 0, '2015-10-18 15:28:34', 1),
 (27, 'spaceOrder', '0', NULL, 'space', '2015-09-02 15:59:01', 0, '2015-10-18 15:28:34', 1),
-(28, 'enable', '1', NULL, 'tour', '2015-09-02 15:59:01', 0, '2015-10-18 23:39:18', 1),
-(29, 'defaultLanguage', 'pt_br', NULL, NULL, '2015-09-02 15:59:01', 0, '2015-10-18 23:39:18', 1),
+(28, 'enable', '1', NULL, 'tour', '2015-09-02 15:59:01', 0, '2015-10-26 11:48:27', 1),
+(29, 'defaultLanguage', 'pt_br', NULL, NULL, '2015-09-02 15:59:01', 0, '2015-10-26 11:48:27', 1),
 (30, 'enable_html5_desktop_notifications', '0', NULL, 'notification', '2015-09-02 15:59:01', 0, '2015-09-02 15:59:01', 0),
 (31, 'secret', 'dbaf2386-e51c-41e2-a162-dac88ee92b50', NULL, NULL, '2015-09-02 16:00:41', 0, '2015-09-02 16:00:41', 0),
 (32, 'hostname', '', NULL, 'mailing', '2015-09-02 16:53:58', 1, '2015-09-02 16:53:58', 1),
@@ -926,7 +981,7 @@ INSERT INTO `setting` (`id`, `name`, `value`, `value_text`, `module_id`, `create
 (35, 'port', '', NULL, 'mailing', '2015-09-02 16:53:58', 1, '2015-09-02 16:53:58', 1),
 (36, 'encryption', '', NULL, 'mailing', '2015-09-02 16:53:58', 1, '2015-09-02 16:53:58', 1),
 (37, 'allowSelfSignedCerts', '0', NULL, 'mailing', '2015-09-02 16:53:58', 1, '2015-09-02 16:53:58', 1),
-(38, 'showProfilePostForm', '0', NULL, 'dashboard', '2015-09-10 18:34:05', 1, '2015-10-18 23:39:18', 1);
+(38, 'showProfilePostForm', '0', NULL, 'dashboard', '2015-09-10 18:34:05', 1, '2015-10-26 11:48:27', 1);
 
 -- --------------------------------------------------------
 
@@ -953,7 +1008,7 @@ CREATE TABLE IF NOT EXISTS `space` (
   `auto_add_new_members` int(4) DEFAULT NULL,
   `finish_at` date NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=97 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=111 ;
 
 --
 -- Extraindo dados da tabela `space`
@@ -972,7 +1027,31 @@ INSERT INTO `space` (`id`, `guid`, `wall_id`, `name`, `description`, `website`, 
 (92, '77', 77, 'Teste de permissao', 'asdasd', NULL, 0, 2, 1, NULL, '2015-10-18 00:00:00', 1, '2015-10-18 23:39:19', 1, NULL, 0, '2015-10-26'),
 (93, '79', 79, 'Dominando o planeta', 'dshfgcjjhdhfhfj', NULL, 0, 2, 1, NULL, '2015-10-18 00:00:00', 10, '2015-10-18 23:39:19', 1, NULL, 0, '2015-11-04'),
 (95, '9174d2a2-3588-4a08-b195-0c52a86a9690', 81, 'testettttt', 'asdasd', NULL, 1, 1, 1, NULL, '2015-10-18 23:40:04', 1, '2015-10-18 23:40:04', 1, NULL, NULL, '0000-00-00'),
-(96, '83', 83, 'TesteInvite', 'asdasd', NULL, 0, 1, 1, NULL, '2015-10-20 00:00:00', 10, '2015-10-20 00:00:00', 1, NULL, 1, '0000-00-00');
+(96, '83', 83, 'TesteInvite', 'asdasd', NULL, 0, 1, 1, NULL, '2015-10-20 00:00:00', 10, '2015-10-26 11:48:17', 1, NULL, 0, '0000-00-00'),
+(97, '84', 84, 'Teste de rotina', 'asdasdasd', NULL, 0, 1, 1, NULL, '2015-10-24 00:00:00', 1, '2015-10-26 11:48:17', 1, NULL, 0, '2015-10-23'),
+(98, '85', 85, 'Teste', 'asdasdasd', NULL, 0, 1, 1, NULL, '2015-10-24 00:00:00', 1, '2015-10-24 00:00:00', 1, NULL, 1, '2015-10-24'),
+(99, '86', 86, 'PRECISO DE DESIGN', 'asdasd', NULL, 0, 1, 1, NULL, '2015-10-24 00:00:00', 1, '2015-10-26 11:48:18', 1, NULL, 0, '0000-00-00'),
+(100, '87', 87, 'MAIS DESIGN', '', NULL, 0, 1, 1, NULL, '2015-10-24 00:00:00', 1, '2015-10-26 11:48:18', 1, NULL, 0, '0000-00-00'),
+(101, '88', 88, 'Teste de notificaÃ§Ã£o', 'asdasd', NULL, 0, 1, 1, NULL, '2015-10-25 00:00:00', 1, '2015-10-26 11:48:18', 1, NULL, 0, '0000-00-00'),
+(102, '89', 89, 'BD', 'asdasd', NULL, 0, 1, 1, NULL, '2015-10-25 00:00:00', 1, '2015-10-26 11:48:19', 1, NULL, 0, '0000-00-00'),
+(103, '90', 90, 'hummm', '', NULL, 0, 1, 1, NULL, '2015-10-25 00:00:00', 1, '2015-10-26 11:48:19', 1, NULL, 0, '0000-00-00'),
+(104, '91', 91, 'teste', '', NULL, 0, 1, 1, NULL, '2015-10-25 00:00:00', 1, '2015-10-25 00:00:00', 1, NULL, 1, '0000-00-00'),
+(105, '92', 92, 'teste2', '', NULL, 0, 1, 1, NULL, '2015-10-25 00:00:00', 1, '2015-10-26 11:48:19', 1, NULL, 0, '0000-00-00'),
+(106, '93', 93, 't1', '', NULL, 1, 1, 1, NULL, '2015-10-26 00:00:00', 1, '2015-10-26 11:48:19', 1, NULL, 0, '0000-00-00'),
+(107, '94', 94, 't2', '', NULL, 0, 1, 1, NULL, '2015-10-26 00:00:00', 1, '2015-10-26 00:00:00', 1, NULL, 0, '0000-00-00'),
+(108, '95', 95, 'asdasdasd', '', NULL, 1, 1, 1, NULL, '2015-10-26 00:00:00', 1, '2015-10-26 00:00:00', 1, NULL, 0, '0000-00-00'),
+(109, '96', 96, 'testeb', '', NULL, 0, 1, 1, NULL, '2015-10-26 00:00:00', 10, '2015-10-26 00:00:00', 1, NULL, 0, '0000-00-00'),
+(110, '97', 97, 'bebels project', '', NULL, 0, 1, 1, NULL, '2015-10-26 00:00:00', 10, '2015-10-26 00:00:00', 1, NULL, 0, '0000-00-00');
+
+--
+-- Acionadores `space`
+--
+DROP TRIGGER IF EXISTS `Recomendação`;
+DELIMITER //
+CREATE TRIGGER `Recomendação` AFTER INSERT ON `space`
+ FOR EACH ROW CALL rotinaRecommend()
+//
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -1027,12 +1106,27 @@ INSERT INTO `space_membership` (`space_id`, `user_id`, `originator_user_id`, `st
 (90, 10, NULL, 3, NULL, '2015-10-18 23:47:27', 0, 0, 0, '2015-10-18 18:53:57', 1, '2015-10-18 18:53:57', 1),
 (91, 1, NULL, 3, NULL, '2015-10-18 18:30:24', 1, 1, 1, '2015-10-18 18:29:59', 1, '2015-10-18 18:29:59', 1),
 (92, 1, NULL, 3, NULL, '2015-10-18 23:45:18', 1, 1, 1, '2015-10-18 00:00:00', 1, '2015-10-18 00:00:00', 1),
-(92, 9, 'NULL', 3, 'Acita ae pfv', '2015-10-20 15:48:36', 0, 0, 0, '2015-09-12 00:00:00', 9, '2015-10-18 18:34:26', 1),
+(92, 9, 'NULL', 3, 'Acita ae pfv', '2015-10-25 10:00:31', 0, 0, 0, '2015-09-12 00:00:00', 9, '2015-10-18 18:34:26', 1),
 (93, 1, 'NULL', 3, 'Acita ae pfv', '2015-10-18 23:38:36', 0, 0, 0, '2015-09-12 00:00:00', 1, '2015-10-18 18:57:16', 10),
 (93, 10, NULL, 3, NULL, '2015-10-20 15:45:43', 1, 1, 1, '2015-10-18 00:00:00', 10, '2015-10-18 00:00:00', 10),
 (95, 1, NULL, 3, NULL, '2015-10-18 23:40:05', 1, 1, 1, '2015-10-18 23:40:04', 1, '2015-10-18 23:40:04', 1),
-(96, 1, NULL, 3, NULL, '2015-10-21 09:04:13', 1, 1, 1, '2015-10-18 23:40:27', 1, '2015-10-18 23:40:27', 1),
-(96, 10, NULL, 3, NULL, '2015-10-20 15:46:39', 1, 1, 1, '2015-10-20 00:00:00', 10, '2015-10-20 00:00:00', 10);
+(96, 1, NULL, 3, NULL, '2015-10-23 23:10:32', 1, 1, 1, '2015-10-18 23:40:27', 1, '2015-10-18 23:40:27', 1),
+(96, 10, NULL, 3, NULL, '2015-10-20 15:46:39', 1, 1, 1, '2015-10-20 00:00:00', 10, '2015-10-20 00:00:00', 10),
+(97, 1, NULL, 3, NULL, '2015-10-23 23:10:36', 1, 1, 1, '2015-10-24 00:00:00', 1, '2015-10-24 00:00:00', 1),
+(98, 1, NULL, 3, NULL, '2015-10-24 00:00:00', 1, 1, 1, '2015-10-24 00:00:00', 1, '2015-10-24 00:00:00', 1),
+(99, 1, NULL, 3, NULL, '2015-10-24 00:00:00', 1, 1, 1, '2015-10-24 00:00:00', 1, '2015-10-24 00:00:00', 1),
+(100, 1, NULL, 3, NULL, '2015-10-24 00:00:00', 1, 1, 1, '2015-10-24 00:00:00', 1, '2015-10-24 00:00:00', 1),
+(101, 1, NULL, 3, NULL, '2015-10-25 00:00:00', 1, 1, 1, '2015-10-25 00:00:00', 1, '2015-10-25 00:00:00', 1),
+(102, 1, NULL, 3, NULL, '2015-10-25 00:00:00', 1, 1, 1, '2015-10-25 00:00:00', 1, '2015-10-25 00:00:00', 1),
+(103, 1, NULL, 3, NULL, '2015-10-25 00:00:00', 1, 1, 1, '2015-10-25 00:00:00', 1, '2015-10-25 00:00:00', 1),
+(104, 1, NULL, 3, NULL, '2015-10-25 00:00:00', 1, 1, 1, '2015-10-25 00:00:00', 1, '2015-10-25 00:00:00', 1),
+(105, 1, NULL, 3, NULL, '2015-10-25 00:00:00', 1, 1, 1, '2015-10-25 00:00:00', 1, '2015-10-25 00:00:00', 1),
+(106, 1, NULL, 3, NULL, '2015-10-26 00:00:00', 1, 1, 1, '2015-10-26 00:00:00', 1, '2015-10-26 00:00:00', 1),
+(107, 1, NULL, 3, NULL, '2015-10-26 00:00:00', 1, 1, 1, '2015-10-26 00:00:00', 1, '2015-10-26 00:00:00', 1),
+(108, 1, NULL, 3, NULL, '2015-10-26 11:57:35', 1, 1, 1, '2015-10-26 00:00:00', 1, '2015-10-26 00:00:00', 1),
+(108, 9, NULL, 3, 'Aceita ae pfv', '2015-10-26 11:57:54', 0, 0, 0, '2015-10-26 11:56:51', 9, '2015-10-26 11:57:34', 1),
+(109, 10, NULL, 3, NULL, '2015-10-26 00:00:00', 1, 1, 1, '2015-10-26 00:00:00', 10, '2015-10-26 00:00:00', 10),
+(110, 10, NULL, 3, NULL, '2015-10-26 12:24:28', 1, 1, 1, '2015-10-26 00:00:00', 10, '2015-10-26 00:00:00', 10);
 
 -- --------------------------------------------------------
 
@@ -1089,8 +1183,46 @@ INSERT INTO `space_tag` (`space_id`, `tag_id`) VALUES
 (3, 1),
 (92, 1),
 (93, 1),
+(97, 1),
+(101, 1),
+(103, 1),
+(105, 1),
+(106, 1),
+(107, 1),
+(108, 1),
+(110, 1),
 (96, 2),
-(90, 4);
+(98, 2),
+(99, 2),
+(100, 2),
+(101, 2),
+(103, 2),
+(104, 2),
+(105, 2),
+(98, 3),
+(101, 3),
+(108, 3),
+(90, 4),
+(97, 4),
+(101, 4),
+(102, 4),
+(104, 4),
+(107, 4),
+(110, 4);
+
+--
+-- Acionadores `space_tag`
+--
+DROP TRIGGER IF EXISTS `recomendacao`;
+DELIMITER //
+CREATE TRIGGER `recomendacao` AFTER INSERT ON `space_tag`
+ FOR EACH ROW BEGIN
+	
+		CALL rotinaRecommend();
+		
+	END
+//
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -1782,13 +1914,13 @@ CREATE TABLE IF NOT EXISTS `user` (
 --
 
 INSERT INTO `user` (`id`, `guid`, `wall_id`, `group_id`, `status`, `super_admin`, `username`, `email`, `auth_mode`, `tags`, `language`, `last_activity_email`, `created_at`, `created_by`, `updated_at`, `updated_by`, `last_login`, `visibility`) VALUES
-(1, '9e173f30-2710-4c11-8502-1eeed5bca5ec', 1, 1, 1, 1, 'cb130felix', 'renanfelixrodrigues@hotmail.com', 'local', NULL, '', '2015-09-02 16:00:41', '2015-09-02 16:00:41', NULL, '2015-10-18 18:23:05', 1, '2015-10-21 15:04:56', 1),
+(1, '9e173f30-2710-4c11-8502-1eeed5bca5ec', 1, 1, 1, 1, 'cb130felix', 'renanfelixrodrigues@hotmail.com', 'local', NULL, '', '2015-09-02 16:00:41', '2015-09-02 16:00:41', NULL, '2015-10-18 18:23:05', 1, '2015-10-26 12:24:04', 1),
 (2, '5d028996-b43c-4c31-92db-2d01d8ee955a', 5, 1, 1, 0, 'Renandro', 'naotenhoemail@gmail.com', 'local', NULL, NULL, '2015-09-02 17:10:09', '2015-09-02 17:10:09', 1, '2015-09-02 17:10:54', 1, '2015-10-20 13:38:16', 1),
 (6, 'c7bc81db-5d0e-46f9-b7d2-5da1232cf609', 11, 1, 1, 0, 'teste', 'teste@gmail.com', 'local', NULL, NULL, '2015-09-11 18:43:16', '2015-09-11 18:43:16', 1, '2015-10-15 01:38:23', 1, '2015-10-15 01:38:23', 1),
 (7, '615afbde-5b31-42ec-9107-5f1290817473', 12, 1, 1, 0, 'iagorrs', 'iagorichard@hotmail.com', 'local', NULL, NULL, '2015-10-14 12:45:00', '2015-10-14 12:45:00', 1, '2015-10-14 12:45:30', 1, NULL, 1),
 (8, '9798ff4a-9cba-463a-9358-faff9f23fdfb', 13, 1, 1, 0, 'iagorichard', 'iagorichardrodrigues@gmail.com', 'local', NULL, NULL, '2015-10-14 12:49:05', '2015-10-14 12:49:05', 1, '2015-10-14 12:49:05', 1, '2015-10-14 12:49:21', 1),
-(9, '333cbd62-dd4b-4b57-af1b-6e4a1ce9a6e4', 72, 1, 1, 0, 'Jonas', 'jonas@chupao.com', 'local', NULL, NULL, '2015-10-16 15:39:19', '2015-10-16 15:39:19', 1, '2015-10-16 15:39:58', 1, '2015-10-20 15:46:48', 1),
-(10, '8289e8c5-b4f0-42e8-8de7-750cc86a78ca', 78, 1, 1, 0, 'Bebelicia', 'bebelicia@hotmail.com', 'local', NULL, NULL, '2015-10-18 18:53:56', '2015-10-18 18:53:56', 1, '2015-10-18 23:43:43', 10, '2015-10-20 15:45:37', 1);
+(9, '333cbd62-dd4b-4b57-af1b-6e4a1ce9a6e4', 72, 1, 1, 0, 'Jonas', 'jonas@chupao.com', 'local', NULL, NULL, '2015-10-16 15:39:19', '2015-10-16 15:39:19', 1, '2015-10-16 15:39:58', 1, '2015-10-26 11:57:40', 1),
+(10, '8289e8c5-b4f0-42e8-8de7-750cc86a78ca', 78, 1, 1, 0, 'Bebelicia', 'bebelicia@hotmail.com', 'local', NULL, NULL, '2015-10-18 18:53:56', '2015-10-18 18:53:56', 1, '2015-10-18 23:43:43', 10, '2015-10-26 12:24:17', 1);
 
 -- --------------------------------------------------------
 
@@ -1883,7 +2015,7 @@ CREATE TABLE IF NOT EXISTS `user_http_session` (
 --
 
 INSERT INTO `user_http_session` (`id`, `expire`, `user_id`, `data`) VALUES
-('ddncit9urn9g5iaasftggq5st4', 1445456004, 1, 0x33356237383866316261396165323339656331623561303065363663316464335f5f72657475726e55726c7c733a34323a222f466f6c6c6f774564752f696e6465782e7068703f723d64617368626f6172642f64617368626f617264223b33356237383866316261396165323339656331623561303065363663316464335f5f69647c733a313a2231223b33356237383866316261396165323339656331623561303065363663316464335f5f6e616d657c733a31303a22636231333066656c6978223b33356237383866316261396165323339656331623561303065363663316464337469746c657c733a32313a2253797374656d2041646d696e697374726174696f6e223b33356237383866316261396165323339656331623561303065363663316464335f5f7374617465737c613a313a7b733a353a227469746c65223b623a313b7d);
+('strk9fmeo02m37qmf5kd3rr964', 1445878321, 10, 0x33356237383866316261396165323339656331623561303065363663316464335f5f72657475726e55726c7c733a34323a222f466f6c6c6f774564752f696e6465782e7068703f723d64617368626f6172642f64617368626f617264223b33356237383866316261396165323339656331623561303065363663316464335f5f69647c733a323a223130223b33356237383866316261396165323339656331623561303065363663316464335f5f6e616d657c733a393a22626562656c69636961223b33356237383866316261396165323339656331623561303065363663316464335f5f7374617465737c613a313a7b733a353a227469746c65223b623a313b7d);
 
 -- --------------------------------------------------------
 
@@ -1996,7 +2128,7 @@ CREATE TABLE IF NOT EXISTS `user_setting` (
   `updated_by` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `idx_user_setting` (`user_id`,`module_id`,`name`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Extraindo dados da tabela `user_setting`
@@ -2004,7 +2136,8 @@ CREATE TABLE IF NOT EXISTS `user_setting` (
 
 INSERT INTO `user_setting` (`id`, `user_id`, `module_id`, `name`, `value`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES
 (1, 1, 'tour', 'interface', '1', '2015-09-02 16:05:35', 1, '2015-09-02 16:06:31', 1),
-(2, 7, 'user', 'passwordRecoveryToken', '0cf522cf-cfb3-4506-869a-cdc525eae88c.1444837638', '2015-10-14 12:47:18', NULL, '2015-10-14 12:47:18', NULL);
+(2, 7, 'user', 'passwordRecoveryToken', '0cf522cf-cfb3-4506-869a-cdc525eae88c.1444837638', '2015-10-14 12:47:18', NULL, '2015-10-14 12:47:18', NULL),
+(3, 1, 'tour', 'profile', '1', '2015-10-26 11:34:12', 1, '2015-10-26 11:34:12', 1);
 
 -- --------------------------------------------------------
 
@@ -2025,9 +2158,12 @@ CREATE TABLE IF NOT EXISTS `user_tag` (
 
 INSERT INTO `user_tag` (`user_id`, `tag_id`) VALUES
 (9, 1),
-(9, 3),
+(9, 2),
 (1, 1),
-(1, 3);
+(1, 2),
+(9, 3),
+(9, 4),
+(10, 2);
 
 -- --------------------------------------------------------
 
@@ -2044,7 +2180,7 @@ CREATE TABLE IF NOT EXISTS `wall` (
   `updated_at` datetime DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=84 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=98 ;
 
 --
 -- Extraindo dados da tabela `wall`
@@ -2075,7 +2211,21 @@ INSERT INTO `wall` (`id`, `object_model`, `object_id`, `created_at`, `created_by
 (79, 'Space', 93, '2015-10-18 00:00:00', 10, '2015-10-18 00:00:00', 10),
 (81, 'Space', 95, '2015-10-18 23:40:04', 1, '2015-10-18 23:40:04', 1),
 (82, 'Space', 96, '2015-10-18 23:40:27', 1, '2015-10-18 23:40:27', 1),
-(83, 'Space', 96, '2015-10-20 00:00:00', 10, '2015-10-20 00:00:00', 10);
+(83, 'Space', 96, '2015-10-20 00:00:00', 10, '2015-10-20 00:00:00', 10),
+(84, 'Space', 97, '2015-10-24 00:00:00', 1, '2015-10-24 00:00:00', 1),
+(85, 'Space', 98, '2015-10-24 00:00:00', 1, '2015-10-24 00:00:00', 1),
+(86, 'Space', 99, '2015-10-24 00:00:00', 1, '2015-10-24 00:00:00', 1),
+(87, 'Space', 100, '2015-10-24 00:00:00', 1, '2015-10-24 00:00:00', 1),
+(88, 'Space', 101, '2015-10-25 00:00:00', 1, '2015-10-25 00:00:00', 1),
+(89, 'Space', 102, '2015-10-25 00:00:00', 1, '2015-10-25 00:00:00', 1),
+(90, 'Space', 103, '2015-10-25 00:00:00', 1, '2015-10-25 00:00:00', 1),
+(91, 'Space', 104, '2015-10-25 00:00:00', 1, '2015-10-25 00:00:00', 1),
+(92, 'Space', 105, '2015-10-25 00:00:00', 1, '2015-10-25 00:00:00', 1),
+(93, 'Space', 106, '2015-10-26 00:00:00', 1, '2015-10-26 00:00:00', 1),
+(94, 'Space', 107, '2015-10-26 00:00:00', 1, '2015-10-26 00:00:00', 1),
+(95, 'Space', 108, '2015-10-26 00:00:00', 1, '2015-10-26 00:00:00', 1),
+(96, 'Space', 109, '2015-10-26 00:00:00', 10, '2015-10-26 00:00:00', 10),
+(97, 'Space', 110, '2015-10-26 00:00:00', 10, '2015-10-26 00:00:00', 10);
 
 -- --------------------------------------------------------
 
