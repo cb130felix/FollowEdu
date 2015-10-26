@@ -35,7 +35,7 @@ if ($result_consulta->num_rows > 0) {
     echo "Você já participa ou já pediu para participar do projeto";
 }else{
 
-    $sql = "INSERT INTO `followedu`.`space_membership` (`space_id`, `user_id`, `originator_user_id`, `status`, `request_message`, `last_visit`, `invite_role`, `admin_role`, `share_role`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES ('".$space_id."', '".$user_id."', 'NULL', '2', 'Acita ae pfv', '2015-09-12 00:00:00', '0', '0', '0', '2015-09-12 00:00:00', '".$user_id."', '2015-09-12 00:00:00', '".$user_id."');";
+    $sql = "INSERT INTO `followedu`.`space_membership` (`space_id`, `user_id`, `originator_user_id`, `status`, `request_message`, `last_visit`, `invite_role`, `admin_role`, `share_role`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES ('".$space_id."', '".$user_id."', 'NULL', '2', 'Requisição de participação no projeto.', '$date', '0', '0', '0', '$date', '".$user_id."', '2015-09-12 00:00:00', '".$user_id."');";
 
     if (mysqli_query($conn, $sql)) {
         echo "Sua requisição foi enviada ao dono do projeto!";

@@ -37,7 +37,7 @@ if ($result->num_rows > 0) {
 
 
 //Insert de projeto
-$sql_insert_projeto = "INSERT INTO `space` (`id`, `guid`, `wall_id`, `name`, `description`, `website`, `join_policy`, `visibility`, `status`, `tags`, `created_at`, `created_by`, `updated_at`, `updated_by`, `ldap_dn`, `auto_add_new_members`, `finish_at`) VALUES (NULL, '$wall_id', '$wall_id', '$nome_projeto', '$descricao_projeto', NULL, '0', '1', '1', NULL, '$date', '$user_id', '$date', '1', NULL, '1', '$finish_at');";
+$sql_insert_projeto = "INSERT INTO `space` (`id`, `guid`, `wall_id`, `name`, `description`, `website`, `join_policy`, `visibility`, `status`, `tags`, `created_at`, `created_by`, `updated_at`, `updated_by`, `ldap_dn`, `auto_add_new_members`, `finish_at`) VALUES (NULL, '$wall_id', '$wall_id', '$nome_projeto', '$descricao_projeto', NULL, '0', '1', '1', NULL, '$date', '$user_id', '$date', '1', NULL, '0', '$finish_at');";
 
 if (mysqli_query($conn, $sql_insert_projeto)) {
    
