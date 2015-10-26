@@ -20,17 +20,18 @@
         // Lista todos os projetos
 
         $sql = "SELECT 	space.created_at as space_created_at,
-                        space.created_by as space_created_by,
+                space.created_by as space_created_by,
                 space.id as space_id, 
                 space.name as space_name, 
                 space.description as space_description,
-                        user.username as user_username,
-                        space.finish_at as space_finish_at
+                user.username as user_username,
+                space.finish_at as space_finish_at,
+                group_concat(tag.nome separator '; ') as tag_names
 
-        FROM 	space, space_tag, user, tag
+FROM 	space, space_tag, user, tag
 
-        WHERE 	space.id=space_tag.space_id and 
-                        user.id=space.created_by and space_tag.tag_id = tag.id";
+WHERE 	space.id=space_tag.space_id and 
+                user.id=space.created_by and space_tag.tag_id = tag.id";
         //filtrando por nome do criador
         if(isset($_POST['pesquisa'])){
             $pesquisa = $_POST['pesquisa'];
@@ -59,6 +60,8 @@
             if($pelo_menos_uma_tag >= 1){
                 $sql .= ")";
             }
+            
+            $sql .= " group by space.name;";
 
         } else {
             echo "Não há tags.";
@@ -77,6 +80,7 @@
                      <th>Criado por</th>
                      <th>Projeto</th>
                      <th>Descrição do projeto</th>
+                     <th>Habilidades requisitadas</th>
                      <th>Data de criação</th>
                      <th>Data de término</th>
                      </tr>
@@ -89,8 +93,9 @@
                 echo "<td>".$row["user_username"]."</td>".
                      "<td>" . $row["space_name"]. "</td>".
                      "<td> ". $row["space_description"]. "</td>".
-                     "<td> ". $row["space_created_at"]. "</td>".
-                     "<td> ". $row["space_finish_at"]. "</td>";
+                     "<td> ". $row["tag_names"]. "</td>".
+                     "<td> ". date("d-m-Y", strtotime($row["space_created_at"])). "</td>".
+                     "<td> ". date("d-m-Y", strtotime($row["space_finish_at"])). "</td>";
                 echo "<td><input type='submit' onclick='return confirm(\"Tem certeza que deseja requisitar a participação nesse projeto?\")' value='Participar' name='participar'  /></td>";        
                 echo "</tr>";
             echo"</form>";
