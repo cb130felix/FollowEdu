@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 26-Out-2015 às 17:22
+-- Generation Time: 27-Out-2015 às 00:30
 -- Versão do servidor: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -78,7 +78,7 @@ CREATE TABLE IF NOT EXISTS `activity` (
   `updated_at` datetime DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=45 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=53 ;
 
 --
 -- Extraindo dados da tabela `activity`
@@ -264,7 +264,7 @@ CREATE TABLE IF NOT EXISTS `content` (
   UNIQUE KEY `index_guid` (`guid`),
   KEY `index_space_id` (`space_id`),
   KEY `index_user_id` (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=56 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=64 ;
 
 --
 -- Extraindo dados da tabela `content`
@@ -494,7 +494,7 @@ CREATE TABLE IF NOT EXISTS `logging` (
   `logtime` int(11) DEFAULT NULL,
   `message` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=52 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=65 ;
 
 --
 -- Extraindo dados da tabela `logging`
@@ -552,7 +552,21 @@ INSERT INTO `logging` (`id`, `level`, `category`, `logtime`, `message`) VALUES
 (48, 'error', 'system.db.CDbCommand', 1445128597, 'Falha ao executar CDbCommand::execute(): SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`followedu`.`space_tag`, CONSTRAINT `fk_st1` FOREIGN KEY (`space_id`) REFERENCES `space` (`id`)). A declaração SQL executada foi: DELETE FROM `space` WHERE `space`.`id`=85.\nin C:\\wamp\\www\\FollowEdu\\protected\\modules_core\\space\\controllers\\AdminController.php (487)\nin C:\\wamp\\www\\FollowEdu\\index.php (39)'),
 (49, 'error', 'exception.CDbException', 1445128597, 'exception ''CDbException'' with message ''CDbCommand falhou ao executar o comando SQL: SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`followedu`.`space_tag`, CONSTRAINT `fk_st1` FOREIGN KEY (`space_id`) REFERENCES `space` (`id`)). The SQL statement executed was: DELETE FROM `space` WHERE `space`.`id`=85'' in C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\db\\CDbCommand.php:358\nStack trace:\n#0 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\db\\ar\\CActiveRecord.php(1802): CDbCommand->execute()\n#1 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\db\\ar\\CActiveRecord.php(1222): CActiveRecord->deleteByPk(''85'')\n#2 C:\\wamp\\www\\FollowEdu\\protected\\modules_core\\space\\controllers\\AdminController.php(487): CActiveRecord->delete()\n#3 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\actions\\CInlineAction.php(49): AdminController->actionDelete()\n#4 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CController.php(308): CInlineAction->runWithParams(Array)\n#5 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\filters\\CFilterChain.php(133): CController->runAction(Object(CInlineAction))\n#6 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\filters\\CFilter.php(40): CFilterChain->run()\n#7 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CController.php(1145): CFilter->filter(Object(CFilterChain))\n#8 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\filters\\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))\n#9 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\filters\\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))\n#10 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CController.php(291): CFilterChain->run()\n#11 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)\n#12 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CWebApplication.php(282): CController->run(''delete'')\n#13 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CWebApplication.php(141): CWebApplication->runController(''space/admin/del...'')\n#14 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\base\\CApplication.php(180): CWebApplication->processRequest()\n#15 C:\\wamp\\www\\FollowEdu\\index.php(39): CApplication->run()\n#16 {main}\nREQUEST_URI=/FollowEdu/index.php?r=space/admin/delete&sguid=xxxxxxxxxxxxxx\nHTTP_REFERER=http://localhost/FollowEdu/index.php?r=space/admin/delete&sguid=xxxxxxxxxxxxxx\n---'),
 (50, 'error', 'exception.CHttpException.401', 1445200212, 'exception ''CHttpException'' with message ''You need to login to view contents of this space!'' in C:\\wamp\\www\\FollowEdu\\protected\\modules_core\\space\\behaviors\\SpaceControllerBehavior.php:73\nStack trace:\n#0 [internal function]: SpaceControllerBehavior->checkAccess()\n#1 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\base\\CComponent.php(261): call_user_func_array(Array, Array)\n#2 C:\\wamp\\www\\FollowEdu\\protected\\components\\ContentContainerController.php(185): CComponent->__call(''checkAccess'', Array)\n#3 C:\\wamp\\www\\FollowEdu\\protected\\components\\ContentContainerController.php(185): SpaceController->checkAccess()\n#4 C:\\wamp\\www\\FollowEdu\\protected\\components\\ContentContainerController.php(141): ContentContainerController->checkContainerAccess()\n#5 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CWebApplication.php(281): ContentContainerController->init()\n#6 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CWebApplication.php(141): CWebApplication->runController(''space/space'')\n#7 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\base\\CApplication.php(180): CWebApplication->processRequest()\n#8 C:\\wamp\\www\\FollowEdu\\index.php(39): CApplication->run()\n#9 {main}\nREQUEST_URI=/FollowEdu/index.php?r=space/space&sguid=a67089f9-d6e6-4f7f-b7dd-26c370ae54de\nHTTP_REFERER=http://localhost/FollowEdu/index.php?r=dashboard/dashboard\n---'),
-(51, 'error', 'exception.CHttpException.404', 1445200378, 'exception ''CHttpException'' with message ''Espaço não encontrado!'' in C:\\wamp\\www\\FollowEdu\\protected\\components\\ContentContainerController.php:105\nStack trace:\n#0 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CWebApplication.php(281): ContentContainerController->init()\n#1 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CWebApplication.php(141): CWebApplication->runController(''space/space'')\n#2 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\base\\CApplication.php(180): CWebApplication->processRequest()\n#3 C:\\wamp\\www\\FollowEdu\\index.php(39): CApplication->run()\n#4 {main}\nREQUEST_URI=/FollowEdu/index.php?r=space/space&sguid=92\n---');
+(51, 'error', 'exception.CHttpException.404', 1445200378, 'exception ''CHttpException'' with message ''Espaço não encontrado!'' in C:\\wamp\\www\\FollowEdu\\protected\\components\\ContentContainerController.php:105\nStack trace:\n#0 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CWebApplication.php(281): ContentContainerController->init()\n#1 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CWebApplication.php(141): CWebApplication->runController(''space/space'')\n#2 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\base\\CApplication.php(180): CWebApplication->processRequest()\n#3 C:\\wamp\\www\\FollowEdu\\index.php(39): CApplication->run()\n#4 {main}\nREQUEST_URI=/FollowEdu/index.php?r=space/space&sguid=92\n---'),
+(52, 'error', 'php', 1445890740, 'require_once(../../../../database/datanoob.php): failed to open stream: No such file or directory (C:\\wamp\\www\\FollowEdu\\protected\\modules_core\\space\\controllers\\CreateController.php:53)\nStack trace:\n#0 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CController.php(308): CInlineAction->runWithParams()\n#1 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\filters\\CFilterChain.php(133): CreateController->runAction()\n#2 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\filters\\CFilter.php(40): CFilterChain->run()\n#3 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CController.php(1145): CAccessControlFilter->filter()\n#4 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\filters\\CInlineFilter.php(58): CreateController->filterAccessControl()\n#5 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\filters\\CFilterChain.php(130): CInlineFilter->filter()\n#6 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CController.php(291): CFilterChain->run()\n#7 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CController.php(265): CreateController->runActionWithFilters()\n#8 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CWebApplication.php(282): CreateController->run()\n#9 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CWebApplication.php(141): WebApplication->runController()\n#10 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\base\\CApplication.php(180): WebApplication->processRequest()\n#11 C:\\wamp\\www\\FollowEdu\\index.php(39): WebApplication->run()\nREQUEST_URI=/FollowEdu/index.php?r=space/create/create&CSRF_TOKEN=ac1311742167be5643b936ea28a132e6930280c7&_=1445890739944\nin C:\\wamp\\www\\FollowEdu\\protected\\modules_core\\space\\controllers\\CreateController.php (53)\nin C:\\wamp\\www\\FollowEdu\\protected\\modules_core\\space\\controllers\\CreateController.php (53)\nin C:\\wamp\\www\\FollowEdu\\index.php (39)'),
+(53, 'error', 'php', 1445890751, 'require_once(../../../../database/datanoob.php): failed to open stream: No such file or directory (C:\\wamp\\www\\FollowEdu\\protected\\modules_core\\space\\controllers\\CreateController.php:53)\nStack trace:\n#0 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CController.php(308): CInlineAction->runWithParams()\n#1 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\filters\\CFilterChain.php(133): CreateController->runAction()\n#2 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\filters\\CFilter.php(40): CFilterChain->run()\n#3 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CController.php(1145): CAccessControlFilter->filter()\n#4 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\filters\\CInlineFilter.php(58): CreateController->filterAccessControl()\n#5 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\filters\\CFilterChain.php(130): CInlineFilter->filter()\n#6 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CController.php(291): CFilterChain->run()\n#7 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CController.php(265): CreateController->runActionWithFilters()\n#8 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CWebApplication.php(282): CreateController->run()\n#9 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CWebApplication.php(141): WebApplication->runController()\n#10 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\base\\CApplication.php(180): WebApplication->processRequest()\n#11 C:\\wamp\\www\\FollowEdu\\index.php(39): WebApplication->run()\nREQUEST_URI=/FollowEdu/index.php?r=space/create/create&CSRF_TOKEN=ac1311742167be5643b936ea28a132e6930280c7&_=1445890751361\nin C:\\wamp\\www\\FollowEdu\\protected\\modules_core\\space\\controllers\\CreateController.php (53)\nin C:\\wamp\\www\\FollowEdu\\protected\\modules_core\\space\\controllers\\CreateController.php (53)\nin C:\\wamp\\www\\FollowEdu\\index.php (39)'),
+(54, 'error', 'php', 1445890817, 'require_once(../../../../database/datanoob.php): failed to open stream: No such file or directory (C:\\wamp\\www\\FollowEdu\\protected\\modules_core\\space\\controllers\\CreateController.php:53)\nStack trace:\n#0 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CController.php(308): CInlineAction->runWithParams()\n#1 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\filters\\CFilterChain.php(133): CreateController->runAction()\n#2 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\filters\\CFilter.php(40): CFilterChain->run()\n#3 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CController.php(1145): CAccessControlFilter->filter()\n#4 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\filters\\CInlineFilter.php(58): CreateController->filterAccessControl()\n#5 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\filters\\CFilterChain.php(130): CInlineFilter->filter()\n#6 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CController.php(291): CFilterChain->run()\n#7 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CController.php(265): CreateController->runActionWithFilters()\n#8 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CWebApplication.php(282): CreateController->run()\n#9 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CWebApplication.php(141): WebApplication->runController()\n#10 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\base\\CApplication.php(180): WebApplication->processRequest()\n#11 C:\\wamp\\www\\FollowEdu\\index.php(39): WebApplication->run()\nREQUEST_URI=/FollowEdu/index.php?r=space/create/create&CSRF_TOKEN=ac1311742167be5643b936ea28a132e6930280c7&_=1445890817643\nin C:\\wamp\\www\\FollowEdu\\protected\\modules_core\\space\\controllers\\CreateController.php (53)\nin C:\\wamp\\www\\FollowEdu\\protected\\modules_core\\space\\controllers\\CreateController.php (53)\nin C:\\wamp\\www\\FollowEdu\\index.php (39)'),
+(55, 'error', 'php', 1445890830, 'require_once(../../../../database/datanoob.php): failed to open stream: No such file or directory (C:\\wamp\\www\\FollowEdu\\protected\\modules_core\\space\\controllers\\CreateController.php:53)\nStack trace:\n#0 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CController.php(308): CInlineAction->runWithParams()\n#1 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\filters\\CFilterChain.php(133): CreateController->runAction()\n#2 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\filters\\CFilter.php(40): CFilterChain->run()\n#3 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CController.php(1145): CAccessControlFilter->filter()\n#4 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\filters\\CInlineFilter.php(58): CreateController->filterAccessControl()\n#5 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\filters\\CFilterChain.php(130): CInlineFilter->filter()\n#6 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CController.php(291): CFilterChain->run()\n#7 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CController.php(265): CreateController->runActionWithFilters()\n#8 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CWebApplication.php(282): CreateController->run()\n#9 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CWebApplication.php(141): WebApplication->runController()\n#10 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\base\\CApplication.php(180): WebApplication->processRequest()\n#11 C:\\wamp\\www\\FollowEdu\\index.php(39): WebApplication->run()\nREQUEST_URI=/FollowEdu/index.php?r=space/create/create&CSRF_TOKEN=ac1311742167be5643b936ea28a132e6930280c7&_=1445890830762\nin C:\\wamp\\www\\FollowEdu\\protected\\modules_core\\space\\controllers\\CreateController.php (53)\nin C:\\wamp\\www\\FollowEdu\\protected\\modules_core\\space\\controllers\\CreateController.php (53)\nin C:\\wamp\\www\\FollowEdu\\index.php (39)'),
+(56, 'error', 'php', 1445890850, 'require_once(../../../../database/datanoob.php): failed to open stream: No such file or directory (C:\\wamp\\www\\FollowEdu\\protected\\modules_core\\space\\controllers\\CreateController.php:53)\nStack trace:\n#0 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CController.php(308): CInlineAction->runWithParams()\n#1 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\filters\\CFilterChain.php(133): CreateController->runAction()\n#2 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\filters\\CFilter.php(40): CFilterChain->run()\n#3 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CController.php(1145): CAccessControlFilter->filter()\n#4 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\filters\\CInlineFilter.php(58): CreateController->filterAccessControl()\n#5 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\filters\\CFilterChain.php(130): CInlineFilter->filter()\n#6 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CController.php(291): CFilterChain->run()\n#7 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CController.php(265): CreateController->runActionWithFilters()\n#8 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CWebApplication.php(282): CreateController->run()\n#9 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CWebApplication.php(141): WebApplication->runController()\n#10 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\base\\CApplication.php(180): WebApplication->processRequest()\n#11 C:\\wamp\\www\\FollowEdu\\index.php(39): WebApplication->run()\nREQUEST_URI=/FollowEdu/index.php?r=space/create/create&CSRF_TOKEN=ac1311742167be5643b936ea28a132e6930280c7&_=1445890850644\nin C:\\wamp\\www\\FollowEdu\\protected\\modules_core\\space\\controllers\\CreateController.php (53)\nin C:\\wamp\\www\\FollowEdu\\protected\\modules_core\\space\\controllers\\CreateController.php (53)\nin C:\\wamp\\www\\FollowEdu\\index.php (39)'),
+(57, 'error', 'exception.CHttpException.404', 1445891159, 'exception ''CHttpException'' with message ''Could not find requested page'' in C:\\wamp\\www\\FollowEdu\\protected\\modules\\custom_pages\\controllers\\ViewController.php:62\nStack trace:\n#0 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\actions\\CInlineAction.php(49): ViewController->actionIndex()\n#1 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CController.php(308): CInlineAction->runWithParams(Array)\n#2 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\filters\\CFilterChain.php(133): CController->runAction(Object(CInlineAction))\n#3 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\filters\\CFilter.php(40): CFilterChain->run()\n#4 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CController.php(1145): CFilter->filter(Object(CFilterChain))\n#5 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\filters\\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))\n#6 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\filters\\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))\n#7 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CController.php(291): CFilterChain->run()\n#8 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)\n#9 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CWebApplication.php(282): CController->run('''')\n#10 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CWebApplication.php(141): CWebApplication->runController(''custom_pages/vi...'')\n#11 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\base\\CApplication.php(180): CWebApplication->processRequest()\n#12 C:\\wamp\\www\\FollowEdu\\index.php(39): CApplication->run()\n#13 {main}\nREQUEST_URI=/FollowEdu/index.php?r=custom_pages/view&amp;id=7\nHTTP_REFERER=http://localhost/FollowEdu/index.php?r=dashboard/dashboard\n---'),
+(58, 'error', 'exception.Swift_TransportException', 1445896001, 'exception ''Swift_TransportException'' with message ''Connection could not be established with host localhost [Nenhuma conex?o p?de ser feita porque a m?quina de destino as recusou ativamente.\r\n #10061]'' in C:\\wamp\\www\\FollowEdu\\protected\\extensions\\yii-mail\\vendors\\swiftMailer\\classes\\Swift\\Transport\\StreamBuffer.php:268\nStack trace:\n#0 C:\\wamp\\www\\FollowEdu\\protected\\extensions\\yii-mail\\vendors\\swiftMailer\\classes\\Swift\\Transport\\StreamBuffer.php(62): Swift_Transport_StreamBuffer->_establishSocketConnection()\n#1 C:\\wamp\\www\\FollowEdu\\protected\\extensions\\yii-mail\\vendors\\swiftMailer\\classes\\Swift\\Transport\\AbstractSmtpTransport.php(113): Swift_Transport_StreamBuffer->initialize(Array)\n#2 C:\\wamp\\www\\FollowEdu\\protected\\extensions\\yii-mail\\vendors\\swiftMailer\\classes\\Swift\\Mailer.php(79): Swift_Transport_AbstractSmtpTransport->start()\n#3 C:\\wamp\\www\\FollowEdu\\protected\\extensions\\yii-mail\\YiiMail.php(133): Swift_Mailer->send(Object(Swift_Message), Array)\n#4 C:\\wamp\\www\\FollowEdu\\protected\\modules_core\\user\\models\\UserInvite.php(151): YiiMail->send(Object(HMailMessage))\n#5 C:\\wamp\\www\\FollowEdu\\protected\\modules_core\\user\\controllers\\AuthController.php(118): UserInvite->sendInviteMail()\n#6 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\actions\\CInlineAction.php(49): AuthController->actionLogin()\n#7 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CController.php(308): CInlineAction->runWithParams(Array)\n#8 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CController.php(286): CController->runAction(Object(CInlineAction))\n#9 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)\n#10 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CWebApplication.php(282): CController->run(''login'')\n#11 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CWebApplication.php(141): CWebApplication->runController(''user/auth/login'')\n#12 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\base\\CApplication.php(180): CWebApplication->processRequest()\n#13 C:\\wamp\\www\\FollowEdu\\index.php(39): CApplication->run()\n#14 {main}\nREQUEST_URI=/FollowEdu/index.php?r=user/auth/login\nHTTP_REFERER=http://localhost/FollowEdu/index.php?r=user/auth/login\n---'),
+(59, 'error', 'exception.Swift_TransportException', 1445896003, 'exception ''Swift_TransportException'' with message ''Connection could not be established with host localhost [Nenhuma conex?o p?de ser feita porque a m?quina de destino as recusou ativamente.\r\n #10061]'' in C:\\wamp\\www\\FollowEdu\\protected\\extensions\\yii-mail\\vendors\\swiftMailer\\classes\\Swift\\Transport\\StreamBuffer.php:268\nStack trace:\n#0 C:\\wamp\\www\\FollowEdu\\protected\\extensions\\yii-mail\\vendors\\swiftMailer\\classes\\Swift\\Transport\\StreamBuffer.php(62): Swift_Transport_StreamBuffer->_establishSocketConnection()\n#1 C:\\wamp\\www\\FollowEdu\\protected\\extensions\\yii-mail\\vendors\\swiftMailer\\classes\\Swift\\Transport\\AbstractSmtpTransport.php(113): Swift_Transport_StreamBuffer->initialize(Array)\n#2 C:\\wamp\\www\\FollowEdu\\protected\\extensions\\yii-mail\\vendors\\swiftMailer\\classes\\Swift\\Mailer.php(79): Swift_Transport_AbstractSmtpTransport->start()\n#3 C:\\wamp\\www\\FollowEdu\\protected\\extensions\\yii-mail\\YiiMail.php(133): Swift_Mailer->send(Object(Swift_Message), Array)\n#4 C:\\wamp\\www\\FollowEdu\\protected\\modules_core\\user\\models\\UserInvite.php(151): YiiMail->send(Object(HMailMessage))\n#5 C:\\wamp\\www\\FollowEdu\\protected\\modules_core\\user\\controllers\\AuthController.php(118): UserInvite->sendInviteMail()\n#6 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\actions\\CInlineAction.php(49): AuthController->actionLogin()\n#7 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CController.php(308): CInlineAction->runWithParams(Array)\n#8 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CController.php(286): CController->runAction(Object(CInlineAction))\n#9 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)\n#10 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CWebApplication.php(282): CController->run(''login'')\n#11 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CWebApplication.php(141): CWebApplication->runController(''user/auth/login'')\n#12 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\base\\CApplication.php(180): CWebApplication->processRequest()\n#13 C:\\wamp\\www\\FollowEdu\\index.php(39): CApplication->run()\n#14 {main}\nREQUEST_URI=/FollowEdu/index.php?r=user/auth/login\nHTTP_REFERER=http://localhost/FollowEdu/index.php?r=user/auth/login\n---'),
+(60, 'error', 'exception.Swift_TransportException', 1445896124, 'exception ''Swift_TransportException'' with message ''Connection could not be established with host localhost [Nenhuma conex?o p?de ser feita porque a m?quina de destino as recusou ativamente.\r\n #10061]'' in C:\\wamp\\www\\FollowEdu\\protected\\extensions\\yii-mail\\vendors\\swiftMailer\\classes\\Swift\\Transport\\StreamBuffer.php:268\nStack trace:\n#0 C:\\wamp\\www\\FollowEdu\\protected\\extensions\\yii-mail\\vendors\\swiftMailer\\classes\\Swift\\Transport\\StreamBuffer.php(62): Swift_Transport_StreamBuffer->_establishSocketConnection()\n#1 C:\\wamp\\www\\FollowEdu\\protected\\extensions\\yii-mail\\vendors\\swiftMailer\\classes\\Swift\\Transport\\AbstractSmtpTransport.php(113): Swift_Transport_StreamBuffer->initialize(Array)\n#2 C:\\wamp\\www\\FollowEdu\\protected\\extensions\\yii-mail\\vendors\\swiftMailer\\classes\\Swift\\Mailer.php(79): Swift_Transport_AbstractSmtpTransport->start()\n#3 C:\\wamp\\www\\FollowEdu\\protected\\extensions\\yii-mail\\YiiMail.php(133): Swift_Mailer->send(Object(Swift_Message), Array)\n#4 C:\\wamp\\www\\FollowEdu\\protected\\modules_core\\user\\models\\UserInvite.php(151): YiiMail->send(Object(HMailMessage))\n#5 C:\\wamp\\www\\FollowEdu\\protected\\modules_core\\user\\controllers\\AuthController.php(118): UserInvite->sendInviteMail()\n#6 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\actions\\CInlineAction.php(49): AuthController->actionLogin()\n#7 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CController.php(308): CInlineAction->runWithParams(Array)\n#8 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CController.php(286): CController->runAction(Object(CInlineAction))\n#9 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)\n#10 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CWebApplication.php(282): CController->run(''login'')\n#11 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CWebApplication.php(141): CWebApplication->runController(''user/auth/login'')\n#12 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\base\\CApplication.php(180): CWebApplication->processRequest()\n#13 C:\\wamp\\www\\FollowEdu\\index.php(39): CApplication->run()\n#14 {main}\nREQUEST_URI=/FollowEdu/index.php?r=user/auth/login\nHTTP_REFERER=http://localhost/FollowEdu/index.php?r=user/auth/login\n---'),
+(61, 'error', 'exception.Swift_TransportException', 1445896538, 'exception ''Swift_TransportException'' with message ''Connection could not be established with host localhost [Nenhuma conex?o p?de ser feita porque a m?quina de destino as recusou ativamente.\r\n #10061]'' in C:\\wamp\\www\\FollowEdu\\protected\\extensions\\yii-mail\\vendors\\swiftMailer\\classes\\Swift\\Transport\\StreamBuffer.php:268\nStack trace:\n#0 C:\\wamp\\www\\FollowEdu\\protected\\extensions\\yii-mail\\vendors\\swiftMailer\\classes\\Swift\\Transport\\StreamBuffer.php(62): Swift_Transport_StreamBuffer->_establishSocketConnection()\n#1 C:\\wamp\\www\\FollowEdu\\protected\\extensions\\yii-mail\\vendors\\swiftMailer\\classes\\Swift\\Transport\\AbstractSmtpTransport.php(113): Swift_Transport_StreamBuffer->initialize(Array)\n#2 C:\\wamp\\www\\FollowEdu\\protected\\extensions\\yii-mail\\vendors\\swiftMailer\\classes\\Swift\\Mailer.php(79): Swift_Transport_AbstractSmtpTransport->start()\n#3 C:\\wamp\\www\\FollowEdu\\protected\\extensions\\yii-mail\\YiiMail.php(133): Swift_Mailer->send(Object(Swift_Message), Array)\n#4 C:\\wamp\\www\\FollowEdu\\protected\\modules_core\\user\\models\\UserInvite.php(151): YiiMail->send(Object(HMailMessage))\n#5 C:\\wamp\\www\\FollowEdu\\protected\\modules_core\\user\\controllers\\AuthController.php(118): UserInvite->sendInviteMail()\n#6 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\actions\\CInlineAction.php(49): AuthController->actionLogin()\n#7 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CController.php(308): CInlineAction->runWithParams(Array)\n#8 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CController.php(286): CController->runAction(Object(CInlineAction))\n#9 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)\n#10 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CWebApplication.php(282): CController->run(''login'')\n#11 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CWebApplication.php(141): CWebApplication->runController(''user/auth/login'')\n#12 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\base\\CApplication.php(180): CWebApplication->processRequest()\n#13 C:\\wamp\\www\\FollowEdu\\index.php(39): CApplication->run()\n#14 {main}\nREQUEST_URI=/FollowEdu/index.php?r=user/auth/login\nHTTP_REFERER=http://localhost/FollowEdu/index.php?r=user/auth/login\n---'),
+(62, 'error', 'exception.Swift_TransportException', 1445896688, 'exception ''Swift_TransportException'' with message ''Expected response code 250 but got code "535", with message "535-5.7.8 Username and Password not accepted. Learn more at\r\n535 5.7.8  https://support.google.com/mail/answer/14257 t64sm13921008qkt.11 - gsmtp\r\n"'' in C:\\wamp\\www\\FollowEdu\\protected\\extensions\\yii-mail\\vendors\\swiftMailer\\classes\\Swift\\Transport\\AbstractSmtpTransport.php:383\nStack trace:\n#0 C:\\wamp\\www\\FollowEdu\\protected\\extensions\\yii-mail\\vendors\\swiftMailer\\classes\\Swift\\Transport\\AbstractSmtpTransport.php(281): Swift_Transport_AbstractSmtpTransport->_assertResponseCode(''535-5.7.8 Usern...'', Array)\n#1 C:\\wamp\\www\\FollowEdu\\protected\\extensions\\yii-mail\\vendors\\swiftMailer\\classes\\Swift\\Transport\\EsmtpTransport.php(266): Swift_Transport_AbstractSmtpTransport->executeCommand(''RSET\\r\\n'', Array, Array)\n#2 C:\\wamp\\www\\FollowEdu\\protected\\extensions\\yii-mail\\vendors\\swiftMailer\\classes\\Swift\\Transport\\Esmtp\\Auth\\XOAuth2Authenticator.php(54): Swift_Transport_EsmtpTransport->executeCommand(''RSET\\r\\n'', Array)\n#3 C:\\wamp\\www\\FollowEdu\\protected\\extensions\\yii-mail\\vendors\\swiftMailer\\classes\\Swift\\Transport\\Esmtp\\AuthHandler.php(176): Swift_Transport_Esmtp_Auth_XOAuth2Authenticator->authenticate(Object(Swift_SmtpTransport), ''renanfelixrodri...'', ''cb130felix!'')\n#4 C:\\wamp\\www\\FollowEdu\\protected\\extensions\\yii-mail\\vendors\\swiftMailer\\classes\\Swift\\Transport\\EsmtpTransport.php(330): Swift_Transport_Esmtp_AuthHandler->afterEhlo(Object(Swift_SmtpTransport))\n#5 C:\\wamp\\www\\FollowEdu\\protected\\extensions\\yii-mail\\vendors\\swiftMailer\\classes\\Swift\\Transport\\AbstractSmtpTransport.php(118): Swift_Transport_EsmtpTransport->_doHeloCommand()\n#6 C:\\wamp\\www\\FollowEdu\\protected\\extensions\\yii-mail\\vendors\\swiftMailer\\classes\\Swift\\Mailer.php(79): Swift_Transport_AbstractSmtpTransport->start()\n#7 C:\\wamp\\www\\FollowEdu\\protected\\extensions\\yii-mail\\YiiMail.php(133): Swift_Mailer->send(Object(Swift_Message), Array)\n#8 C:\\wamp\\www\\FollowEdu\\protected\\modules_core\\user\\models\\UserInvite.php(151): YiiMail->send(Object(HMailMessage))\n#9 C:\\wamp\\www\\FollowEdu\\protected\\modules_core\\user\\controllers\\AuthController.php(118): UserInvite->sendInviteMail()\n#10 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\actions\\CInlineAction.php(49): AuthController->actionLogin()\n#11 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CController.php(308): CInlineAction->runWithParams(Array)\n#12 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CController.php(286): CController->runAction(Object(CInlineAction))\n#13 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)\n#14 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CWebApplication.php(282): CController->run(''login'')\n#15 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CWebApplication.php(141): CWebApplication->runController(''user/auth/login'')\n#16 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\base\\CApplication.php(180): CWebApplication->processRequest()\n#17 C:\\wamp\\www\\FollowEdu\\index.php(39): CApplication->run()\n#18 {main}\nREQUEST_URI=/FollowEdu/index.php?r=user/auth/login\nHTTP_REFERER=http://localhost/FollowEdu/index.php?r=user/auth/login\n---');
+INSERT INTO `logging` (`id`, `level`, `category`, `logtime`, `message`) VALUES
+(63, 'error', 'exception.Swift_TransportException', 1445896811, 'exception ''Swift_TransportException'' with message ''Expected response code 250 but got code "535", with message "535-5.7.8 Username and Password not accepted. Learn more at\r\n535 5.7.8  https://support.google.com/mail/answer/14257 22sm1571118qhq.39 - gsmtp\r\n"'' in C:\\wamp\\www\\FollowEdu\\protected\\extensions\\yii-mail\\vendors\\swiftMailer\\classes\\Swift\\Transport\\AbstractSmtpTransport.php:383\nStack trace:\n#0 C:\\wamp\\www\\FollowEdu\\protected\\extensions\\yii-mail\\vendors\\swiftMailer\\classes\\Swift\\Transport\\AbstractSmtpTransport.php(281): Swift_Transport_AbstractSmtpTransport->_assertResponseCode(''535-5.7.8 Usern...'', Array)\n#1 C:\\wamp\\www\\FollowEdu\\protected\\extensions\\yii-mail\\vendors\\swiftMailer\\classes\\Swift\\Transport\\EsmtpTransport.php(266): Swift_Transport_AbstractSmtpTransport->executeCommand(''RSET\\r\\n'', Array, Array)\n#2 C:\\wamp\\www\\FollowEdu\\protected\\extensions\\yii-mail\\vendors\\swiftMailer\\classes\\Swift\\Transport\\Esmtp\\Auth\\XOAuth2Authenticator.php(54): Swift_Transport_EsmtpTransport->executeCommand(''RSET\\r\\n'', Array)\n#3 C:\\wamp\\www\\FollowEdu\\protected\\extensions\\yii-mail\\vendors\\swiftMailer\\classes\\Swift\\Transport\\Esmtp\\AuthHandler.php(176): Swift_Transport_Esmtp_Auth_XOAuth2Authenticator->authenticate(Object(Swift_SmtpTransport), ''renanfelixrodri...'', ''cb130felix!'')\n#4 C:\\wamp\\www\\FollowEdu\\protected\\extensions\\yii-mail\\vendors\\swiftMailer\\classes\\Swift\\Transport\\EsmtpTransport.php(330): Swift_Transport_Esmtp_AuthHandler->afterEhlo(Object(Swift_SmtpTransport))\n#5 C:\\wamp\\www\\FollowEdu\\protected\\extensions\\yii-mail\\vendors\\swiftMailer\\classes\\Swift\\Transport\\AbstractSmtpTransport.php(118): Swift_Transport_EsmtpTransport->_doHeloCommand()\n#6 C:\\wamp\\www\\FollowEdu\\protected\\extensions\\yii-mail\\vendors\\swiftMailer\\classes\\Swift\\Mailer.php(79): Swift_Transport_AbstractSmtpTransport->start()\n#7 C:\\wamp\\www\\FollowEdu\\protected\\extensions\\yii-mail\\YiiMail.php(133): Swift_Mailer->send(Object(Swift_Message), Array)\n#8 C:\\wamp\\www\\FollowEdu\\protected\\modules_core\\user\\models\\UserInvite.php(151): YiiMail->send(Object(HMailMessage))\n#9 C:\\wamp\\www\\FollowEdu\\protected\\modules_core\\user\\controllers\\AuthController.php(118): UserInvite->sendInviteMail()\n#10 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\actions\\CInlineAction.php(49): AuthController->actionLogin()\n#11 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CController.php(308): CInlineAction->runWithParams(Array)\n#12 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CController.php(286): CController->runAction(Object(CInlineAction))\n#13 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)\n#14 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CWebApplication.php(282): CController->run(''login'')\n#15 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CWebApplication.php(141): CWebApplication->runController(''user/auth/login'')\n#16 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\base\\CApplication.php(180): CWebApplication->processRequest()\n#17 C:\\wamp\\www\\FollowEdu\\index.php(39): CApplication->run()\n#18 {main}\nREQUEST_URI=/FollowEdu/index.php?r=user/auth/login\nHTTP_REFERER=http://localhost/FollowEdu/index.php?r=user/auth/login\n---'),
+(64, 'error', 'exception.CHttpException.404', 1445898214, 'exception ''CHttpException'' with message ''Usuário não encontrado!'' in C:\\wamp\\www\\FollowEdu\\protected\\modules_core\\admin\\controllers\\UserController.php:300\nStack trace:\n#0 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\actions\\CInlineAction.php(49): UserController->actionDelete()\n#1 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CController.php(308): CInlineAction->runWithParams(Array)\n#2 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\filters\\CFilterChain.php(133): CController->runAction(Object(CInlineAction))\n#3 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\filters\\CFilter.php(40): CFilterChain->run()\n#4 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CController.php(1145): CFilter->filter(Object(CFilterChain))\n#5 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\filters\\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))\n#6 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\filters\\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))\n#7 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CController.php(291): CFilterChain->run()\n#8 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)\n#9 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CWebApplication.php(282): CController->run(''delete'')\n#10 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\web\\CWebApplication.php(141): CWebApplication->runController(''admin/user/dele...'')\n#11 C:\\wamp\\www\\FollowEdu\\protected\\vendors\\yii\\base\\CApplication.php(180): CWebApplication->processRequest()\n#12 C:\\wamp\\www\\FollowEdu\\index.php(39): CApplication->run()\n#13 {main}\nREQUEST_URI=/FollowEdu/index.php?r=admin/user/delete&id=11&doit=2\nHTTP_REFERER=http://localhost/FollowEdu/index.php?r=admin/user/delete&id=11\n---');
 
 -- --------------------------------------------------------
 
@@ -688,7 +702,7 @@ CREATE TABLE IF NOT EXISTS `notification` (
   KEY `index_seen` (`seen`),
   KEY `index_desktop_notified` (`desktop_notified`),
   KEY `index_desktop_emailed` (`emailed`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=67 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=71 ;
 
 --
 -- Extraindo dados da tabela `notification`
@@ -711,8 +725,6 @@ INSERT INTO `notification` (`id`, `class`, `user_id`, `seen`, `source_object_mod
 (49, 'SpaceRecommend', 9, 1, 'User', 10, 'Space', 103, 103, 0, '2015-10-25 00:55:45', 9, '2015-10-25 01:08:30', 9, 1),
 (50, 'SpaceRecommend', 9, 1, 'User', 10, 'Space', 103, 103, 0, '2015-10-25 00:55:45', 9, '2015-10-25 01:08:30', 9, 1),
 (51, 'SpaceRecommend', 10, 1, 'User', 10, 'Space', 103, 103, 0, '2015-10-25 00:55:45', 10, '2015-10-25 00:55:53', 10, 1),
-(52, 'SpaceRecommend', 9, 1, 'User', 10, 'Space', 104, 104, 0, '2015-10-25 09:57:46', 9, '2015-10-25 09:58:00', 9, 1),
-(53, 'SpaceRecommend', 10, 1, 'User', 10, 'Space', 104, 104, 0, '2015-10-25 09:57:46', 10, '2015-10-25 09:58:50', 10, 1),
 (54, 'SpaceRecommend', 9, 1, 'User', 10, 'Space', 105, 105, 0, '2015-10-25 09:59:16', 9, '2015-10-25 10:00:38', 9, 1),
 (55, 'SpaceRecommend', 10, 1, 'User', 10, 'Space', 105, 105, 0, '2015-10-25 09:59:16', 10, '2015-10-25 10:00:03', 10, 1),
 (56, 'SpaceRecommend', 9, 1, 'User', 10, 'Space', 106, 106, 0, '2015-10-26 11:45:48', 9, '2015-10-26 11:49:10', 9, 1),
@@ -722,7 +734,10 @@ INSERT INTO `notification` (`id`, `class`, `user_id`, `seen`, `source_object_mod
 (60, 'SpaceRecommend', 9, 1, 'User', 10, 'Space', 110, 110, 0, '2015-10-26 11:55:36', 9, '2015-10-26 11:55:56', 9, 1),
 (62, 'SpaceApprovalRequestAcceptedNotification', 9, 1, 'User', 1, 'Space', 108, 108, 0, '2015-10-26 11:57:34', 1, '2015-10-26 11:57:53', 9, 1),
 (64, 'SpaceApprovalRequestDeclinedNotification', 1, 1, 'User', 10, 'Space', 110, 110, 0, '2015-10-26 12:24:00', 10, '2015-10-26 12:24:07', 1, 1),
-(66, 'SpaceApprovalRequestDeclinedNotification', 1, 0, 'User', 10, 'Space', 110, 110, 0, '2015-10-26 12:24:27', 10, '2015-10-26 12:24:27', 10, 1);
+(66, 'SpaceApprovalRequestDeclinedNotification', 1, 1, 'User', 10, 'Space', 110, 110, 0, '2015-10-26 12:24:27', 10, '2015-10-26 13:28:41', 1, 1),
+(68, 'SpaceRecommend', 9, 1, 'User', 10, 'Space', 111, 111, 0, '2015-10-26 13:30:30', 9, '2015-10-26 13:30:53', 9, 1),
+(69, 'SpaceRecommend', 10, 1, 'User', 10, 'Space', 111, 111, 0, '2015-10-26 13:30:30', 10, '2015-10-26 18:01:16', 10, 1),
+(70, 'SpaceInviteDeclinedNotification', 1, 1, 'User', 9, 'Space', 110, 110, 0, '2015-10-26 13:31:17', 9, '2015-10-26 13:37:45', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -937,7 +952,7 @@ CREATE TABLE IF NOT EXISTS `setting` (
   `updated_at` datetime DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=39 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=42 ;
 
 --
 -- Extraindo dados da tabela `setting`
@@ -947,19 +962,19 @@ INSERT INTO `setting` (`id`, `name`, `value`, `value_text`, `module_id`, `create
 (1, 'oembedProviders', NULL, '{"vimeo.com":"http:\\/\\/vimeo.com\\/api\\/oembed.json?scheme=https&url=%url%&format=json&maxwidth=450","youtube.com":"http:\\/\\/www.youtube.com\\/oembed?scheme=https&url=%url%&format=json&maxwidth=450","youtu.be":"http:\\/\\/www.youtube.com\\/oembed?scheme=https&url=%url%&format=json&maxwidth=450","soundcloud.com":"https:\\/\\/soundcloud.com\\/oembed?url=%url%&format=json&maxwidth=450","slideshare.net":"https:\\/\\/www.slideshare.net\\/api\\/oembed\\/2?url=%url%&format=json&maxwidth=450"}', NULL, NULL, NULL, NULL, NULL),
 (2, 'defaultVisibility', '1', NULL, 'space', NULL, NULL, NULL, NULL),
 (3, 'defaultJoinPolicy', '1', NULL, 'space', NULL, NULL, NULL, NULL),
-(4, 'name', 'FollowEdu', NULL, NULL, '2015-09-02 15:58:59', 0, '2015-10-26 11:48:27', 1),
-(5, 'baseUrl', 'http://localhost/humhub-master', NULL, NULL, '2015-09-02 15:59:00', 0, '2015-10-26 11:48:27', 1),
+(4, 'name', 'FollowEdu', NULL, NULL, '2015-09-02 15:58:59', 0, '2015-10-26 19:22:00', 1),
+(5, 'baseUrl', 'http://localhost/humhub-master', NULL, NULL, '2015-09-02 15:59:00', 0, '2015-10-26 19:22:01', 1),
 (6, 'paginationSize', '10', NULL, NULL, '2015-09-02 15:59:00', 0, '2015-10-18 15:28:34', 1),
 (7, 'displayNameFormat', '{profile.firstname} {profile.lastname}', NULL, NULL, '2015-09-02 15:59:00', 0, '2015-10-18 15:28:34', 1),
 (8, 'authInternal', '1', NULL, 'authentication', '2015-09-02 15:59:00', 0, '2015-09-02 15:59:00', 0),
 (9, 'authLdap', '0', NULL, 'authentication', '2015-09-02 15:59:00', 0, '2015-09-02 15:59:00', 0),
 (10, 'refreshUsers', '1', NULL, 'authentication_ldap', '2015-09-02 15:59:00', 0, '2015-09-02 15:59:00', 0),
-(11, 'needApproval', '0', NULL, 'authentication_internal', '2015-09-02 15:59:00', 0, '2015-09-02 15:59:00', 0),
-(12, 'anonymousRegistration', '1', NULL, 'authentication_internal', '2015-09-02 15:59:00', 0, '2015-09-02 15:59:00', 0),
-(13, 'internalUsersCanInvite', '1', NULL, 'authentication_internal', '2015-09-02 15:59:00', 0, '2015-09-02 15:59:00', 0),
-(14, 'transportType', 'php', NULL, 'mailing', '2015-09-02 15:59:00', 0, '2015-09-02 16:53:58', 1),
-(15, 'systemEmailAddress', 'renanfelixrodriges@hotmail.com', NULL, 'mailing', '2015-09-02 15:59:00', 0, '2015-09-02 16:53:58', 1),
-(16, 'systemEmailName', 'cb130felix', NULL, 'mailing', '2015-09-02 15:59:00', 0, '2015-09-02 16:53:58', 1),
+(11, 'needApproval', '1', NULL, 'authentication_internal', '2015-09-02 15:59:00', 0, '2015-10-26 19:23:13', 1),
+(12, 'anonymousRegistration', '1', NULL, 'authentication_internal', '2015-09-02 15:59:00', 0, '2015-10-26 19:23:13', 1),
+(13, 'internalUsersCanInvite', '1', NULL, 'authentication_internal', '2015-09-02 15:59:00', 0, '2015-10-26 19:23:13', 1),
+(14, 'transportType', 'smtp', NULL, 'mailing', '2015-09-02 15:59:00', 0, '2015-10-26 19:15:56', 1),
+(15, 'systemEmailAddress', 'followedupe@gmail.com', NULL, 'mailing', '2015-09-02 15:59:00', 0, '2015-10-26 19:15:56', 1),
+(16, 'systemEmailName', 'Equipe FollowEdu', NULL, 'mailing', '2015-09-02 15:59:00', 0, '2015-10-26 19:15:56', 1),
 (17, 'receive_email_activities', '1', NULL, 'mailing', '2015-09-02 15:59:00', 0, '2015-09-02 15:59:00', 0),
 (18, 'receive_email_notifications', '2', NULL, 'mailing', '2015-09-02 15:59:01', 0, '2015-09-02 15:59:01', 0),
 (19, 'maxFileSize', '1048576', NULL, 'file', '2015-09-02 15:59:01', 0, '2015-09-02 15:59:01', 0),
@@ -971,17 +986,20 @@ INSERT INTO `setting` (`id`, `name`, `value`, `value_text`, `module_id`, `create
 (25, 'installationId', 'f73e761e751e47187f66b0393e899544', NULL, 'admin', '2015-09-02 15:59:01', 0, '2015-09-02 15:59:01', 0),
 (26, 'theme', 'HumHub', NULL, NULL, '2015-09-02 15:59:01', 0, '2015-10-18 15:28:34', 1),
 (27, 'spaceOrder', '0', NULL, 'space', '2015-09-02 15:59:01', 0, '2015-10-18 15:28:34', 1),
-(28, 'enable', '1', NULL, 'tour', '2015-09-02 15:59:01', 0, '2015-10-26 11:48:27', 1),
-(29, 'defaultLanguage', 'pt_br', NULL, NULL, '2015-09-02 15:59:01', 0, '2015-10-26 11:48:27', 1),
+(28, 'enable', '1', NULL, 'tour', '2015-09-02 15:59:01', 0, '2015-10-26 19:22:01', 1),
+(29, 'defaultLanguage', 'pt_br', NULL, NULL, '2015-09-02 15:59:01', 0, '2015-10-26 19:22:01', 1),
 (30, 'enable_html5_desktop_notifications', '0', NULL, 'notification', '2015-09-02 15:59:01', 0, '2015-09-02 15:59:01', 0),
 (31, 'secret', 'dbaf2386-e51c-41e2-a162-dac88ee92b50', NULL, NULL, '2015-09-02 16:00:41', 0, '2015-09-02 16:00:41', 0),
-(32, 'hostname', '', NULL, 'mailing', '2015-09-02 16:53:58', 1, '2015-09-02 16:53:58', 1),
-(33, 'username', 'renanfelixrodrigues@hotmail.com', NULL, 'mailing', '2015-09-02 16:53:58', 1, '2015-09-02 16:53:58', 1),
-(34, 'password', '12345', NULL, 'mailing', '2015-09-02 16:53:58', 1, '2015-09-02 16:53:58', 1),
-(35, 'port', '', NULL, 'mailing', '2015-09-02 16:53:58', 1, '2015-09-02 16:53:58', 1),
-(36, 'encryption', '', NULL, 'mailing', '2015-09-02 16:53:58', 1, '2015-09-02 16:53:58', 1),
-(37, 'allowSelfSignedCerts', '0', NULL, 'mailing', '2015-09-02 16:53:58', 1, '2015-09-02 16:53:58', 1),
-(38, 'showProfilePostForm', '0', NULL, 'dashboard', '2015-09-10 18:34:05', 1, '2015-10-26 11:48:27', 1);
+(32, 'hostname', 'smtp.gmail.com', NULL, 'mailing', '2015-09-02 16:53:58', 1, '2015-10-26 19:15:56', 1),
+(33, 'username', 'followedupe@gmail.com', NULL, 'mailing', '2015-09-02 16:53:58', 1, '2015-10-26 19:15:56', 1),
+(34, 'password', 'javac123', NULL, 'mailing', '2015-09-02 16:53:58', 1, '2015-10-26 19:15:56', 1),
+(35, 'port', '465', NULL, 'mailing', '2015-09-02 16:53:58', 1, '2015-10-26 19:15:56', 1),
+(36, 'encryption', 'ssl', NULL, 'mailing', '2015-09-02 16:53:58', 1, '2015-10-26 19:15:56', 1),
+(37, 'allowSelfSignedCerts', '1', NULL, 'mailing', '2015-09-02 16:53:58', 1, '2015-10-26 19:15:56', 1),
+(38, 'showProfilePostForm', '0', NULL, 'dashboard', '2015-09-10 18:34:05', 1, '2015-10-26 19:22:01', 1),
+(39, 'defaultUserGroup', '', NULL, 'authentication_internal', '2015-10-26 19:23:13', 1, '2015-10-26 19:23:13', 1),
+(40, 'defaultUserIdleTimeoutSec', '', NULL, 'authentication_internal', '2015-10-26 19:23:13', 1, '2015-10-26 19:23:13', 1),
+(41, 'allowGuestAccess', '0', NULL, 'authentication_internal', '2015-10-26 19:23:13', 1, '2015-10-26 19:23:13', 1);
 
 -- --------------------------------------------------------
 
@@ -1008,14 +1026,14 @@ CREATE TABLE IF NOT EXISTS `space` (
   `auto_add_new_members` int(4) DEFAULT NULL,
   `finish_at` date NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=111 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=112 ;
 
 --
 -- Extraindo dados da tabela `space`
 --
 
 INSERT INTO `space` (`id`, `guid`, `wall_id`, `name`, `description`, `website`, `join_policy`, `visibility`, `status`, `tags`, `created_at`, `created_by`, `updated_at`, `updated_by`, `ldap_dn`, `auto_add_new_members`, `finish_at`) VALUES
-(1, 'b46b908b-c76e-4a81-9107-79432964d459', 2, 'Welcome Space', 'Your first sample space to discover the platform.', NULL, 2, 2, 1, NULL, '2015-09-02 16:00:42', 1, '2015-09-02 16:00:42', 1, NULL, 1, '0000-00-00'),
+(1, 'b46b908b-c76e-4a81-9107-79432964d459', 2, 'Espaço de boas vindas!', 'Olá! Seja vem vindo ao FollowEdu!', NULL, 2, 2, 1, NULL, '2015-09-02 16:00:42', 1, '2015-09-02 16:00:42', 1, NULL, 1, '0000-00-00'),
 (2, '125fffda-62dc-4789-bb66-29e16844214f', 3, 'Espacinho do Renan', 'É um espaço que só o Renan pode entrar blz', NULL, 1, 1, 1, NULL, '2015-09-02 16:07:24', 1, '2015-09-02 16:07:24', 1, NULL, NULL, '0000-00-00'),
 (3, 'be126049-f1cf-480f-aabd-e5251015153f', 4, 'Espacinho do Guto', ':Dasdasdasdasdasd GUTOOOO', NULL, 1, 1, 1, NULL, '2015-09-02 16:16:29', 1, '2015-09-02 16:16:29', 1, NULL, NULL, '0000-00-00'),
 (4, '2a7c5bd0-a7be-4e36-80d0-d2b29b62a2e0', 6, 'Espaço do Renandro', 'asdasdaasasdasd', NULL, 1, 1, 1, NULL, '2015-09-02 17:14:14', 2, '2015-09-02 17:14:14', 2, NULL, NULL, '0000-00-00'),
@@ -1029,19 +1047,18 @@ INSERT INTO `space` (`id`, `guid`, `wall_id`, `name`, `description`, `website`, 
 (95, '9174d2a2-3588-4a08-b195-0c52a86a9690', 81, 'testettttt', 'asdasd', NULL, 1, 1, 1, NULL, '2015-10-18 23:40:04', 1, '2015-10-18 23:40:04', 1, NULL, NULL, '0000-00-00'),
 (96, '83', 83, 'TesteInvite', 'asdasd', NULL, 0, 1, 1, NULL, '2015-10-20 00:00:00', 10, '2015-10-26 11:48:17', 1, NULL, 0, '0000-00-00'),
 (97, '84', 84, 'Teste de rotina', 'asdasdasd', NULL, 0, 1, 1, NULL, '2015-10-24 00:00:00', 1, '2015-10-26 11:48:17', 1, NULL, 0, '2015-10-23'),
-(98, '85', 85, 'Teste', 'asdasdasd', NULL, 0, 1, 1, NULL, '2015-10-24 00:00:00', 1, '2015-10-24 00:00:00', 1, NULL, 1, '2015-10-24'),
 (99, '86', 86, 'PRECISO DE DESIGN', 'asdasd', NULL, 0, 1, 1, NULL, '2015-10-24 00:00:00', 1, '2015-10-26 11:48:18', 1, NULL, 0, '0000-00-00'),
 (100, '87', 87, 'MAIS DESIGN', '', NULL, 0, 1, 1, NULL, '2015-10-24 00:00:00', 1, '2015-10-26 11:48:18', 1, NULL, 0, '0000-00-00'),
 (101, '88', 88, 'Teste de notificaÃ§Ã£o', 'asdasd', NULL, 0, 1, 1, NULL, '2015-10-25 00:00:00', 1, '2015-10-26 11:48:18', 1, NULL, 0, '0000-00-00'),
 (102, '89', 89, 'BD', 'asdasd', NULL, 0, 1, 1, NULL, '2015-10-25 00:00:00', 1, '2015-10-26 11:48:19', 1, NULL, 0, '0000-00-00'),
 (103, '90', 90, 'hummm', '', NULL, 0, 1, 1, NULL, '2015-10-25 00:00:00', 1, '2015-10-26 11:48:19', 1, NULL, 0, '0000-00-00'),
-(104, '91', 91, 'teste', '', NULL, 0, 1, 1, NULL, '2015-10-25 00:00:00', 1, '2015-10-25 00:00:00', 1, NULL, 1, '0000-00-00'),
 (105, '92', 92, 'teste2', '', NULL, 0, 1, 1, NULL, '2015-10-25 00:00:00', 1, '2015-10-26 11:48:19', 1, NULL, 0, '0000-00-00'),
 (106, '93', 93, 't1', '', NULL, 1, 1, 1, NULL, '2015-10-26 00:00:00', 1, '2015-10-26 11:48:19', 1, NULL, 0, '0000-00-00'),
 (107, '94', 94, 't2', '', NULL, 0, 1, 1, NULL, '2015-10-26 00:00:00', 1, '2015-10-26 00:00:00', 1, NULL, 0, '0000-00-00'),
 (108, '95', 95, 'asdasdasd', '', NULL, 1, 1, 1, NULL, '2015-10-26 00:00:00', 1, '2015-10-26 00:00:00', 1, NULL, 0, '0000-00-00'),
 (109, '96', 96, 'testeb', '', NULL, 0, 1, 1, NULL, '2015-10-26 00:00:00', 10, '2015-10-26 00:00:00', 1, NULL, 0, '0000-00-00'),
-(110, '97', 97, 'bebels project', '', NULL, 0, 1, 1, NULL, '2015-10-26 00:00:00', 10, '2015-10-26 00:00:00', 1, NULL, 0, '0000-00-00');
+(110, '97', 97, 'bebels project', '', NULL, 0, 1, 1, NULL, '2015-10-26 00:00:00', 10, '2015-10-26 00:00:00', 1, NULL, 0, '0000-00-00'),
+(111, '98', 98, ':D', '', NULL, 0, 1, 1, NULL, '2015-10-26 00:00:00', 1, '2015-10-26 00:00:00', 1, NULL, 0, '0000-00-00');
 
 --
 -- Acionadores `space`
@@ -1082,13 +1099,13 @@ CREATE TABLE IF NOT EXISTS `space_membership` (
 --
 
 INSERT INTO `space_membership` (`space_id`, `user_id`, `originator_user_id`, `status`, `request_message`, `last_visit`, `invite_role`, `admin_role`, `share_role`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES
-(1, 1, NULL, 3, NULL, '2015-10-18 18:53:57', 1, 1, 1, '2015-09-02 16:00:43', 1, '2015-09-02 16:00:43', 1),
+(1, 1, NULL, 3, NULL, '2015-10-26 20:05:25', 1, 1, 1, '2015-09-02 16:00:43', 1, '2015-09-02 16:00:43', 1),
 (1, 2, NULL, 3, NULL, '2015-09-02 17:23:09', 0, 0, 0, '2015-09-02 17:10:09', 1, '2015-09-02 17:10:09', 1),
 (1, 6, NULL, 3, NULL, NULL, 0, 0, 0, '2015-09-11 18:43:16', 1, '2015-09-11 18:43:16', 1),
 (1, 7, NULL, 3, NULL, NULL, 0, 0, 0, '2015-10-14 12:45:01', 1, '2015-10-14 12:45:01', 1),
 (1, 8, NULL, 3, NULL, NULL, 0, 0, 0, '2015-10-14 12:49:06', 1, '2015-10-14 12:49:06', 1),
 (1, 9, NULL, 3, NULL, '2015-10-18 18:25:06', 0, 0, 0, '2015-10-16 15:39:20', 1, '2015-10-16 15:39:20', 1),
-(1, 10, NULL, 3, NULL, NULL, 0, 0, 0, '2015-10-18 18:53:57', 1, '2015-10-18 18:53:57', 1),
+(1, 10, NULL, 3, NULL, '2015-10-26 20:08:55', 0, 0, 0, '2015-10-18 18:53:57', 1, '2015-10-18 18:53:57', 1),
 (2, 1, NULL, 3, NULL, '2015-10-18 18:21:32', 1, 1, 1, '2015-09-02 16:07:24', 1, '2015-09-02 16:07:24', 1),
 (2, 9, 'NULL', 3, 'Acita ae pfv', '2015-10-18 18:24:57', 0, 0, 0, '2015-09-12 00:00:00', 9, '2015-10-16 20:55:27', 1),
 (3, 1, NULL, 3, NULL, '2015-10-16 15:41:05', 1, 1, 1, '2015-09-02 16:16:30', 1, '2015-09-02 16:16:30', 1),
@@ -1113,20 +1130,19 @@ INSERT INTO `space_membership` (`space_id`, `user_id`, `originator_user_id`, `st
 (96, 1, NULL, 3, NULL, '2015-10-23 23:10:32', 1, 1, 1, '2015-10-18 23:40:27', 1, '2015-10-18 23:40:27', 1),
 (96, 10, NULL, 3, NULL, '2015-10-20 15:46:39', 1, 1, 1, '2015-10-20 00:00:00', 10, '2015-10-20 00:00:00', 10),
 (97, 1, NULL, 3, NULL, '2015-10-23 23:10:36', 1, 1, 1, '2015-10-24 00:00:00', 1, '2015-10-24 00:00:00', 1),
-(98, 1, NULL, 3, NULL, '2015-10-24 00:00:00', 1, 1, 1, '2015-10-24 00:00:00', 1, '2015-10-24 00:00:00', 1),
 (99, 1, NULL, 3, NULL, '2015-10-24 00:00:00', 1, 1, 1, '2015-10-24 00:00:00', 1, '2015-10-24 00:00:00', 1),
 (100, 1, NULL, 3, NULL, '2015-10-24 00:00:00', 1, 1, 1, '2015-10-24 00:00:00', 1, '2015-10-24 00:00:00', 1),
 (101, 1, NULL, 3, NULL, '2015-10-25 00:00:00', 1, 1, 1, '2015-10-25 00:00:00', 1, '2015-10-25 00:00:00', 1),
 (102, 1, NULL, 3, NULL, '2015-10-25 00:00:00', 1, 1, 1, '2015-10-25 00:00:00', 1, '2015-10-25 00:00:00', 1),
 (103, 1, NULL, 3, NULL, '2015-10-25 00:00:00', 1, 1, 1, '2015-10-25 00:00:00', 1, '2015-10-25 00:00:00', 1),
-(104, 1, NULL, 3, NULL, '2015-10-25 00:00:00', 1, 1, 1, '2015-10-25 00:00:00', 1, '2015-10-25 00:00:00', 1),
 (105, 1, NULL, 3, NULL, '2015-10-25 00:00:00', 1, 1, 1, '2015-10-25 00:00:00', 1, '2015-10-25 00:00:00', 1),
 (106, 1, NULL, 3, NULL, '2015-10-26 00:00:00', 1, 1, 1, '2015-10-26 00:00:00', 1, '2015-10-26 00:00:00', 1),
 (107, 1, NULL, 3, NULL, '2015-10-26 00:00:00', 1, 1, 1, '2015-10-26 00:00:00', 1, '2015-10-26 00:00:00', 1),
 (108, 1, NULL, 3, NULL, '2015-10-26 11:57:35', 1, 1, 1, '2015-10-26 00:00:00', 1, '2015-10-26 00:00:00', 1),
 (108, 9, NULL, 3, 'Aceita ae pfv', '2015-10-26 11:57:54', 0, 0, 0, '2015-10-26 11:56:51', 9, '2015-10-26 11:57:34', 1),
 (109, 10, NULL, 3, NULL, '2015-10-26 00:00:00', 1, 1, 1, '2015-10-26 00:00:00', 10, '2015-10-26 00:00:00', 10),
-(110, 10, NULL, 3, NULL, '2015-10-26 12:24:28', 1, 1, 1, '2015-10-26 00:00:00', 10, '2015-10-26 00:00:00', 10);
+(110, 10, NULL, 3, NULL, '2015-10-26 12:24:28', 1, 1, 1, '2015-10-26 00:00:00', 10, '2015-10-26 00:00:00', 10),
+(111, 1, NULL, 3, NULL, '2015-10-26 00:00:00', 1, 1, 1, '2015-10-26 00:00:00', 1, '2015-10-26 00:00:00', 1);
 
 -- --------------------------------------------------------
 
@@ -1191,24 +1207,14 @@ INSERT INTO `space_tag` (`space_id`, `tag_id`) VALUES
 (107, 1),
 (108, 1),
 (110, 1),
-(96, 2),
-(98, 2),
-(99, 2),
-(100, 2),
-(101, 2),
-(103, 2),
-(104, 2),
-(105, 2),
-(98, 3),
-(101, 3),
-(108, 3),
+(111, 1),
 (90, 4),
 (97, 4),
 (101, 4),
 (102, 4),
-(104, 4),
 (107, 4),
-(110, 4);
+(110, 4),
+(111, 4);
 
 --
 -- Acionadores `space_tag`
@@ -1235,17 +1241,16 @@ CREATE TABLE IF NOT EXISTS `tag` (
   `nome` varchar(20) NOT NULL,
   `descricao` varchar(200) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Extraindo dados da tabela `tag`
 --
 
 INSERT INTO `tag` (`id`, `nome`, `descricao`) VALUES
-(1, 'Informatica', 'Mexe com pc, programinhas e tal'),
-(2, 'design', 'faz as viadagens bonitinhas'),
-(3, 'Analista', 'Pensa em como fazer os programinhas'),
-(4, 'Banco de dados', 'pessoal que mexe com bancos');
+(1, 'Informatica', 'Trabalha com manutenção de máquinas'),
+(4, 'Banco de dados', 'Administra banco de dados'),
+(6, 'WebDesign', 'Modela sites.');
 
 -- --------------------------------------------------------
 
@@ -1907,20 +1912,20 @@ CREATE TABLE IF NOT EXISTS `user` (
   UNIQUE KEY `unique_username` (`username`),
   UNIQUE KEY `unique_guid` (`guid`),
   UNIQUE KEY `unique_wall_id` (`wall_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
 
 --
 -- Extraindo dados da tabela `user`
 --
 
 INSERT INTO `user` (`id`, `guid`, `wall_id`, `group_id`, `status`, `super_admin`, `username`, `email`, `auth_mode`, `tags`, `language`, `last_activity_email`, `created_at`, `created_by`, `updated_at`, `updated_by`, `last_login`, `visibility`) VALUES
-(1, '9e173f30-2710-4c11-8502-1eeed5bca5ec', 1, 1, 1, 1, 'cb130felix', 'renanfelixrodrigues@hotmail.com', 'local', NULL, '', '2015-09-02 16:00:41', '2015-09-02 16:00:41', NULL, '2015-10-18 18:23:05', 1, '2015-10-26 12:24:04', 1),
+(1, '9e173f30-2710-4c11-8502-1eeed5bca5ec', 1, 1, 1, 1, 'cb130felix', 'renanfelirodrigues@hotmail.com', 'local', NULL, '', '2015-09-02 16:00:41', '2015-09-02 16:00:41', NULL, '2015-10-26 20:05:58', 1, '2015-10-26 20:09:47', 1),
 (2, '5d028996-b43c-4c31-92db-2d01d8ee955a', 5, 1, 1, 0, 'Renandro', 'naotenhoemail@gmail.com', 'local', NULL, NULL, '2015-09-02 17:10:09', '2015-09-02 17:10:09', 1, '2015-09-02 17:10:54', 1, '2015-10-20 13:38:16', 1),
 (6, 'c7bc81db-5d0e-46f9-b7d2-5da1232cf609', 11, 1, 1, 0, 'teste', 'teste@gmail.com', 'local', NULL, NULL, '2015-09-11 18:43:16', '2015-09-11 18:43:16', 1, '2015-10-15 01:38:23', 1, '2015-10-15 01:38:23', 1),
 (7, '615afbde-5b31-42ec-9107-5f1290817473', 12, 1, 1, 0, 'iagorrs', 'iagorichard@hotmail.com', 'local', NULL, NULL, '2015-10-14 12:45:00', '2015-10-14 12:45:00', 1, '2015-10-14 12:45:30', 1, NULL, 1),
 (8, '9798ff4a-9cba-463a-9358-faff9f23fdfb', 13, 1, 1, 0, 'iagorichard', 'iagorichardrodrigues@gmail.com', 'local', NULL, NULL, '2015-10-14 12:49:05', '2015-10-14 12:49:05', 1, '2015-10-14 12:49:05', 1, '2015-10-14 12:49:21', 1),
-(9, '333cbd62-dd4b-4b57-af1b-6e4a1ce9a6e4', 72, 1, 1, 0, 'Jonas', 'jonas@chupao.com', 'local', NULL, NULL, '2015-10-16 15:39:19', '2015-10-16 15:39:19', 1, '2015-10-16 15:39:58', 1, '2015-10-26 11:57:40', 1),
-(10, '8289e8c5-b4f0-42e8-8de7-750cc86a78ca', 78, 1, 1, 0, 'Bebelicia', 'bebelicia@hotmail.com', 'local', NULL, NULL, '2015-10-18 18:53:56', '2015-10-18 18:53:56', 1, '2015-10-18 23:43:43', 10, '2015-10-26 12:24:17', 1);
+(9, '333cbd62-dd4b-4b57-af1b-6e4a1ce9a6e4', 72, 1, 1, 0, 'Jonas', 'jonas@chupao.com', 'local', NULL, NULL, '2015-10-16 15:39:19', '2015-10-16 15:39:19', 1, '2015-10-16 15:39:58', 1, '2015-10-26 20:06:11', 1),
+(10, '8289e8c5-b4f0-42e8-8de7-750cc86a78ca', 78, 1, 1, 0, 'Bebelicia', 'bebelicia@hotmail.com', 'local', NULL, NULL, '2015-10-18 18:53:56', '2015-10-18 18:53:56', 1, '2015-10-18 23:43:43', 10, '2015-10-26 20:08:39', 1);
 
 -- --------------------------------------------------------
 
@@ -1957,9 +1962,9 @@ INSERT INTO `user_atividadecomp` (`user_id`, `atividade`, `hora`, `id`, `status`
 (1, 0, 50, 33, 1, '', '', '0000-00-00'),
 (2, 0, 20, 34, 1, '', '', '0000-00-00'),
 (2, 0, 10, 35, 2, '', '', '0000-00-00'),
-(1, 0, 0, 36, 0, 'AT', '', '0000-00-00'),
-(1, 0, 0, 37, 0, 'AT', '', '0000-00-00'),
-(1, 0, 0, 38, 0, 'AT', '', '0000-00-00');
+(1, 0, 0, 36, 2, 'AT', '', '0000-00-00'),
+(1, 0, 0, 37, 2, 'AT', '', '0000-00-00'),
+(1, 0, 0, 38, 2, 'AT', '', '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -2015,7 +2020,7 @@ CREATE TABLE IF NOT EXISTS `user_http_session` (
 --
 
 INSERT INTO `user_http_session` (`id`, `expire`, `user_id`, `data`) VALUES
-('strk9fmeo02m37qmf5kd3rr964', 1445878321, 10, 0x33356237383866316261396165323339656331623561303065363663316464335f5f72657475726e55726c7c733a34323a222f466f6c6c6f774564752f696e6465782e7068703f723d64617368626f6172642f64617368626f617264223b33356237383866316261396165323339656331623561303065363663316464335f5f69647c733a323a223130223b33356237383866316261396165323339656331623561303065363663316464335f5f6e616d657c733a393a22626562656c69636961223b33356237383866316261396165323339656331623561303065363663316464335f5f7374617465737c613a313a7b733a353a227469746c65223b623a313b7d);
+('54009lrrtienv7uctbq1vv4l23', 1445904017, 1, 0x33356237383866316261396165323339656331623561303065363663316464335f5f72657475726e55726c7c733a34323a222f466f6c6c6f774564752f696e6465782e7068703f723d64617368626f6172642f64617368626f617264223b33356237383866316261396165323339656331623561303065363663316464335f5f69647c733a313a2231223b33356237383866316261396165323339656331623561303065363663316464335f5f6e616d657c733a31303a22636231333066656c6978223b33356237383866316261396165323339656331623561303065363663316464337469746c657c733a32313a2253797374656d2041646d696e697374726174696f6e223b33356237383866316261396165323339656331623561303065363663316464335f5f7374617465737c613a313a7b733a353a227469746c65223b623a313b7d);
 
 -- --------------------------------------------------------
 
@@ -2038,7 +2043,7 @@ CREATE TABLE IF NOT EXISTS `user_invite` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `unique_email` (`email`),
   UNIQUE KEY `unique_token` (`token`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
 -- Extraindo dados da tabela `user_invite`
@@ -2047,7 +2052,8 @@ CREATE TABLE IF NOT EXISTS `user_invite` (
 INSERT INTO `user_invite` (`id`, `user_originator_id`, `space_invite_id`, `email`, `source`, `token`, `created_at`, `created_by`, `updated_at`, `updated_by`, `language`) VALUES
 (2, NULL, NULL, 'renanfelixrodrigues92@gmail.com', 'self', '55e74e80af909421906491', '2015-09-02 16:31:12', NULL, '2015-09-02 16:31:12', NULL, 'pt_br'),
 (3, NULL, NULL, 'arthurflor23@gmail.com', 'self', '55f1ed0c32e26493743274', '2015-09-10 17:50:20', NULL, '2015-09-10 17:50:20', NULL, 'en'),
-(4, NULL, NULL, 'iago@iago.com', 'self', '561e77fd0cde91617720180', '2015-10-14 12:42:53', NULL, '2015-10-14 12:42:53', NULL, 'pt_br');
+(4, NULL, NULL, 'iago@iago.com', 'self', '561e77fd0cde91617720180', '2015-10-14 12:42:53', NULL, '2015-10-14 12:42:53', NULL, 'pt_br'),
+(5, NULL, NULL, 'renanfelixrodrigues@gmail.com', 'self', '562ea15805ad3869786493', '2015-10-26 18:55:36', NULL, '2015-10-26 18:55:36', NULL, 'pt_br');
 
 -- --------------------------------------------------------
 
@@ -2095,7 +2101,7 @@ CREATE TABLE IF NOT EXISTS `user_password` (
   `created_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `idx_user_id` (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
 
 --
 -- Extraindo dados da tabela `user_password`
@@ -2158,12 +2164,9 @@ CREATE TABLE IF NOT EXISTS `user_tag` (
 
 INSERT INTO `user_tag` (`user_id`, `tag_id`) VALUES
 (9, 1),
-(9, 2),
-(1, 1),
-(1, 2),
-(9, 3),
 (9, 4),
-(10, 2);
+(1, 4),
+(1, 1);
 
 -- --------------------------------------------------------
 
@@ -2180,7 +2183,7 @@ CREATE TABLE IF NOT EXISTS `wall` (
   `updated_at` datetime DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=98 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=101 ;
 
 --
 -- Extraindo dados da tabela `wall`
@@ -2213,19 +2216,20 @@ INSERT INTO `wall` (`id`, `object_model`, `object_id`, `created_at`, `created_by
 (82, 'Space', 96, '2015-10-18 23:40:27', 1, '2015-10-18 23:40:27', 1),
 (83, 'Space', 96, '2015-10-20 00:00:00', 10, '2015-10-20 00:00:00', 10),
 (84, 'Space', 97, '2015-10-24 00:00:00', 1, '2015-10-24 00:00:00', 1),
-(85, 'Space', 98, '2015-10-24 00:00:00', 1, '2015-10-24 00:00:00', 1),
 (86, 'Space', 99, '2015-10-24 00:00:00', 1, '2015-10-24 00:00:00', 1),
 (87, 'Space', 100, '2015-10-24 00:00:00', 1, '2015-10-24 00:00:00', 1),
 (88, 'Space', 101, '2015-10-25 00:00:00', 1, '2015-10-25 00:00:00', 1),
 (89, 'Space', 102, '2015-10-25 00:00:00', 1, '2015-10-25 00:00:00', 1),
 (90, 'Space', 103, '2015-10-25 00:00:00', 1, '2015-10-25 00:00:00', 1),
-(91, 'Space', 104, '2015-10-25 00:00:00', 1, '2015-10-25 00:00:00', 1),
 (92, 'Space', 105, '2015-10-25 00:00:00', 1, '2015-10-25 00:00:00', 1),
 (93, 'Space', 106, '2015-10-26 00:00:00', 1, '2015-10-26 00:00:00', 1),
 (94, 'Space', 107, '2015-10-26 00:00:00', 1, '2015-10-26 00:00:00', 1),
 (95, 'Space', 108, '2015-10-26 00:00:00', 1, '2015-10-26 00:00:00', 1),
 (96, 'Space', 109, '2015-10-26 00:00:00', 10, '2015-10-26 00:00:00', 10),
-(97, 'Space', 110, '2015-10-26 00:00:00', 10, '2015-10-26 00:00:00', 10);
+(97, 'Space', 110, '2015-10-26 00:00:00', 10, '2015-10-26 00:00:00', 10),
+(98, 'Space', 111, '2015-10-26 00:00:00', 1, '2015-10-26 00:00:00', 1),
+(99, 'User', 11, '2015-10-26 19:20:08', NULL, '2015-10-26 19:20:08', NULL),
+(100, 'User', 12, '2015-10-26 19:25:37', 1, '2015-10-26 19:25:37', 1);
 
 -- --------------------------------------------------------
 
@@ -2242,7 +2246,7 @@ CREATE TABLE IF NOT EXISTS `wall_entry` (
   `updated_at` datetime DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=56 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=64 ;
 
 --
 -- Extraindo dados da tabela `wall_entry`
@@ -2302,8 +2306,7 @@ INSERT INTO `wall_entry` (`id`, `wall_id`, `content_id`, `created_at`, `created_
 -- Limitadores para a tabela `space_tag`
 --
 ALTER TABLE `space_tag`
-  ADD CONSTRAINT `fk_st1` FOREIGN KEY (`space_id`) REFERENCES `space` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `fk_st2` FOREIGN KEY (`tag_id`) REFERENCES `tag` (`id`);
+  ADD CONSTRAINT `fk1_st` FOREIGN KEY (`tag_id`) REFERENCES `tag` (`id`) ON DELETE CASCADE;
 
 --
 -- Limitadores para a tabela `tb_authors`
@@ -2359,8 +2362,8 @@ ALTER TABLE `tb_roles_x_apps`
 -- Limitadores para a tabela `user_tag`
 --
 ALTER TABLE `user_tag`
-  ADD CONSTRAINT `fk0_ut` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
-  ADD CONSTRAINT `fk1_ut` FOREIGN KEY (`tag_id`) REFERENCES `tag` (`id`);
+  ADD CONSTRAINT `fk1_ut` FOREIGN KEY (`tag_id`) REFERENCES `tag` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `fk0_ut` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
