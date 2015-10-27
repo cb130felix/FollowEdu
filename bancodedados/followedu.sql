@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 27-Out-2015 às 02:51
+-- Generation Time: 27-Out-2015 às 03:48
 -- Versão do servidor: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -78,7 +78,7 @@ CREATE TABLE IF NOT EXISTS `activity` (
   `updated_at` datetime DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=46 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=48 ;
 
 --
 -- Extraindo dados da tabela `activity`
@@ -86,7 +86,8 @@ CREATE TABLE IF NOT EXISTS `activity` (
 
 INSERT INTO `activity` (`id`, `type`, `module`, `object_model`, `object_id`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES
 (32, 'ActivitySpaceCreated', '', '', '', '2015-10-15 00:51:52', 1, '2015-10-15 00:51:52', 1),
-(43, 'PostCreated', 'post', 'Post', '2', '2015-10-26 21:54:21', 1, '2015-10-26 21:54:21', 1);
+(43, 'PostCreated', 'post', 'Post', '2', '2015-10-26 21:54:21', 1, '2015-10-26 21:54:21', 1),
+(47, 'PostCreated', 'post', 'Post', '5', '2015-10-26 23:24:12', 12, '2015-10-26 23:24:12', 12);
 
 -- --------------------------------------------------------
 
@@ -219,7 +220,7 @@ CREATE TABLE IF NOT EXISTS `content` (
   UNIQUE KEY `index_guid` (`guid`),
   KEY `index_space_id` (`space_id`),
   KEY `index_user_id` (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=59 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=63 ;
 
 --
 -- Extraindo dados da tabela `content`
@@ -228,7 +229,9 @@ CREATE TABLE IF NOT EXISTS `content` (
 INSERT INTO `content` (`id`, `guid`, `object_model`, `object_id`, `visibility`, `sticked`, `archived`, `space_id`, `user_id`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES
 (40, '5f95874d-19c2-4371-91d1-39fe3209f9e1', 'Activity', 32, 1, 0, '0', 27, 1, '2015-10-15 00:51:52', 1, '2015-10-15 00:51:52', 1),
 (54, '9a1e5826-d926-4988-a23a-1fa19611aed8', 'Post', 2, 0, 1, '0', 2, 1, '2015-10-26 21:54:21', 1, '2015-10-26 21:54:21', 1),
-(55, '8f3f14d9-5183-4ec3-876e-58f1a4fb5089', 'Activity', 43, 0, 0, '0', 2, 1, '2015-10-26 21:54:21', 1, '2015-10-26 21:54:21', 1);
+(55, '8f3f14d9-5183-4ec3-876e-58f1a4fb5089', 'Activity', 43, 0, 0, '0', 2, 1, '2015-10-26 21:54:21', 1, '2015-10-26 21:54:21', 1),
+(61, '26ba92d1-2d28-43f7-8b70-2917ea2b9778', 'Post', 5, 1, 0, '0', NULL, 12, '2015-10-26 23:24:12', 12, '2015-10-26 23:24:12', 12),
+(62, '91acb839-214d-4cb7-b1a6-80d96651c384', 'Activity', 47, 1, 0, '0', NULL, 12, '2015-10-26 23:24:12', 12, '2015-10-26 23:24:12', 12);
 
 -- --------------------------------------------------------
 
@@ -635,7 +638,15 @@ CREATE TABLE IF NOT EXISTS `notification` (
   KEY `index_seen` (`seen`),
   KEY `index_desktop_notified` (`desktop_notified`),
   KEY `index_desktop_emailed` (`emailed`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+
+--
+-- Extraindo dados da tabela `notification`
+--
+
+INSERT INTO `notification` (`id`, `class`, `user_id`, `seen`, `source_object_model`, `source_object_id`, `target_object_model`, `target_object_id`, `space_id`, `emailed`, `created_at`, `created_by`, `updated_at`, `updated_by`, `desktop_notified`) VALUES
+(6, 'SpaceRecommend', 12, 1, 'User', 10, 'Space', 5, 5, 0, '2015-10-26 23:43:10', 12, '2015-10-26 23:46:23', 12, 1),
+(8, 'SpaceInviteAcceptedNotification', 13, 1, 'User', 12, 'Space', 5, 5, 0, '2015-10-26 23:46:27', 12, '2015-10-26 23:46:38', 13, 1);
 
 -- --------------------------------------------------------
 
@@ -653,14 +664,15 @@ CREATE TABLE IF NOT EXISTS `post` (
   `updated_at` datetime DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Extraindo dados da tabela `post`
 --
 
 INSERT INTO `post` (`id`, `message_2trash`, `message`, `url`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES
-(2, NULL, 'Bem vindo ao FollowEdu!', NULL, '2015-10-26 21:54:20', 1, '2015-10-26 21:54:20', 1);
+(2, NULL, 'Bem vindo ao FollowEdu!', NULL, '2015-10-26 21:54:20', 1, '2015-10-26 21:54:20', 1),
+(5, NULL, 'Balaio de ideias quase saindo!', NULL, '2015-10-26 23:24:12', 12, '2015-10-26 23:24:12', 12);
 
 -- --------------------------------------------------------
 
@@ -910,14 +922,15 @@ CREATE TABLE IF NOT EXISTS `space` (
   `auto_add_new_members` int(4) DEFAULT NULL,
   `finish_at` date NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Extraindo dados da tabela `space`
 --
 
 INSERT INTO `space` (`id`, `guid`, `wall_id`, `name`, `description`, `website`, `join_policy`, `visibility`, `status`, `tags`, `created_at`, `created_by`, `updated_at`, `updated_by`, `ldap_dn`, `auto_add_new_members`, `finish_at`) VALUES
-(2, '101', 101, 'Seja bem vindo!', 'Bem vindo a esse espaço!', '', 0, 1, 1, '', '2015-10-27 00:00:00', 1, '2015-10-26 21:54:01', 1, NULL, 1, '2015-10-26');
+(2, '101', 101, 'Seja bem vindo!', 'Bem vindo a esse espaço!', '', 0, 1, 1, '', '2015-10-27 00:00:00', 1, '2015-10-26 21:54:01', 1, NULL, 1, '2015-10-26'),
+(5, '105', 105, 'Balaio de ideias', 'Projeto para criaÃ§Ã£o de uma rede social com intuito de formaÃ§Ã£o de equipes para realizar projetos!', NULL, 0, 1, 1, NULL, '2015-10-27 00:00:00', 13, '2015-10-27 00:00:00', 1, NULL, 0, '2015-11-30');
 
 --
 -- Acionadores `space`
@@ -958,9 +971,11 @@ CREATE TABLE IF NOT EXISTS `space_membership` (
 --
 
 INSERT INTO `space_membership` (`space_id`, `user_id`, `originator_user_id`, `status`, `request_message`, `last_visit`, `invite_role`, `admin_role`, `share_role`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES
-(2, 1, NULL, 3, NULL, '2015-10-26 22:43:23', 1, 1, 1, '2015-10-27 00:00:00', 1, '2015-10-27 00:00:00', 1),
+(2, 1, NULL, 3, NULL, '2015-10-26 23:38:59', 1, 1, 1, '2015-10-27 00:00:00', 1, '2015-10-27 00:00:00', 1),
 (2, 12, NULL, 3, NULL, NULL, 0, 0, 0, '2015-10-26 22:49:50', 1, '2015-10-26 22:49:50', 1),
-(2, 13, NULL, 3, NULL, NULL, 0, 0, 0, '2015-10-26 22:51:07', 1, '2015-10-26 22:51:07', 1);
+(2, 13, NULL, 3, NULL, NULL, 0, 0, 0, '2015-10-26 22:51:07', 1, '2015-10-26 22:51:07', 1),
+(5, 12, '13', 3, NULL, '2015-10-26 23:46:28', 0, 0, 0, '2015-10-26 23:46:10', 13, '2015-10-26 23:46:27', 12),
+(5, 13, NULL, 3, NULL, '2015-10-26 23:46:39', 1, 1, 1, '2015-10-27 00:00:00', 13, '2015-10-27 00:00:00', 13);
 
 -- --------------------------------------------------------
 
@@ -1027,6 +1042,9 @@ INSERT INTO `space_tag` (`space_id`, `tag_id`) VALUES
 (110, 1),
 (111, 1),
 (113, 1),
+(3, 4),
+(4, 4),
+(5, 4),
 (90, 4),
 (97, 4),
 (101, 4),
@@ -1035,7 +1053,12 @@ INSERT INTO `space_tag` (`space_id`, `tag_id`) VALUES
 (110, 4),
 (111, 4),
 (113, 4),
-(113, 6);
+(3, 6),
+(5, 6),
+(113, 6),
+(3, 7),
+(5, 7),
+(3, 8);
 
 --
 -- Acionadores `space_tag`
@@ -1062,7 +1085,7 @@ CREATE TABLE IF NOT EXISTS `tag` (
   `nome` varchar(20) NOT NULL,
   `descricao` varchar(200) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
 --
 -- Extraindo dados da tabela `tag`
@@ -1071,7 +1094,9 @@ CREATE TABLE IF NOT EXISTS `tag` (
 INSERT INTO `tag` (`id`, `nome`, `descricao`) VALUES
 (1, 'Informatica', 'Trabalha com manutenção de máquinas'),
 (4, 'Banco de dados', 'Administra banco de dados'),
-(6, 'WebDesign', 'Modela sites.');
+(6, 'WebDesign', 'Modela sites.'),
+(7, 'Programador', 'Desenvolve código de softwares'),
+(8, 'Analista de sistema', 'Planeja projetos, levanta requisitos funcionais, etc...');
 
 -- --------------------------------------------------------
 
@@ -1740,9 +1765,9 @@ CREATE TABLE IF NOT EXISTS `user` (
 --
 
 INSERT INTO `user` (`id`, `guid`, `wall_id`, `group_id`, `status`, `super_admin`, `username`, `email`, `auth_mode`, `tags`, `language`, `last_activity_email`, `created_at`, `created_by`, `updated_at`, `updated_by`, `last_login`, `visibility`) VALUES
-(1, '9e173f30-2710-4c11-8502-1eeed5bca5ec', 1, 1, 1, 1, 'admin', 'followedupe@gmail.com', 'local', NULL, '', '2015-09-02 16:00:41', '2015-09-02 16:00:41', NULL, '2015-10-26 21:50:27', 1, '2015-10-26 22:49:37', 1),
-(12, 'f7df3139-9f07-4043-a3ab-5aaf83c865b7', 103, 1, 1, 0, 'Renan', 'renanfelixrodrigues@hotmail.com', 'local', NULL, 'pt_br', '2015-10-26 22:49:23', '2015-10-26 22:49:23', NULL, '2015-10-26 22:49:49', 1, NULL, 1),
-(13, '5c7162ae-704d-42c2-b9bf-f1b1f68d7d20', 104, 1, 1, 0, 'Romulo', 'romulocesar@upe.br', 'local', NULL, NULL, '2015-10-26 22:51:07', '2015-10-26 22:51:07', 1, '2015-10-26 22:51:07', 1, NULL, 1);
+(1, '9e173f30-2710-4c11-8502-1eeed5bca5ec', 1, 1, 1, 1, 'admin', 'followedupe@gmail.com', 'local', NULL, '', '2015-09-02 16:00:41', '2015-09-02 16:00:41', NULL, '2015-10-26 23:42:16', 1, '2015-10-26 23:42:16', 1),
+(12, 'f7df3139-9f07-4043-a3ab-5aaf83c865b7', 103, 1, 1, 0, 'Renan', 'renanfelixrodrigues@hotmail.com', 'local', NULL, 'pt_br', '2015-10-26 22:49:23', '2015-10-26 22:49:23', NULL, '2015-10-26 22:49:49', 1, '2015-10-26 23:46:18', 1),
+(13, '5c7162ae-704d-42c2-b9bf-f1b1f68d7d20', 104, 1, 1, 0, 'Romulo', 'romulocesar@upe.br', 'local', NULL, NULL, '2015-10-26 22:51:07', '2015-10-26 22:51:07', 1, '2015-10-26 23:42:34', 13, '2015-10-26 23:46:34', 1);
 
 -- --------------------------------------------------------
 
@@ -1798,14 +1823,15 @@ CREATE TABLE IF NOT EXISTS `user_follow` (
   PRIMARY KEY (`id`),
   KEY `index_user` (`user_id`),
   KEY `index_object` (`object_model`,`object_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
 
 --
 -- Extraindo dados da tabela `user_follow`
 --
 
 INSERT INTO `user_follow` (`id`, `object_model`, `object_id`, `user_id`, `send_notifications`) VALUES
-(7, 'Post', 2, 1, 1);
+(7, 'Post', 2, 1, 1),
+(10, 'Post', 5, 12, 1);
 
 -- --------------------------------------------------------
 
@@ -1820,13 +1846,6 @@ CREATE TABLE IF NOT EXISTS `user_http_session` (
   `data` longblob,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Extraindo dados da tabela `user_http_session`
---
-
-INSERT INTO `user_http_session` (`id`, `expire`, `user_id`, `data`) VALUES
-('9cncaaoic03to0iftr8o48d6c7', 1445912484, 1, 0x33356237383866316261396165323339656331623561303065363663316464335f5f72657475726e55726c7c733a34323a222f466f6c6c6f774564752f696e6465782e7068703f723d64617368626f6172642f64617368626f617264223b33356237383866316261396165323339656331623561303065363663316464335f5f69647c733a313a2231223b33356237383866316261396165323339656331623561303065363663316464335f5f6e616d657c733a353a2261646d696e223b33356237383866316261396165323339656331623561303065363663316464337469746c657c733a32313a2253797374656d2041646d696e697374726174696f6e223b33356237383866316261396165323339656331623561303065363663316464335f5f7374617465737c613a313a7b733a353a227469746c65223b623a313b7d);
 
 -- --------------------------------------------------------
 
@@ -1966,8 +1985,9 @@ CREATE TABLE IF NOT EXISTS `user_tag` (
 --
 
 INSERT INTO `user_tag` (`user_id`, `tag_id`) VALUES
-(1, 4),
-(1, 1);
+(12, 4),
+(12, 7),
+(12, 8);
 
 -- --------------------------------------------------------
 
@@ -1984,7 +2004,7 @@ CREATE TABLE IF NOT EXISTS `wall` (
   `updated_at` datetime DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=105 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=107 ;
 
 --
 -- Extraindo dados da tabela `wall`
@@ -2008,7 +2028,8 @@ INSERT INTO `wall` (`id`, `object_model`, `object_id`, `created_at`, `created_by
 (101, 'Space', 2, '2015-10-27 00:00:00', 1, '2015-10-27 00:00:00', 1),
 (102, 'User', 11, '2015-10-26 21:59:15', 1, '2015-10-26 21:59:15', 1),
 (103, 'User', 12, '2015-10-26 22:49:50', 1, '2015-10-26 22:49:50', 1),
-(104, 'User', 13, '2015-10-26 22:51:07', 1, '2015-10-26 22:51:07', 1);
+(104, 'User', 13, '2015-10-26 22:51:07', 1, '2015-10-26 22:51:07', 1),
+(105, 'Space', 5, '2015-10-27 00:00:00', 13, '2015-10-27 00:00:00', 13);
 
 -- --------------------------------------------------------
 
@@ -2025,7 +2046,7 @@ CREATE TABLE IF NOT EXISTS `wall_entry` (
   `updated_at` datetime DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=59 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=63 ;
 
 --
 -- Extraindo dados da tabela `wall_entry`
@@ -2034,7 +2055,9 @@ CREATE TABLE IF NOT EXISTS `wall_entry` (
 INSERT INTO `wall_entry` (`id`, `wall_id`, `content_id`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES
 (40, 18, 40, '2015-10-15 00:51:52', 1, '2015-10-15 00:51:52', 1),
 (54, 101, 54, '2015-10-26 21:54:21', 1, '2015-10-26 22:00:48', 1),
-(55, 101, 55, '2015-10-26 21:54:21', 1, '2015-10-26 21:54:21', 1);
+(55, 101, 55, '2015-10-26 21:54:21', 1, '2015-10-26 21:54:21', 1),
+(61, 103, 61, '2015-10-26 23:24:12', 12, '2015-10-26 23:24:12', 12),
+(62, 103, 62, '2015-10-26 23:24:12', 12, '2015-10-26 23:24:12', 12);
 
 --
 -- Constraints for dumped tables
