@@ -1,4 +1,10 @@
-<div class="container">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-br" xml:lang="pt-br">
+<head
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+</head>
+<body>
+    <div class="container">
     <h1>Projetos</h1>
 
     <p>Escolha um projeto que deseja participar. Sua solicitação será encaminhada automaticamente
@@ -58,3 +64,5 @@
 
     ?>
 </div>
+</body>
+</html>
