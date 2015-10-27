@@ -1,11 +1,16 @@
-<?php return array (
-  'components' => 
+<?php 
+
+
+require '/../../../database/datanoob.php';
+
+return array (
+    'components' => 
   array (
     'db' => 
     array (
-      'connectionString' => 'mysql:host=localhost;dbname=followedu',
-      'username' => 'root',
-      'password' => '',
+      'connectionString' => 'mysql:host='.$servername.';dbname='.$dbname,
+      'username' => $username,
+      'password' => $password,
     ),
     'cache' => 
     array (
@@ -17,10 +22,26 @@
     'mail' => 
     array (
       'class' => 'ext.yii-mail.YiiMail',
-      'transportType' => 'php',
+      'transportType' => 'smtp',
       'viewPath' => 'application.views.mail',
       'logging' => true,
       'dryRun' => false,
+      'transportOptions' => 
+      array (
+        'host' => 'smtp.gmail.com',
+        'username' => 'followedupe@gmail.com',
+        'password' => 'javac123',
+        'encryption' => 'ssl',
+        'port' => '465',
+        'options' => 
+        array (
+          'ssl' => 
+          array (
+            'allow_self_signed' => true,
+            'verify_peer' => false,
+          ),
+        ),
+      ),
     ),
   ),
   'params' => 
