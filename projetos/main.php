@@ -37,7 +37,7 @@
     $perfil = $row["perfil"];
 
     if ($perfil == 1) {
-        echo '<div>Professor! <a href="insert/insertProjetoForm.php"><button type="button">Adicione</button></a> um projeto!</p></div>';               
+        echo '<b><div>Professor! <a href="insert/insertProjetoForm.php"><button type="button">Adicione</button></a> um projeto!</p></div></b>';               
     }
     ?>
 
@@ -57,6 +57,7 @@
               
             </form>
 
+    <h3>Lista de Projetos</h3>
     <?php
 
     require_once('listar_projetos.php');

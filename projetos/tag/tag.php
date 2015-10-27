@@ -1,11 +1,8 @@
-
-    <h1>Suas habilidades</h1>
-    
     <p>Escolha as habilidades que você possui. De acordo com o seu perfil o followedu recomendará projetos para você participar!</p>
         <table border='1'>
 
         <?php 
-
+        
         require '../../database/datanoob.php';
         require_once('../../protected/vendors/yii/yii.php');
 
@@ -25,7 +22,7 @@
         //****************************************************************
         // HABILIDADES QUE O USUÁRIOS TEM
         //****************************************************************
-        $sql_user_tag = "SELECT tag.nome as tn, tag.id as ti FROM tag, user_tag WHERE tag.id = user_tag.tag_id and user_tag.user_id = $user_id";
+        $sql_user_tag = "SELECT tag.nome as tn, tag.descricao as td, tag.id as ti FROM tag, user_tag WHERE tag.id = user_tag.tag_id and user_tag.user_id = $user_id";
         
         $result = $conn->query($sql_user_tag);
 
@@ -36,7 +33,8 @@
                 echo"<form action='deletarTag.php' method='POST'>";
                     echo "<input type='hidden' name='tag_id' value=".$row["ti"].">";
                     echo "<tr>";
-                    echo "<td>".$row["tn"]."</td>";
+                    echo "<td><font color='gren'>".$row["tn"]."</font></td>";
+                    echo "<td>".$row["td"]."</td>";
                     echo "<td><input type='submit' value='Deletar' name='participar'  /></td>";        
                     echo "</tr>";
                 echo"</form>";
@@ -51,7 +49,7 @@
         // HABILIDADES QUE O USUÁRIOS  >>NÃO<<  TEM
         //****************************************************************
         
-        $sql_user_sem_tag = "SELECT tag.nome as tn, tag.id as ti FROM tag WHERE tag.id NOT IN (SELECT tag.id FROM tag, user_tag WHERE tag.id = user_tag.tag_id and user_tag.user_id = $user_id)";
+        $sql_user_sem_tag = "SELECT tag.nome as tn, tag.descricao as td, tag.id as ti FROM tag WHERE tag.id NOT IN (SELECT tag.id FROM tag, user_tag WHERE tag.id = user_tag.tag_id and user_tag.user_id = $user_id)";
         
         $result = $conn->query($sql_user_sem_tag);
 
@@ -63,7 +61,8 @@
                 echo"<form action='insertTag.php' method='POST'>";
                     echo "<input type='hidden' name='tag_id' value=".$row["ti"].">";
                     echo "<tr>";
-                    echo "<td>".$row["tn"]."</td>";
+                    echo "<td><font color='red'>".$row["tn"]."</font></td>";
+                    echo "<td>".$row["td"]."</td>";
                     echo "<td><input type='submit' value='Incluir' name='participar'  /></td>";        
                     echo "</tr>";
                 echo"</form>";

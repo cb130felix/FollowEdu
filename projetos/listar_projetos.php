@@ -6,7 +6,6 @@
    
         <?php
 
-
         //pegando informação do banco de dados
         require '../database/datanoob.php';
 

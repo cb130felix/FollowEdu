@@ -1,16 +1,11 @@
-<?php 
-
-
-require '/../../../database/datanoob.php';
-
-return array (
-    'components' => 
+<?php return array (
+  'components' => 
   array (
     'db' => 
     array (
-      'connectionString' => 'mysql:host='.$servername.';dbname='.$dbname,
-      'username' => $username,
-      'password' => $password,
+      'connectionString' => 'mysql:host=localhost;dbname=followedu',
+      'username' => 'root',
+      'password' => '',
     ),
     'cache' => 
     array (
@@ -58,5 +53,5 @@ return array (
   ),
   'name' => 'FollowEdu',
   'language' => 'pt_br',
-  'theme' => 'HumHub',
+  'theme' => 'FollowEdu',
 ); ?>
