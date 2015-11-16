@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 27-Out-2015 às 03:48
+-- Generation Time: 28-Out-2015 às 04:33
 -- Versão do servidor: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -19,49 +19,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `followedu`
 --
-
-DELIMITER $$
---
--- Procedures
---
-CREATE DEFINER=`root`@`localhost` PROCEDURE `rotinaRecommend`()
-BEGIN
-
-		DECLARE count INT default 0;
-		DECLARE recommend INT default 0;
-		DECLARE max INT default (SELECT count(*) as id FROM user);
-		DECLARE last_space INT default (SELECT MAX(ID) as id FROM space);
-		DECLARE last_notification_id INT default (SELECT MAX(ID) as id FROM notification);
-        DECLARE user_created_space INT default (SELECT S.created_by FROM space S WHERE S.id=last_space);
-        DECLARE user_id_atual INT;
-        DECLARE check_user_notification INT default 0;
-        
-		WHILE (count < max) DO
-			SET user_id_atual = (SELECT user.id FROM user LIMIT count,1);
-            
-			SET recommend = (SELECT count(*) FROM (SELECT T.tag_id FROM space_tag T, space S WHERE S.id=last_space and S.id=T.space_id) S,
-							      (SELECT T.tag_id FROM user_tag T, user U WHERE U.id=user_id_atual and U.id=T.user_id) U
-							 WHERE U.tag_id = S.tag_id);
-                             
-			IF (recommend>=1 and user_id_atual!=user_created_space) THEN
-				SET check_user_notification = (SELECT count(*) FROM notification N WHERE N.class="SpaceRecommend" and N.user_id=user_id_atual and N.space_id=last_space);
-
-				IF (check_user_notification=0) THEN
-					SET last_notification_id = last_notification_id+1;
-					INSERT INTO notification VALUES (last_notification_id, "SpaceRecommend", user_id_atual, 0, "User", 10, "Space", last_space, last_space, 0, NOW(), user_id_atual, NOW(), 1, 1);
-					SET recommend=0;
-				END IF;
-                SET check_user_notification=0;
-			END IF;
-            
-			SET count = count+1;
-            
-		END WHILE;
-	END$$
-
-DELIMITER ;
-
--- --------------------------------------------------------
 
 --
 -- Estrutura da tabela `activity`
@@ -193,7 +150,7 @@ CREATE TABLE IF NOT EXISTS `comment` (
   `updated_at` datetime DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -228,7 +185,7 @@ CREATE TABLE IF NOT EXISTS `content` (
 
 INSERT INTO `content` (`id`, `guid`, `object_model`, `object_id`, `visibility`, `sticked`, `archived`, `space_id`, `user_id`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES
 (40, '5f95874d-19c2-4371-91d1-39fe3209f9e1', 'Activity', 32, 1, 0, '0', 27, 1, '2015-10-15 00:51:52', 1, '2015-10-15 00:51:52', 1),
-(54, '9a1e5826-d926-4988-a23a-1fa19611aed8', 'Post', 2, 0, 1, '0', 2, 1, '2015-10-26 21:54:21', 1, '2015-10-26 21:54:21', 1),
+(54, '9a1e5826-d926-4988-a23a-1fa19611aed8', 'Post', 2, 0, 1, '0', 2, 1, '2015-10-26 21:54:21', 1, '2015-10-27 09:30:16', 1),
 (55, '8f3f14d9-5183-4ec3-876e-58f1a4fb5089', 'Activity', 43, 0, 0, '0', 2, 1, '2015-10-26 21:54:21', 1, '2015-10-26 21:54:21', 1),
 (61, '26ba92d1-2d28-43f7-8b70-2917ea2b9778', 'Post', 5, 1, 0, '0', NULL, 12, '2015-10-26 23:24:12', 12, '2015-10-26 23:24:12', 12),
 (62, '91acb839-214d-4cb7-b1a6-80d96651c384', 'Activity', 47, 1, 0, '0', NULL, 12, '2015-10-26 23:24:12', 12, '2015-10-26 23:24:12', 12);
@@ -638,7 +595,7 @@ CREATE TABLE IF NOT EXISTS `notification` (
   KEY `index_seen` (`seen`),
   KEY `index_desktop_notified` (`desktop_notified`),
   KEY `index_desktop_emailed` (`emailed`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
 
 --
 -- Extraindo dados da tabela `notification`
@@ -646,7 +603,11 @@ CREATE TABLE IF NOT EXISTS `notification` (
 
 INSERT INTO `notification` (`id`, `class`, `user_id`, `seen`, `source_object_model`, `source_object_id`, `target_object_model`, `target_object_id`, `space_id`, `emailed`, `created_at`, `created_by`, `updated_at`, `updated_by`, `desktop_notified`) VALUES
 (6, 'SpaceRecommend', 12, 1, 'User', 10, 'Space', 5, 5, 0, '2015-10-26 23:43:10', 12, '2015-10-26 23:46:23', 12, 1),
-(8, 'SpaceInviteAcceptedNotification', 13, 1, 'User', 12, 'Space', 5, 5, 0, '2015-10-26 23:46:27', 12, '2015-10-26 23:46:38', 13, 1);
+(8, 'SpaceInviteAcceptedNotification', 13, 1, 'User', 12, 'Space', 5, 5, 0, '2015-10-26 23:46:27', 12, '2015-10-26 23:46:38', 13, 1),
+(9, 'SpaceRecommend', 12, 1, 'User', 10, 'Space', 7, 7, 0, '2015-10-27 01:01:37', 12, '2015-10-27 01:02:24', 12, 1),
+(13, 'SpaceApprovalRequestAcceptedNotification', 12, 1, 'User', 16, 'Space', 7, 7, 0, '2015-10-27 01:03:07', 16, '2015-10-27 01:03:23', 12, 1),
+(14, 'SpaceRecommend', 1, 0, 'User', 10, 'Space', 11, 11, 0, '2015-10-28 00:07:58', 1, '2015-10-28 00:07:58', 1, 1),
+(15, 'SpaceRecommend', 12, 0, 'User', 10, 'Space', 11, 11, 0, '2015-10-28 00:07:58', 12, '2015-10-28 00:07:58', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -671,7 +632,7 @@ CREATE TABLE IF NOT EXISTS `post` (
 --
 
 INSERT INTO `post` (`id`, `message_2trash`, `message`, `url`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES
-(2, NULL, 'Bem vindo ao FollowEdu!', NULL, '2015-10-26 21:54:20', 1, '2015-10-26 21:54:20', 1),
+(2, NULL, 'Bem vindo ao FollowEdu! O FollowEdu é uma rede social que reune pessoas com habilidades diferentes em um mesmo lugar com o objetivo de formar equipes para projetos. \n\nAntes de mais nada talvez você queira customizar seu perfil adicionando suas habilidades. Para isso, clique na foto do seu perfil, na direita superior, escolha a opção "Configurações da conta" e na nova tela que carregar, escolha a opção "Habilidades" no menu à esquerda. Ou simplesmente <a href=''/FollowEdu/index.php?r=custom_pages/view&id=8''>clique aqui!</a>\n\nVocê também pode pesquisar projetos para participar <a href=''/FollowEdu/index.php?r=custom_pages/view&id=7''>aqui</a>!\nEventualmente nosso sistema também recomendará projetos que combinam com você de acordo com suas habilidades. Então não esqueça de checar suas caixa de notificações. ;D\n\nAtenciosamente, equipe FollowEdu.', NULL, '2015-10-26 21:54:20', 1, '2015-10-27 09:30:16', 1),
 (5, NULL, 'Balaio de ideias quase saindo!', NULL, '2015-10-26 23:24:12', 12, '2015-10-26 23:24:12', 12);
 
 -- --------------------------------------------------------
@@ -727,7 +688,11 @@ CREATE TABLE IF NOT EXISTS `profile` (
 INSERT INTO `profile` (`user_id`, `firstname`, `lastname`, `title`, `gender`, `street`, `zip`, `city`, `country`, `state`, `birthday_hide_year`, `birthday`, `about`, `phone_private`, `phone_work`, `mobile`, `fax`, `im_skype`, `im_msn`, `im_icq`, `im_xmpp`, `url`, `url_facebook`, `url_linkedin`, `url_xing`, `url_youtube`, `url_vimeo`, `url_flickr`, `url_myspace`, `url_googleplus`, `url_twitter`, `perfil`, `cpf`, `ingresso`, `emissao_historico`, `emissao_diploma`) VALUES
 (1, 'Administrador', '', 'System Administration', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', 2147483647, '2013.1', '12312', '1'),
 (12, 'Renan', 'Felix', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 2147483647, '2013.1', NULL, NULL),
-(13, 'Rômulo', 'Cesar', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', 2147483647, '2014.1', NULL, NULL);
+(13, 'Rômulo', 'Cesar', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', 2147483647, '2014.1', NULL, NULL),
+(14, 'Arthur', 'Flôr', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 123123, '2013.1', NULL, NULL),
+(15, 'Patrícia', 'Endo', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', 1111111, '2011.1', NULL, NULL),
+(16, 'Thiago', 'Souto', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', 123123, '2012.1', NULL, NULL),
+(17, 'Renan', 'Felix', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 123123123, '2013.1', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -860,8 +825,8 @@ INSERT INTO `setting` (`id`, `name`, `value`, `value_text`, `module_id`, `create
 (3, 'defaultJoinPolicy', '1', NULL, 'space', NULL, NULL, NULL, NULL),
 (4, 'name', 'FollowEdu', NULL, NULL, '2015-09-02 15:58:59', 0, '2015-10-26 22:19:12', 1),
 (5, 'baseUrl', 'http://localhost/humhub-master', NULL, NULL, '2015-09-02 15:59:00', 0, '2015-10-26 22:19:12', 1),
-(6, 'paginationSize', '10', NULL, NULL, '2015-09-02 15:59:00', 0, '2015-10-18 15:28:34', 1),
-(7, 'displayNameFormat', '{profile.firstname} {profile.lastname}', NULL, NULL, '2015-09-02 15:59:00', 0, '2015-10-18 15:28:34', 1),
+(6, 'paginationSize', '10', NULL, NULL, '2015-09-02 15:59:00', 0, '2015-10-27 10:01:43', 1),
+(7, 'displayNameFormat', '{profile.firstname} {profile.lastname}', NULL, NULL, '2015-09-02 15:59:00', 0, '2015-10-27 10:01:43', 1),
 (8, 'authInternal', '1', NULL, 'authentication', '2015-09-02 15:59:00', 0, '2015-09-02 15:59:00', 0),
 (9, 'authLdap', '0', NULL, 'authentication', '2015-09-02 15:59:00', 0, '2015-09-02 15:59:00', 0),
 (10, 'refreshUsers', '1', NULL, 'authentication_ldap', '2015-09-02 15:59:00', 0, '2015-09-02 15:59:00', 0),
@@ -880,8 +845,8 @@ INSERT INTO `setting` (`id`, `name`, `value`, `value_text`, `module_id`, `create
 (23, 'type', 'CFileCache', NULL, 'cache', '2015-09-02 15:59:01', 0, '2015-09-02 15:59:01', 0),
 (24, 'expireTime', '3600', NULL, 'cache', '2015-09-02 15:59:01', 0, '2015-09-02 15:59:01', 0),
 (25, 'installationId', 'f73e761e751e47187f66b0393e899544', NULL, 'admin', '2015-09-02 15:59:01', 0, '2015-09-02 15:59:01', 0),
-(26, 'theme', 'HumHub', NULL, NULL, '2015-09-02 15:59:01', 0, '2015-10-18 15:28:34', 1),
-(27, 'spaceOrder', '0', NULL, 'space', '2015-09-02 15:59:01', 0, '2015-10-18 15:28:34', 1),
+(26, 'theme', 'FollowEdu', NULL, NULL, '2015-09-02 15:59:01', 0, '2015-10-27 10:01:43', 1),
+(27, 'spaceOrder', '0', NULL, 'space', '2015-09-02 15:59:01', 0, '2015-10-27 10:01:43', 1),
 (28, 'enable', '0', NULL, 'tour', '2015-09-02 15:59:01', 0, '2015-10-26 22:19:12', 1),
 (29, 'defaultLanguage', 'pt_br', NULL, NULL, '2015-09-02 15:59:01', 0, '2015-10-26 22:19:12', 1),
 (30, 'enable_html5_desktop_notifications', '0', NULL, 'notification', '2015-09-02 15:59:01', 0, '2015-09-02 15:59:01', 0),
@@ -922,7 +887,7 @@ CREATE TABLE IF NOT EXISTS `space` (
   `auto_add_new_members` int(4) DEFAULT NULL,
   `finish_at` date NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
 
 --
 -- Extraindo dados da tabela `space`
@@ -930,7 +895,9 @@ CREATE TABLE IF NOT EXISTS `space` (
 
 INSERT INTO `space` (`id`, `guid`, `wall_id`, `name`, `description`, `website`, `join_policy`, `visibility`, `status`, `tags`, `created_at`, `created_by`, `updated_at`, `updated_by`, `ldap_dn`, `auto_add_new_members`, `finish_at`) VALUES
 (2, '101', 101, 'Seja bem vindo!', 'Bem vindo a esse espaço!', '', 0, 1, 1, '', '2015-10-27 00:00:00', 1, '2015-10-26 21:54:01', 1, NULL, 1, '2015-10-26'),
-(5, '105', 105, 'Balaio de ideias', 'Projeto para criaÃ§Ã£o de uma rede social com intuito de formaÃ§Ã£o de equipes para realizar projetos!', NULL, 0, 1, 1, NULL, '2015-10-27 00:00:00', 13, '2015-10-27 00:00:00', 1, NULL, 0, '2015-11-30');
+(5, '105', 105, 'Balaio de ideias', 'Projeto para criaÃ§Ã£o de uma rede social com intuito de formaÃ§Ã£o de equipes para realizar projetos!', NULL, 0, 1, 1, NULL, '2015-10-27 00:00:00', 13, '2015-10-27 00:00:00', 1, NULL, 0, '2015-11-30'),
+(7, '110', 110, 'Monitoria - LPA I', 'Procura-se monitor para a disciplina de lÃ³gica de programaÃ§Ã£o e algoritmos. Requisitos: Manjar de C.', NULL, 1, 1, 1, NULL, '2015-10-27 00:00:00', 16, '2015-10-27 00:00:00', 1, NULL, 0, '2015-10-31'),
+(11, '111', 111, 'teste', 'testetetetet', NULL, 1, 1, 1, NULL, '2015-10-28 00:00:00', 13, '2015-10-28 00:00:00', 1, NULL, 0, '2020-01-12');
 
 --
 -- Acionadores `space`
@@ -971,11 +938,17 @@ CREATE TABLE IF NOT EXISTS `space_membership` (
 --
 
 INSERT INTO `space_membership` (`space_id`, `user_id`, `originator_user_id`, `status`, `request_message`, `last_visit`, `invite_role`, `admin_role`, `share_role`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES
-(2, 1, NULL, 3, NULL, '2015-10-26 23:38:59', 1, 1, 1, '2015-10-27 00:00:00', 1, '2015-10-27 00:00:00', 1),
+(2, 1, NULL, 3, NULL, '2015-10-27 10:08:56', 1, 1, 1, '2015-10-27 00:00:00', 1, '2015-10-27 00:00:00', 1),
 (2, 12, NULL, 3, NULL, NULL, 0, 0, 0, '2015-10-26 22:49:50', 1, '2015-10-26 22:49:50', 1),
-(2, 13, NULL, 3, NULL, NULL, 0, 0, 0, '2015-10-26 22:51:07', 1, '2015-10-26 22:51:07', 1),
+(2, 13, NULL, 3, NULL, '2015-10-27 23:56:03', 0, 0, 0, '2015-10-26 22:51:07', 1, '2015-10-26 22:51:07', 1),
+(2, 14, NULL, 3, NULL, NULL, 0, 0, 0, '2015-10-27 00:51:47', 1, '2015-10-27 00:51:47', 1),
+(2, 15, NULL, 3, NULL, NULL, 0, 0, 0, '2015-10-27 00:53:59', 1, '2015-10-27 00:53:59', 1),
+(2, 16, NULL, 3, NULL, NULL, 0, 0, 0, '2015-10-27 00:55:40', 1, '2015-10-27 00:55:40', 1),
 (5, 12, '13', 3, NULL, '2015-10-26 23:46:28', 0, 0, 0, '2015-10-26 23:46:10', 13, '2015-10-26 23:46:27', 12),
-(5, 13, NULL, 3, NULL, '2015-10-26 23:46:39', 1, 1, 1, '2015-10-27 00:00:00', 13, '2015-10-27 00:00:00', 13);
+(5, 13, NULL, 3, NULL, '2015-10-27 23:56:08', 1, 1, 1, '2015-10-27 00:00:00', 13, '2015-10-27 00:00:00', 13),
+(7, 12, NULL, 3, 'Eu manjo de C. Me aceita aê. :D', '2015-10-27 01:03:24', 0, 0, 0, '2015-10-27 01:02:40', 12, '2015-10-27 01:03:07', 16),
+(7, 16, NULL, 3, NULL, '2015-10-27 01:03:08', 1, 1, 1, '2015-10-27 00:00:00', 16, '2015-10-27 00:00:00', 16),
+(11, 13, NULL, 3, NULL, '2015-10-28 00:08:05', 1, 1, 1, '2015-10-28 00:00:00', 13, '2015-10-28 00:00:00', 13);
 
 -- --------------------------------------------------------
 
@@ -1045,6 +1018,8 @@ INSERT INTO `space_tag` (`space_id`, `tag_id`) VALUES
 (3, 4),
 (4, 4),
 (5, 4),
+(10, 4),
+(11, 4),
 (90, 4),
 (97, 4),
 (101, 4),
@@ -1058,6 +1033,8 @@ INSERT INTO `space_tag` (`space_id`, `tag_id`) VALUES
 (113, 6),
 (3, 7),
 (5, 7),
+(6, 7),
+(7, 7),
 (3, 8);
 
 --
@@ -1083,7 +1060,7 @@ DELIMITER ;
 CREATE TABLE IF NOT EXISTS `tag` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nome` varchar(20) NOT NULL,
-  `descricao` varchar(200) NOT NULL,
+  `descricao` text CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
@@ -1758,16 +1735,20 @@ CREATE TABLE IF NOT EXISTS `user` (
   UNIQUE KEY `unique_username` (`username`),
   UNIQUE KEY `unique_guid` (`guid`),
   UNIQUE KEY `unique_wall_id` (`wall_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
 
 --
 -- Extraindo dados da tabela `user`
 --
 
 INSERT INTO `user` (`id`, `guid`, `wall_id`, `group_id`, `status`, `super_admin`, `username`, `email`, `auth_mode`, `tags`, `language`, `last_activity_email`, `created_at`, `created_by`, `updated_at`, `updated_by`, `last_login`, `visibility`) VALUES
-(1, '9e173f30-2710-4c11-8502-1eeed5bca5ec', 1, 1, 1, 1, 'admin', 'followedupe@gmail.com', 'local', NULL, '', '2015-09-02 16:00:41', '2015-09-02 16:00:41', NULL, '2015-10-26 23:42:16', 1, '2015-10-26 23:42:16', 1),
-(12, 'f7df3139-9f07-4043-a3ab-5aaf83c865b7', 103, 1, 1, 0, 'Renan', 'renanfelixrodrigues@hotmail.com', 'local', NULL, 'pt_br', '2015-10-26 22:49:23', '2015-10-26 22:49:23', NULL, '2015-10-26 22:49:49', 1, '2015-10-26 23:46:18', 1),
-(13, '5c7162ae-704d-42c2-b9bf-f1b1f68d7d20', 104, 1, 1, 0, 'Romulo', 'romulocesar@upe.br', 'local', NULL, NULL, '2015-10-26 22:51:07', '2015-10-26 22:51:07', 1, '2015-10-26 23:42:34', 13, '2015-10-26 23:46:34', 1);
+(1, '9e173f30-2710-4c11-8502-1eeed5bca5ec', 1, 1, 1, 1, 'admin', 'followedupe@gmail.com', 'local', NULL, '', '2015-09-02 16:00:41', '2015-09-02 16:00:41', NULL, '2015-10-27 10:21:05', 1, '2015-10-27 11:09:25', 1),
+(12, 'f7df3139-9f07-4043-a3ab-5aaf83c865b7', 103, 1, 1, 0, 'Renan', 'renanfelixrodrigues@hotmail.com', 'local', NULL, 'pt_br', '2015-10-26 22:49:23', '2015-10-26 22:49:23', NULL, '2015-10-26 22:49:49', 1, '2015-10-27 23:56:56', 1),
+(13, '5c7162ae-704d-42c2-b9bf-f1b1f68d7d20', 104, 1, 1, 0, 'Romulo', 'romulocesar@upe.br', 'local', NULL, NULL, '2015-10-26 22:51:07', '2015-10-26 22:51:07', 1, '2015-10-27 11:22:04', 13, '2015-10-27 23:57:13', 1),
+(14, '4c5b7d49-e25f-4f4b-abed-d6ea128ec0bb', 107, 1, 1, 0, 'Arthur', 'arthurflor@hotmail.com', 'local', NULL, NULL, '2015-10-27 00:51:47', '2015-10-27 00:51:47', 1, '2015-10-27 00:51:47', 1, '2015-10-27 13:53:49', 1),
+(15, '6c55c9d2-652f-402b-9e55-4f0fb8ff53c7', 108, 1, 1, 0, 'Patricia', 'patricia@gmail.com', 'local', NULL, NULL, '2015-10-27 00:53:59', '2015-10-27 00:53:59', 1, '2015-10-27 00:53:59', 1, '2015-10-27 09:51:32', 1),
+(16, '96bec171-8bcb-412f-8c04-c6c464ff2128', 109, 1, 1, 0, 'Thiago', 'thiago@bregoso.com', 'local', NULL, NULL, '2015-10-27 00:55:40', '2015-10-27 00:55:40', 1, '2015-10-27 01:00:40', 16, '2015-10-27 01:03:01', 1),
+(17, '8a328c0a-dec0-474d-9b92-ba82f27e6ba5', NULL, 1, 1, 0, 'Renan2', 'renanfelixrodrigues92@gmail.com', 'local', NULL, 'pt_br', '2015-10-27 11:09:20', '2015-10-27 11:09:20', NULL, '2015-10-27 11:09:20', NULL, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -1847,6 +1828,13 @@ CREATE TABLE IF NOT EXISTS `user_http_session` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Extraindo dados da tabela `user_http_session`
+--
+
+INSERT INTO `user_http_session` (`id`, `expire`, `user_id`, `data`) VALUES
+('sqs6ol23smg85n4raem2bco9v3', 1446003485, 13, 0x33356237383866316261396165323339656331623561303065363663316464335f5f72657475726e55726c7c733a34323a222f466f6c6c6f774564752f696e6465782e7068703f723d64617368626f6172642f64617368626f617264223b33356237383866316261396165323339656331623561303065363663316464335f5f69647c733a323a223133223b33356237383866316261396165323339656331623561303065363663316464335f5f6e616d657c733a363a22726f6d756c6f223b33356237383866316261396165323339656331623561303065363663316464335f5f7374617465737c613a313a7b733a353a227469746c65223b623a313b7d);
+
 -- --------------------------------------------------------
 
 --
@@ -1868,7 +1856,7 @@ CREATE TABLE IF NOT EXISTS `user_invite` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `unique_email` (`email`),
   UNIQUE KEY `unique_token` (`token`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Extraindo dados da tabela `user_invite`
@@ -1926,7 +1914,7 @@ CREATE TABLE IF NOT EXISTS `user_password` (
   `created_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `idx_user_id` (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
 
 --
 -- Extraindo dados da tabela `user_password`
@@ -1935,7 +1923,11 @@ CREATE TABLE IF NOT EXISTS `user_password` (
 INSERT INTO `user_password` (`id`, `user_id`, `algorithm`, `password`, `salt`, `created_at`) VALUES
 (1, 1, 'sha512whirlpool', '02d4af24ce74433174fda1758857ab03c908cdf5b2b5d389988731a4c1deb348b91069d67a998c2ae11e1ce644a6679610405c73849d9d632a33d2124c8af6ba', '292b6b58-964e-4a8a-9dc2-404486c508f7', '2015-09-02 16:00:42'),
 (12, 12, 'sha512whirlpool', '7b478c8756a0e95d0278dbe506151646fb47b04e8c23419288336087735a041386e373a78b120b0f187cec87ffa835f4acaa53e112a4a1e8ccf73241440e96b4', 'ccce15f4-c94a-4aad-a6b9-3cb036cd4862', '2015-10-26 22:49:23'),
-(13, 13, 'sha512whirlpool', 'a6456a2b53c525ba02a5cea29ad6976ca346532d88b02aa41a1cc27ac9a6fd7716313f5c0c3f726d4cd3a18e59bbd538086ce0ac1c288ff111d3e019dfd75700', 'bcf97126-b9bb-4eb0-8dfc-097407d60d67', '2015-10-26 22:51:07');
+(13, 13, 'sha512whirlpool', 'a6456a2b53c525ba02a5cea29ad6976ca346532d88b02aa41a1cc27ac9a6fd7716313f5c0c3f726d4cd3a18e59bbd538086ce0ac1c288ff111d3e019dfd75700', 'bcf97126-b9bb-4eb0-8dfc-097407d60d67', '2015-10-26 22:51:07'),
+(14, 14, 'sha512whirlpool', '43e91cc0b86406f242ad6370940310c57261a50c1548201d0fbda2f4a6a00f0d84a6dcea1638bd71ac0b2c33016354bb0da0b29ac9bb9d8e19b88a37f8bd75c2', '48a9108f-0e17-4510-bf57-5ece3eb69fa0', '2015-10-27 00:51:47'),
+(15, 15, 'sha512whirlpool', '5cbd9600f438f86cdcd5b1ef4b3420ba9a4ef31b57d18ccec3c130e2eecb24f235e6b4ab218ad470e0366dbee6809c573628b55b1f2f90d7fd43a452cc097110', 'ab4141c3-92c4-402a-9aea-29dcf378d9b4', '2015-10-27 00:53:59'),
+(16, 16, 'sha512whirlpool', '95195c2f52c43e217faf2c32dc53eda009b139f28602ba8336f3741327c291d9723d88f46c5af23ca56fdc8ce423e9650d4460a5ab77c49f07f4df475ae0a521', 'a0126d27-2c93-49ff-bebf-610b05453797', '2015-10-27 00:55:40'),
+(17, 17, 'sha512whirlpool', '11e250c794741415bb30f3aa565f811bcc84943268622f12ee0d720bfda8f0c71f01cb02153ee8535d1ca86e4a71c6d0aa8ee82b3c448ab4dbe23bf8d96a3fc4', '648cf175-97a0-4596-ab64-f323615b87b1', '2015-10-27 11:09:20');
 
 -- --------------------------------------------------------
 
@@ -1987,7 +1979,14 @@ CREATE TABLE IF NOT EXISTS `user_tag` (
 INSERT INTO `user_tag` (`user_id`, `tag_id`) VALUES
 (12, 4),
 (12, 7),
-(12, 8);
+(12, 8),
+(13, 1),
+(13, 4),
+(13, 7),
+(13, 8),
+(1, 4),
+(1, 1),
+(1, 6);
 
 -- --------------------------------------------------------
 
@@ -2004,7 +2003,7 @@ CREATE TABLE IF NOT EXISTS `wall` (
   `updated_at` datetime DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=107 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=113 ;
 
 --
 -- Extraindo dados da tabela `wall`
@@ -2029,7 +2028,12 @@ INSERT INTO `wall` (`id`, `object_model`, `object_id`, `created_at`, `created_by
 (102, 'User', 11, '2015-10-26 21:59:15', 1, '2015-10-26 21:59:15', 1),
 (103, 'User', 12, '2015-10-26 22:49:50', 1, '2015-10-26 22:49:50', 1),
 (104, 'User', 13, '2015-10-26 22:51:07', 1, '2015-10-26 22:51:07', 1),
-(105, 'Space', 5, '2015-10-27 00:00:00', 13, '2015-10-27 00:00:00', 13);
+(105, 'Space', 5, '2015-10-27 00:00:00', 13, '2015-10-27 00:00:00', 13),
+(107, 'User', 14, '2015-10-27 00:51:47', 1, '2015-10-27 00:51:47', 1),
+(108, 'User', 15, '2015-10-27 00:53:59', 1, '2015-10-27 00:53:59', 1),
+(109, 'User', 16, '2015-10-27 00:55:40', 1, '2015-10-27 00:55:40', 1),
+(110, 'Space', 7, '2015-10-27 00:00:00', 16, '2015-10-27 00:00:00', 16),
+(111, 'Space', 11, '2015-10-28 00:00:00', 13, '2015-10-28 00:00:00', 13);
 
 -- --------------------------------------------------------
 
@@ -2054,7 +2058,7 @@ CREATE TABLE IF NOT EXISTS `wall_entry` (
 
 INSERT INTO `wall_entry` (`id`, `wall_id`, `content_id`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES
 (40, 18, 40, '2015-10-15 00:51:52', 1, '2015-10-15 00:51:52', 1),
-(54, 101, 54, '2015-10-26 21:54:21', 1, '2015-10-26 22:00:48', 1),
+(54, 101, 54, '2015-10-26 21:54:21', 1, '2015-10-27 09:30:16', 1),
 (55, 101, 55, '2015-10-26 21:54:21', 1, '2015-10-26 21:54:21', 1),
 (61, 103, 61, '2015-10-26 23:24:12', 12, '2015-10-26 23:24:12', 12),
 (62, 103, 62, '2015-10-26 23:24:12', 12, '2015-10-26 23:24:12', 12);

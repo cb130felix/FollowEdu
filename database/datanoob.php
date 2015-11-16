@@ -2,18 +2,25 @@
 //Arquivo apenas para padronizar informação do banco de dados
 
 
-// local
-//$servername = "localhost";
-//$username = "root";
-//$password = "";
-//$dbname = "followedu";
+//// local
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "followedu";
+
+
+//remoto - kinghost
+//$servername = "mysql.upecaruaru.com.br";
+//$username = "upecaruaru04";
+//$password = "javac123";
+//$dbname = "upecaruaru04";
 
 
 //remoto - azure server
-$servername = "us-cdbr-azure-southcentral-e.cloudapp.net";
-$username = "b38865e796a50d";
-$password = "d51e4450";
-$dbname = "followedu";
+//$servername = "us-cdbr-azure-southcentral-e.cloudapp.net";
+//$username = "b38865e796a50d";
+//$password = "d51e4450";
+//$dbname = "followedu";
 
 
 
