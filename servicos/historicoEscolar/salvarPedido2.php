@@ -43,7 +43,7 @@
 				
 				mysqli_free_result($resultado);
 				
-				include "salvarArquivo.php"; // Esse script transfere a imagem do comprovante para uma pasta do sistema
+				include "SalvarArquivo.php"; // Esse script transfere a imagem do comprovante para uma pasta do sistema
 				
 				/* Cada código de comprovante está relacionado com um histórico escolar cadastrado no sistema. Então antes de salvar o código no BD, o
 				   sistema pega o último ID cadastrado e salva, junto com o código do histórico, o seu valor + 1

@@ -1,6 +1,8 @@
 <?php 
-$root = $_SERVER["DOCUMENT_ROOT"].'/FollowEdu';
-require $root . "/database/datanoob.php";
+
+$root = $_SERVER["DOCUMENT_ROOT"]."/FollowEdu";
+require ($root."/database/datanoob.php");
+
 return array (
   'components' => 
   array (

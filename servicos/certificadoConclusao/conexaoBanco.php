@@ -6,10 +6,10 @@
 	$senha = "";
 	$banco = "followedu2";*/
 	
-	$servername = "renanfelixrodrigues.com.br";
-	$username = "renan549_upe";
-	$password = "upe2015";
-	$dbname = "renan549_followedu";
+// 	$servername = "renanfelixrodrigues.com.br";
+// 	$username = "renan549_upe";
+// 	$password = "upe2015";
+// 	$dbname = "renan549_followedu";
 	include("../../database/datanoob.php");
 	
 	$conexao = mysqli_connect($servername, $username, $password, $dbname) or die ("Erro ao conectar!");

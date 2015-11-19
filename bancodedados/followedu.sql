@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.1.14
+-- version 4.4.15.1
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: 28-Out-2015 às 04:33
--- Versão do servidor: 5.6.17
--- PHP Version: 5.5.12
+-- Host: localhost
+-- Generation Time: 18-Nov-2015 às 22:29
+-- Versão do servidor: 10.0.21-MariaDB
+-- PHP Version: 5.5.14
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -14,18 +14,17 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `followedu`
 --
-
 --
 -- Estrutura da tabela `activity`
 --
 
 CREATE TABLE IF NOT EXISTS `activity` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `type` varchar(45) DEFAULT NULL,
   `module` varchar(100) DEFAULT '',
   `object_model` varchar(100) DEFAULT '',
@@ -33,9 +32,8 @@ CREATE TABLE IF NOT EXISTS `activity` (
   `created_at` datetime DEFAULT NULL,
   `created_by` int(11) DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=48 ;
+  `updated_by` int(11) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `activity`
@@ -53,11 +51,10 @@ INSERT INTO `activity` (`id`, `type`, `module`, `object_model`, `object_id`, `cr
 --
 
 CREATE TABLE IF NOT EXISTS `certificado_conclusao` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `cpf` varchar(11) NOT NULL,
-  `nome` varchar(100) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+  `nome` varchar(100) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `certificado_conclusao`
@@ -69,7 +66,10 @@ INSERT INTO `certificado_conclusao` (`id`, `cpf`, `nome`) VALUES
 (3, '2147483647', 'Guto Leoni'),
 (4, '2147483647', 'Guto Leoni'),
 (5, '1928933300', 'Iago Silva'),
-(6, '1928933300', 'Iago Silva');
+(6, '1928933300', 'Iago Silva'),
+(7, '2147483647', 'Renan Felix'),
+(8, '2147483647', 'Rômulo Cesar'),
+(9, '2147483647', 'Rômulo Cesar');
 
 -- --------------------------------------------------------
 
@@ -78,11 +78,10 @@ INSERT INTO `certificado_conclusao` (`id`, `cpf`, `nome`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `codigos_certificados_conclusao` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `id_conclusao` int(11) NOT NULL,
-  `codigo` varchar(50) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+  `codigo` varchar(50) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `codigos_certificados_conclusao`
@@ -91,7 +90,8 @@ CREATE TABLE IF NOT EXISTS `codigos_certificados_conclusao` (
 INSERT INTO `codigos_certificados_conclusao` (`id`, `id_conclusao`, `codigo`) VALUES
 (1, 2, '123'),
 (2, 4, '153543399'),
-(3, 6, '5443321');
+(3, 6, '5443321'),
+(4, 9, '9');
 
 -- --------------------------------------------------------
 
@@ -100,12 +100,10 @@ INSERT INTO `codigos_certificados_conclusao` (`id`, `id_conclusao`, `codigo`) VA
 --
 
 CREATE TABLE IF NOT EXISTS `codigos_historicos_escolares` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `codigo` varchar(50) NOT NULL,
-  `id_historico` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `codigo` (`codigo`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=33 ;
+  `id_historico` int(11) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `codigos_historicos_escolares`
@@ -131,7 +129,10 @@ INSERT INTO `codigos_historicos_escolares` (`id`, `codigo`, `id_historico`) VALU
 (29, '43322', 50),
 (30, '732586', 52),
 (31, '090999', 53),
-(32, '12221', 56);
+(32, '12221', 56),
+(33, '123456', 61),
+(34, '1234568', 62),
+(35, '12', 63);
 
 -- --------------------------------------------------------
 
@@ -140,7 +141,7 @@ INSERT INTO `codigos_historicos_escolares` (`id`, `codigo`, `id_historico`) VALU
 --
 
 CREATE TABLE IF NOT EXISTS `comment` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `message` text,
   `object_model` varchar(100) NOT NULL,
   `object_id` int(11) NOT NULL,
@@ -148,9 +149,8 @@ CREATE TABLE IF NOT EXISTS `comment` (
   `created_at` datetime DEFAULT NULL,
   `created_by` int(11) DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `updated_by` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -159,7 +159,7 @@ CREATE TABLE IF NOT EXISTS `comment` (
 --
 
 CREATE TABLE IF NOT EXISTS `content` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `guid` varchar(45) NOT NULL,
   `object_model` varchar(100) NOT NULL,
   `object_id` int(11) NOT NULL,
@@ -171,13 +171,8 @@ CREATE TABLE IF NOT EXISTS `content` (
   `created_at` datetime DEFAULT NULL,
   `created_by` int(11) DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `index_object_model` (`object_model`,`object_id`),
-  UNIQUE KEY `index_guid` (`guid`),
-  KEY `index_space_id` (`space_id`),
-  KEY `index_user_id` (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=63 ;
+  `updated_by` int(11) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `content`
@@ -197,16 +192,15 @@ INSERT INTO `content` (`id`, `guid`, `object_model`, `object_id`, `visibility`, 
 --
 
 CREATE TABLE IF NOT EXISTS `custom_pages_page` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `type` smallint(6) NOT NULL,
   `title` varchar(255) NOT NULL,
   `icon` varchar(100) DEFAULT NULL,
   `content` text,
   `sort_order` int(11) DEFAULT NULL,
   `navigation_class` varchar(255) NOT NULL,
-  `admin_only` tinyint(1) DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+  `admin_only` tinyint(1) DEFAULT '0'
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `custom_pages_page`
@@ -225,7 +219,7 @@ INSERT INTO `custom_pages_page` (`id`, `type`, `title`, `icon`, `content`, `sort
 --
 
 CREATE TABLE IF NOT EXISTS `file` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `guid` varchar(45) DEFAULT NULL,
   `object_model` varchar(100) DEFAULT '',
   `object_id` varchar(100) DEFAULT '',
@@ -236,10 +230,8 @@ CREATE TABLE IF NOT EXISTS `file` (
   `created_at` datetime DEFAULT NULL,
   `created_by` int(11) DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `index_object` (`object_model`,`object_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `updated_by` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -248,7 +240,7 @@ CREATE TABLE IF NOT EXISTS `file` (
 --
 
 CREATE TABLE IF NOT EXISTS `group` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `space_id` int(10) DEFAULT NULL,
   `name` varchar(45) DEFAULT NULL,
   `description` text,
@@ -258,9 +250,8 @@ CREATE TABLE IF NOT EXISTS `group` (
   `updated_by` int(11) DEFAULT NULL,
   `ldap_dn` varchar(255) DEFAULT NULL,
   `can_create_public_spaces` int(1) DEFAULT '1',
-  `can_create_private_spaces` int(1) DEFAULT '1',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+  `can_create_private_spaces` int(1) DEFAULT '1'
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `group`
@@ -276,16 +267,14 @@ INSERT INTO `group` (`id`, `space_id`, `name`, `description`, `created_at`, `cre
 --
 
 CREATE TABLE IF NOT EXISTS `group_admin` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `group_id` int(11) NOT NULL,
   `created_at` datetime NOT NULL,
   `created_by` int(11) NOT NULL,
   `updated_at` datetime NOT NULL,
-  `updated_by` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `unique_admin` (`user_id`,`group_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `updated_by` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -294,11 +283,10 @@ CREATE TABLE IF NOT EXISTS `group_admin` (
 --
 
 CREATE TABLE IF NOT EXISTS `historico_escolar` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `nome` varchar(100) NOT NULL,
-  `cpf` varchar(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=59 ;
+  `cpf` varchar(11) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=64 DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `historico_escolar`
@@ -334,7 +322,12 @@ INSERT INTO `historico_escolar` (`id`, `nome`, `cpf`) VALUES
 (55, 'Guto Leoni', '2147483647'),
 (56, 'Guto Leoni', '2147483647'),
 (57, 'Guto Leoni', '2147483647'),
-(58, 'Guto Leoni', '2147483647');
+(58, 'Guto Leoni', '2147483647'),
+(59, 'Renan Felix', '2147483647'),
+(60, 'Rômulo Cesar', '2147483647'),
+(61, 'Rômulo Cesar', '2147483647'),
+(62, 'Rômulo Cesar', '2147483647'),
+(63, 'Rômulo Cesar', '2147483647');
 
 -- --------------------------------------------------------
 
@@ -343,17 +336,15 @@ INSERT INTO `historico_escolar` (`id`, `nome`, `cpf`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `like` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `target_user_id` int(11) DEFAULT NULL,
   `object_model` varchar(100) NOT NULL,
   `object_id` int(11) NOT NULL,
   `created_at` datetime DEFAULT NULL,
   `created_by` int(11) DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `index_object` (`object_model`,`object_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `updated_by` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -362,13 +353,12 @@ CREATE TABLE IF NOT EXISTS `like` (
 --
 
 CREATE TABLE IF NOT EXISTS `logging` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `level` varchar(128) DEFAULT NULL,
   `category` varchar(128) DEFAULT NULL,
   `logtime` int(11) DEFAULT NULL,
-  `message` text,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=84 ;
+  `message` text
+) ENGINE=InnoDB AUTO_INCREMENT=84 DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `logging`
@@ -470,8 +460,7 @@ INSERT INTO `logging` (`id`, `level`, `category`, `logtime`, `message`) VALUES
 CREATE TABLE IF NOT EXISTS `migration` (
   `version` varchar(255) NOT NULL,
   `apply_time` int(11) DEFAULT NULL,
-  `module` varchar(32) DEFAULT NULL,
-  PRIMARY KEY (`version`)
+  `module` varchar(32) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -557,8 +546,7 @@ INSERT INTO `migration` (`version`, `apply_time`, `module`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `module_enabled` (
-  `module_id` varchar(100) NOT NULL,
-  PRIMARY KEY (`module_id`)
+  `module_id` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -575,7 +563,7 @@ INSERT INTO `module_enabled` (`module_id`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `notification` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `class` varchar(100) NOT NULL,
   `user_id` int(11) NOT NULL,
   `seen` tinyint(4) DEFAULT NULL,
@@ -589,13 +577,8 @@ CREATE TABLE IF NOT EXISTS `notification` (
   `created_by` int(11) DEFAULT NULL,
   `updated_at` datetime NOT NULL,
   `updated_by` int(11) DEFAULT NULL,
-  `desktop_notified` tinyint(1) DEFAULT '0',
-  PRIMARY KEY (`id`),
-  KEY `index_user_id` (`user_id`),
-  KEY `index_seen` (`seen`),
-  KEY `index_desktop_notified` (`desktop_notified`),
-  KEY `index_desktop_emailed` (`emailed`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
+  `desktop_notified` tinyint(1) DEFAULT '0'
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `notification`
@@ -606,8 +589,13 @@ INSERT INTO `notification` (`id`, `class`, `user_id`, `seen`, `source_object_mod
 (8, 'SpaceInviteAcceptedNotification', 13, 1, 'User', 12, 'Space', 5, 5, 0, '2015-10-26 23:46:27', 12, '2015-10-26 23:46:38', 13, 1),
 (9, 'SpaceRecommend', 12, 1, 'User', 10, 'Space', 7, 7, 0, '2015-10-27 01:01:37', 12, '2015-10-27 01:02:24', 12, 1),
 (13, 'SpaceApprovalRequestAcceptedNotification', 12, 1, 'User', 16, 'Space', 7, 7, 0, '2015-10-27 01:03:07', 16, '2015-10-27 01:03:23', 12, 1),
-(14, 'SpaceRecommend', 1, 0, 'User', 10, 'Space', 11, 11, 0, '2015-10-28 00:07:58', 1, '2015-10-28 00:07:58', 1, 1),
-(15, 'SpaceRecommend', 12, 0, 'User', 10, 'Space', 11, 11, 0, '2015-10-28 00:07:58', 12, '2015-10-28 00:07:58', 1, 1);
+(14, 'SpaceRecommend', 1, 1, 'User', 10, 'Space', 11, 11, 0, '2015-10-28 00:07:58', 1, '2015-11-15 09:52:19', 1, 1),
+(15, 'SpaceRecommend', 12, 1, 'User', 10, 'Space', 11, 11, 0, '2015-10-28 00:07:58', 12, '2015-11-18 09:50:33', 12, 1),
+(16, 'SpaceRecommend', 1, 0, 'User', 10, 'Space', 12, 12, 0, '2015-11-17 14:11:19', 1, '2015-11-17 14:11:19', 1, 1),
+(17, 'SpaceRecommend', 12, 0, 'User', 10, 'Space', 14, 14, 0, '2015-11-18 19:12:23', 12, '2015-11-18 19:12:23', 1, 1),
+(18, 'SpaceRecommend', 12, 0, 'User', 10, 'Space', 15, 15, 0, '2015-11-18 19:18:11', 12, '2015-11-18 19:18:11', 1, 1),
+(19, 'SpaceRecommend', 1, 0, 'User', 10, 'Space', 16, 16, 0, '2015-11-18 19:20:53', 1, '2015-11-18 19:20:53', 1, 1),
+(20, 'SpaceRecommend', 12, 0, 'User', 10, 'Space', 16, 16, 0, '2015-11-18 19:20:53', 12, '2015-11-18 19:20:53', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -616,16 +604,15 @@ INSERT INTO `notification` (`id`, `class`, `user_id`, `seen`, `source_object_mod
 --
 
 CREATE TABLE IF NOT EXISTS `post` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `message_2trash` text,
   `message` text,
   `url` varchar(255) DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `created_by` int(11) DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+  `updated_by` int(11) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `post`
@@ -677,8 +664,7 @@ CREATE TABLE IF NOT EXISTS `profile` (
   `cpf` int(11) DEFAULT NULL,
   `ingresso` varchar(255) DEFAULT NULL,
   `emissao_historico` varchar(255) DEFAULT NULL,
-  `emissao_diploma` varchar(11) DEFAULT NULL,
-  PRIMARY KEY (`user_id`)
+  `emissao_diploma` varchar(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -687,8 +673,8 @@ CREATE TABLE IF NOT EXISTS `profile` (
 
 INSERT INTO `profile` (`user_id`, `firstname`, `lastname`, `title`, `gender`, `street`, `zip`, `city`, `country`, `state`, `birthday_hide_year`, `birthday`, `about`, `phone_private`, `phone_work`, `mobile`, `fax`, `im_skype`, `im_msn`, `im_icq`, `im_xmpp`, `url`, `url_facebook`, `url_linkedin`, `url_xing`, `url_youtube`, `url_vimeo`, `url_flickr`, `url_myspace`, `url_googleplus`, `url_twitter`, `perfil`, `cpf`, `ingresso`, `emissao_historico`, `emissao_diploma`) VALUES
 (1, 'Administrador', '', 'System Administration', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', 2147483647, '2013.1', '12312', '1'),
-(12, 'Renan', 'Felix', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 2147483647, '2013.1', NULL, NULL),
-(13, 'Rômulo', 'Cesar', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', 2147483647, '2014.1', NULL, NULL),
+(12, 'Renan', 'Felix', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 2147483647, '2013.1', '1', '1'),
+(13, 'Rômulo', 'Cesar', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', 2147483647, '2014.1', '1', '1'),
 (14, 'Arthur', 'Flôr', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 123123, '2013.1', NULL, NULL),
 (15, 'Patrícia', 'Endo', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', 1111111, '2011.1', NULL, NULL),
 (16, 'Thiago', 'Souto', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', 123123, '2012.1', NULL, NULL),
@@ -701,7 +687,7 @@ INSERT INTO `profile` (`user_id`, `firstname`, `lastname`, `title`, `gender`, `s
 --
 
 CREATE TABLE IF NOT EXISTS `profile_field` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `profile_field_category_id` int(11) NOT NULL,
   `module_id` varchar(255) DEFAULT NULL,
   `field_type_class` varchar(255) NOT NULL,
@@ -720,10 +706,8 @@ CREATE TABLE IF NOT EXISTS `profile_field` (
   `updated_by` int(11) DEFAULT NULL,
   `ldap_attribute` varchar(255) DEFAULT NULL,
   `translation_category` varchar(255) DEFAULT NULL,
-  `is_system` int(1) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `index_profile_field_category` (`profile_field_category_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=35 ;
+  `is_system` int(1) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `profile_field`
@@ -771,7 +755,7 @@ INSERT INTO `profile_field` (`id`, `profile_field_category_id`, `module_id`, `fi
 --
 
 CREATE TABLE IF NOT EXISTS `profile_field_category` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `title` varchar(255) NOT NULL,
   `description` text NOT NULL,
   `sort_order` int(11) NOT NULL DEFAULT '100',
@@ -782,9 +766,8 @@ CREATE TABLE IF NOT EXISTS `profile_field_category` (
   `updated_at` datetime DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
   `translation_category` varchar(255) DEFAULT NULL,
-  `is_system` int(1) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+  `is_system` int(1) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `profile_field_category`
@@ -803,7 +786,7 @@ INSERT INTO `profile_field_category` (`id`, `title`, `description`, `sort_order`
 --
 
 CREATE TABLE IF NOT EXISTS `setting` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL,
   `value` varchar(255) DEFAULT NULL,
   `value_text` text,
@@ -811,9 +794,8 @@ CREATE TABLE IF NOT EXISTS `setting` (
   `created_at` datetime DEFAULT NULL,
   `created_by` int(11) DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=42 ;
+  `updated_by` int(11) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `setting`
@@ -869,7 +851,7 @@ INSERT INTO `setting` (`id`, `name`, `value`, `value_text`, `module_id`, `create
 --
 
 CREATE TABLE IF NOT EXISTS `space` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `guid` varchar(45) DEFAULT NULL,
   `wall_id` int(11) DEFAULT NULL,
   `name` varchar(45) NOT NULL,
@@ -885,9 +867,8 @@ CREATE TABLE IF NOT EXISTS `space` (
   `updated_by` int(11) DEFAULT NULL,
   `ldap_dn` varchar(255) DEFAULT NULL,
   `auto_add_new_members` int(4) DEFAULT NULL,
-  `finish_at` date NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
+  `finish_at` date NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `space`
@@ -897,16 +878,19 @@ INSERT INTO `space` (`id`, `guid`, `wall_id`, `name`, `description`, `website`, 
 (2, '101', 101, 'Seja bem vindo!', 'Bem vindo a esse espaço!', '', 0, 1, 1, '', '2015-10-27 00:00:00', 1, '2015-10-26 21:54:01', 1, NULL, 1, '2015-10-26'),
 (5, '105', 105, 'Balaio de ideias', 'Projeto para criaÃ§Ã£o de uma rede social com intuito de formaÃ§Ã£o de equipes para realizar projetos!', NULL, 0, 1, 1, NULL, '2015-10-27 00:00:00', 13, '2015-10-27 00:00:00', 1, NULL, 0, '2015-11-30'),
 (7, '110', 110, 'Monitoria - LPA I', 'Procura-se monitor para a disciplina de lÃ³gica de programaÃ§Ã£o e algoritmos. Requisitos: Manjar de C.', NULL, 1, 1, 1, NULL, '2015-10-27 00:00:00', 16, '2015-10-27 00:00:00', 1, NULL, 0, '2015-10-31'),
-(11, '111', 111, 'teste', 'testetetetet', NULL, 1, 1, 1, NULL, '2015-10-28 00:00:00', 13, '2015-10-28 00:00:00', 1, NULL, 0, '2020-01-12');
+(11, '111', 111, 'teste', 'testetetetet', NULL, 1, 1, 1, NULL, '2015-10-28 00:00:00', 13, '2015-10-28 00:00:00', 1, NULL, 0, '2020-01-12'),
+(12, '112', 112, 'teste no windows', 'asdasdasdasdasdasdasd', NULL, 1, 1, 1, NULL, '2015-11-17 00:00:00', 13, '2015-11-17 00:00:00', 1, NULL, 0, '0000-00-00'),
+(14, '113', 113, 'Teste', 'Teste do teste', NULL, 1, 1, 1, NULL, '2015-11-18 00:00:00', 13, '2015-11-18 00:00:00', 1, NULL, 0, '2015-10-26'),
+(15, '114', 114, 'TESTE2', 'TESTE2', NULL, 1, 1, 1, NULL, '2015-11-18 00:00:00', 13, '2015-11-18 00:00:00', 1, NULL, 0, '2015-10-26'),
+(16, '115', 115, 'TESTE3', 'TESTE#', NULL, 1, 1, 1, NULL, '2015-11-18 00:00:00', 13, '2015-11-18 00:00:00', 1, NULL, 0, '2015-10-26');
 
 --
 -- Acionadores `space`
 --
-DROP TRIGGER IF EXISTS `Recomendação`;
-DELIMITER //
+DELIMITER $$
 CREATE TRIGGER `Recomendação` AFTER INSERT ON `space`
  FOR EACH ROW CALL rotinaRecommend()
-//
+$$
 DELIMITER ;
 
 -- --------------------------------------------------------
@@ -928,9 +912,7 @@ CREATE TABLE IF NOT EXISTS `space_membership` (
   `created_at` datetime DEFAULT NULL,
   `created_by` int(11) DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL,
-  PRIMARY KEY (`space_id`,`user_id`),
-  KEY `index_status` (`status`)
+  `updated_by` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -948,7 +930,11 @@ INSERT INTO `space_membership` (`space_id`, `user_id`, `originator_user_id`, `st
 (5, 13, NULL, 3, NULL, '2015-10-27 23:56:08', 1, 1, 1, '2015-10-27 00:00:00', 13, '2015-10-27 00:00:00', 13),
 (7, 12, NULL, 3, 'Eu manjo de C. Me aceita aê. :D', '2015-10-27 01:03:24', 0, 0, 0, '2015-10-27 01:02:40', 12, '2015-10-27 01:03:07', 16),
 (7, 16, NULL, 3, NULL, '2015-10-27 01:03:08', 1, 1, 1, '2015-10-27 00:00:00', 16, '2015-10-27 00:00:00', 16),
-(11, 13, NULL, 3, NULL, '2015-10-28 00:08:05', 1, 1, 1, '2015-10-28 00:00:00', 13, '2015-10-28 00:00:00', 13);
+(11, 13, NULL, 3, NULL, '2015-10-28 00:08:05', 1, 1, 1, '2015-10-28 00:00:00', 13, '2015-10-28 00:00:00', 13),
+(12, 13, NULL, 3, NULL, '2015-11-17 00:00:00', 1, 1, 1, '2015-11-17 00:00:00', 13, '2015-11-17 00:00:00', 13),
+(14, 13, NULL, 3, NULL, '2015-11-18 00:00:00', 1, 1, 1, '2015-11-18 00:00:00', 13, '2015-11-18 00:00:00', 13),
+(15, 13, NULL, 3, NULL, '2015-11-18 00:00:00', 1, 1, 1, '2015-11-18 00:00:00', 13, '2015-11-18 00:00:00', 13),
+(16, 13, NULL, 3, NULL, '2015-11-18 00:00:00', 1, 1, 1, '2015-11-18 00:00:00', 13, '2015-11-18 00:00:00', 13);
 
 -- --------------------------------------------------------
 
@@ -957,12 +943,11 @@ INSERT INTO `space_membership` (`space_id`, `user_id`, `originator_user_id`, `st
 --
 
 CREATE TABLE IF NOT EXISTS `space_module` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `module_id` varchar(255) NOT NULL,
   `space_id` int(11) NOT NULL,
-  `state` int(4) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `state` int(4) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -971,7 +956,7 @@ CREATE TABLE IF NOT EXISTS `space_module` (
 --
 
 CREATE TABLE IF NOT EXISTS `space_setting` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `space_id` int(10) DEFAULT NULL,
   `module_id` varchar(100) DEFAULT NULL,
   `name` varchar(100) DEFAULT NULL,
@@ -979,10 +964,8 @@ CREATE TABLE IF NOT EXISTS `space_setting` (
   `created_at` datetime DEFAULT NULL,
   `created_by` int(11) DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `idx_space_setting` (`space_id`,`module_id`,`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `updated_by` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -992,9 +975,7 @@ CREATE TABLE IF NOT EXISTS `space_setting` (
 
 CREATE TABLE IF NOT EXISTS `space_tag` (
   `space_id` int(11) NOT NULL,
-  `tag_id` int(11) NOT NULL,
-  PRIMARY KEY (`space_id`,`tag_id`),
-  KEY `fk_st2` (`tag_id`)
+  `tag_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -1003,52 +984,56 @@ CREATE TABLE IF NOT EXISTS `space_tag` (
 
 INSERT INTO `space_tag` (`space_id`, `tag_id`) VALUES
 (3, 1),
+(3, 4),
+(3, 6),
+(3, 7),
+(3, 8),
+(4, 4),
+(5, 4),
+(5, 6),
+(5, 7),
+(6, 7),
+(7, 7),
+(10, 4),
+(11, 4),
+(12, 1),
+(14, 8),
+(15, 8),
+(16, 4),
+(16, 6),
+(90, 4),
 (92, 1),
 (93, 1),
 (97, 1),
+(97, 4),
 (101, 1),
+(101, 4),
+(102, 4),
 (103, 1),
 (105, 1),
 (106, 1),
 (107, 1),
+(107, 4),
 (108, 1),
 (110, 1),
-(111, 1),
-(113, 1),
-(3, 4),
-(4, 4),
-(5, 4),
-(10, 4),
-(11, 4),
-(90, 4),
-(97, 4),
-(101, 4),
-(102, 4),
-(107, 4),
 (110, 4),
+(111, 1),
 (111, 4),
+(113, 1),
 (113, 4),
-(3, 6),
-(5, 6),
-(113, 6),
-(3, 7),
-(5, 7),
-(6, 7),
-(7, 7),
-(3, 8);
+(113, 6);
 
 --
 -- Acionadores `space_tag`
 --
-DROP TRIGGER IF EXISTS `recomendacao`;
-DELIMITER //
+DELIMITER $$
 CREATE TRIGGER `recomendacao` AFTER INSERT ON `space_tag`
  FOR EACH ROW BEGIN
 	
 		CALL rotinaRecommend();
 		
 	END
-//
+$$
 DELIMITER ;
 
 -- --------------------------------------------------------
@@ -1058,11 +1043,10 @@ DELIMITER ;
 --
 
 CREATE TABLE IF NOT EXISTS `tag` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `nome` varchar(20) NOT NULL,
-  `descricao` text CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+  `descricao` text CHARACTER SET utf8 COLLATE utf8_bin NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `tag`
@@ -1090,10 +1074,7 @@ CREATE TABLE IF NOT EXISTS `tb_authors` (
   `fld_status_id` int(11) NOT NULL,
   `fld_active` text,
   `fld_activation_code` text,
-  `fld_priv_admin` text,
-  PRIMARY KEY (`fld_username`),
-  KEY `fk_tb_authors_tb_roles_idx` (`fld_role_id`),
-  KEY `fk_tb_authors_tb_status1_idx` (`fld_status_id`)
+  `fld_priv_admin` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -1115,10 +1096,9 @@ INSERT INTO `tb_authors` (`fld_username`, `fld_fullname`, `fld_password`, `fld_e
 --
 
 CREATE TABLE IF NOT EXISTS `tb_categories` (
-  `fld_id` int(11) NOT NULL AUTO_INCREMENT,
-  `fld_description` varchar(100) NOT NULL,
-  PRIMARY KEY (`fld_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+  `fld_id` int(11) NOT NULL,
+  `fld_description` varchar(100) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `tb_categories`
@@ -1139,18 +1119,14 @@ INSERT INTO `tb_categories` (`fld_id`, `fld_description`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `tb_documents` (
-  `fld_id` int(11) NOT NULL AUTO_INCREMENT,
+  `fld_id` int(11) NOT NULL,
   `fld_title` varchar(150) NOT NULL,
   `fld_username` varchar(50) NOT NULL,
   `fld_date` datetime NOT NULL,
   `fld_doc_type_id` int(11) NOT NULL,
   `fld_keywords` varchar(250) DEFAULT NULL,
-  `fld_category_id` int(11) NOT NULL,
-  PRIMARY KEY (`fld_id`),
-  KEY `fk_tb_documents_tb_doc_types1_idx` (`fld_doc_type_id`),
-  KEY `fk_tb_documents_tb_categories1_idx` (`fld_category_id`),
-  KEY `fk_tb_documents_tb_authors1_idx` (`fld_username`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
+  `fld_category_id` int(11) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `tb_documents`
@@ -1175,17 +1151,14 @@ INSERT INTO `tb_documents` (`fld_id`, `fld_title`, `fld_username`, `fld_date`, `
 --
 
 CREATE TABLE IF NOT EXISTS `tb_documents_active` (
-  `fld_id` int(11) NOT NULL AUTO_INCREMENT,
+  `fld_id` int(11) NOT NULL,
   `fld_document_id` int(11) NOT NULL,
   `fld_file` longblob,
   `fld_filename` varchar(150) NOT NULL,
   `fld_filesize` varchar(45) DEFAULT NULL,
   `fld_date` datetime NOT NULL,
-  `fld_username` varchar(50) NOT NULL,
-  PRIMARY KEY (`fld_id`),
-  KEY `fk_tb_documents_history_tb_documents1_idx` (`fld_document_id`),
-  KEY `fk_tb_documents_history_tb_authors1_idx` (`fld_username`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=41 ;
+  `fld_username` varchar(50) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `tb_documents_active`
@@ -1250,10 +1223,7 @@ CREATE TABLE IF NOT EXISTS `tb_documents_history` (
   `fld_filesize` varchar(45) DEFAULT NULL,
   `fld_date` datetime NOT NULL,
   `fld_username` varchar(50) NOT NULL,
-  `fld_activated` varchar(1) NOT NULL,
-  PRIMARY KEY (`fld_id`),
-  KEY `fk_tb_documents_history_tb_documents1_idx` (`fld_document_id`),
-  KEY `fk_tb_documents_history_tb_authors1_idx` (`fld_username`)
+  `fld_activated` varchar(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -1316,15 +1286,12 @@ INSERT INTO `tb_documents_history` (`fld_id`, `fld_document_id`, `fld_revision`,
 --
 
 CREATE TABLE IF NOT EXISTS `tb_doc_comments` (
-  `fld_id` int(11) NOT NULL AUTO_INCREMENT,
+  `fld_id` int(11) NOT NULL,
   `fld_document_id` int(11) NOT NULL,
   `fld_message` text,
   `fld_date_inc` date DEFAULT NULL,
-  `fld_username` varchar(50) NOT NULL,
-  PRIMARY KEY (`fld_id`),
-  KEY `fk_tb_doc_updates_tb_documents1_idx` (`fld_document_id`),
-  KEY `fk_tb_doc_updates_tb_authors1_idx` (`fld_username`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+  `fld_username` varchar(50) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `tb_doc_comments`
@@ -1342,10 +1309,9 @@ INSERT INTO `tb_doc_comments` (`fld_id`, `fld_document_id`, `fld_message`, `fld_
 --
 
 CREATE TABLE IF NOT EXISTS `tb_doc_types` (
-  `fld_id` int(11) NOT NULL AUTO_INCREMENT,
-  `fld_description` varchar(100) NOT NULL,
-  PRIMARY KEY (`fld_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
+  `fld_id` int(11) NOT NULL,
+  `fld_description` varchar(100) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `tb_doc_types`
@@ -1370,15 +1336,12 @@ INSERT INTO `tb_doc_types` (`fld_id`, `fld_description`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `tb_doc_updates` (
-  `fld_id` int(11) NOT NULL AUTO_INCREMENT,
+  `fld_id` int(11) NOT NULL,
   `fld_document_id` int(11) NOT NULL,
   `fld_message` text,
   `fld_date_inc` date DEFAULT NULL,
-  `fld_username` varchar(50) NOT NULL,
-  PRIMARY KEY (`fld_id`),
-  KEY `fk_tb_doc_updates_tb_documents1_idx` (`fld_document_id`),
-  KEY `fk_tb_doc_updates_tb_authors1_idx` (`fld_username`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+  `fld_username` varchar(50) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `tb_doc_updates`
@@ -1394,10 +1357,9 @@ INSERT INTO `tb_doc_updates` (`fld_id`, `fld_document_id`, `fld_message`, `fld_d
 --
 
 CREATE TABLE IF NOT EXISTS `tb_roles` (
-  `fld_id` int(11) NOT NULL AUTO_INCREMENT,
-  `fld_description` varchar(100) NOT NULL,
-  PRIMARY KEY (`fld_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+  `fld_id` int(11) NOT NULL,
+  `fld_description` varchar(100) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `tb_roles`
@@ -1424,10 +1386,7 @@ CREATE TABLE IF NOT EXISTS `tb_roles_x_apps` (
   `fld_priv_delete` varchar(1) DEFAULT NULL,
   `fld_priv_update` varchar(1) DEFAULT NULL,
   `fld_priv_export` varchar(1) DEFAULT NULL,
-  `fld_priv_print` varchar(1) DEFAULT NULL,
-  PRIMARY KEY (`fld_role_id`,`fld_app_id`),
-  KEY `fk_tb_roles_has_tb_sec_apps_tb_sec_apps1_idx` (`fld_app_id`),
-  KEY `fk_tb_roles_has_tb_sec_apps_tb_roles1_idx` (`fld_role_id`)
+  `fld_priv_print` varchar(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -1605,8 +1564,7 @@ INSERT INTO `tb_roles_x_apps` (`fld_role_id`, `fld_app_id`, `fld_priv_access`, `
 CREATE TABLE IF NOT EXISTS `tb_sec_apps` (
   `fld_app_id` varchar(150) NOT NULL,
   `fld_app_type` varchar(20) DEFAULT NULL,
-  `fld_app_description` text NOT NULL,
-  PRIMARY KEY (`fld_app_id`)
+  `fld_app_description` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -1654,10 +1612,9 @@ INSERT INTO `tb_sec_apps` (`fld_app_id`, `fld_app_type`, `fld_app_description`) 
 --
 
 CREATE TABLE IF NOT EXISTS `tb_status` (
-  `fld_id` int(11) NOT NULL AUTO_INCREMENT,
-  `fld_description` varchar(100) NOT NULL,
-  PRIMARY KEY (`fld_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+  `fld_id` int(11) NOT NULL,
+  `fld_description` varchar(100) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `tb_status`
@@ -1701,8 +1658,7 @@ INSERT INTO `teste` (`t`) VALUES
 
 CREATE TABLE IF NOT EXISTS `url_oembed` (
   `url` varchar(255) NOT NULL,
-  `preview` text NOT NULL,
-  PRIMARY KEY (`url`)
+  `preview` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -1712,7 +1668,7 @@ CREATE TABLE IF NOT EXISTS `url_oembed` (
 --
 
 CREATE TABLE IF NOT EXISTS `user` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `guid` varchar(45) DEFAULT NULL,
   `wall_id` int(11) DEFAULT NULL,
   `group_id` int(11) DEFAULT NULL,
@@ -1729,22 +1685,17 @@ CREATE TABLE IF NOT EXISTS `user` (
   `updated_at` datetime DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
   `last_login` datetime DEFAULT NULL,
-  `visibility` int(1) DEFAULT '1',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `unique_email` (`email`),
-  UNIQUE KEY `unique_username` (`username`),
-  UNIQUE KEY `unique_guid` (`guid`),
-  UNIQUE KEY `unique_wall_id` (`wall_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
+  `visibility` int(1) DEFAULT '1'
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `user`
 --
 
 INSERT INTO `user` (`id`, `guid`, `wall_id`, `group_id`, `status`, `super_admin`, `username`, `email`, `auth_mode`, `tags`, `language`, `last_activity_email`, `created_at`, `created_by`, `updated_at`, `updated_by`, `last_login`, `visibility`) VALUES
-(1, '9e173f30-2710-4c11-8502-1eeed5bca5ec', 1, 1, 1, 1, 'admin', 'followedupe@gmail.com', 'local', NULL, '', '2015-09-02 16:00:41', '2015-09-02 16:00:41', NULL, '2015-10-27 10:21:05', 1, '2015-10-27 11:09:25', 1),
-(12, 'f7df3139-9f07-4043-a3ab-5aaf83c865b7', 103, 1, 1, 0, 'Renan', 'renanfelixrodrigues@hotmail.com', 'local', NULL, 'pt_br', '2015-10-26 22:49:23', '2015-10-26 22:49:23', NULL, '2015-10-26 22:49:49', 1, '2015-10-27 23:56:56', 1),
-(13, '5c7162ae-704d-42c2-b9bf-f1b1f68d7d20', 104, 1, 1, 0, 'Romulo', 'romulocesar@upe.br', 'local', NULL, NULL, '2015-10-26 22:51:07', '2015-10-26 22:51:07', 1, '2015-10-27 11:22:04', 13, '2015-10-27 23:57:13', 1),
+(1, '9e173f30-2710-4c11-8502-1eeed5bca5ec', 1, 1, 1, 1, 'admin', 'followedupe@gmail.com', 'local', NULL, '', '2015-09-02 16:00:41', '2015-09-02 16:00:41', NULL, '2015-10-27 10:21:05', 1, '2015-11-18 14:58:43', 1),
+(12, 'f7df3139-9f07-4043-a3ab-5aaf83c865b7', 103, 1, 1, 0, 'Renan', 'renanfelixrodrigues@hotmail.com', 'local', NULL, 'pt_br', '2015-10-26 22:49:23', '2015-10-26 22:49:23', NULL, '2015-10-26 22:49:49', 1, '2015-11-18 13:28:51', 1),
+(13, '5c7162ae-704d-42c2-b9bf-f1b1f68d7d20', 104, 1, 1, 0, 'Romulo', 'romulocesar@upe.br', 'local', NULL, NULL, '2015-10-26 22:51:07', '2015-10-26 22:51:07', 1, '2015-10-27 11:22:04', 13, '2015-11-18 19:11:29', 1),
 (14, '4c5b7d49-e25f-4f4b-abed-d6ea128ec0bb', 107, 1, 1, 0, 'Arthur', 'arthurflor@hotmail.com', 'local', NULL, NULL, '2015-10-27 00:51:47', '2015-10-27 00:51:47', 1, '2015-10-27 00:51:47', 1, '2015-10-27 13:53:49', 1),
 (15, '6c55c9d2-652f-402b-9e55-4f0fb8ff53c7', 108, 1, 1, 0, 'Patricia', 'patricia@gmail.com', 'local', NULL, NULL, '2015-10-27 00:53:59', '2015-10-27 00:53:59', 1, '2015-10-27 00:53:59', 1, '2015-10-27 09:51:32', 1),
 (16, '96bec171-8bcb-412f-8c04-c6c464ff2128', 109, 1, 1, 0, 'Thiago', 'thiago@bregoso.com', 'local', NULL, NULL, '2015-10-27 00:55:40', '2015-10-27 00:55:40', 1, '2015-10-27 01:00:40', 16, '2015-10-27 01:03:01', 1),
@@ -1758,36 +1709,40 @@ INSERT INTO `user` (`id`, `guid`, `wall_id`, `group_id`, `status`, `super_admin`
 
 CREATE TABLE IF NOT EXISTS `user_atividadecomp` (
   `user_id` int(11) NOT NULL,
-  `atividade` int(11) NOT NULL,
+  `atividade` varchar(32) NOT NULL,
   `hora` int(11) NOT NULL,
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `status` int(11) NOT NULL DEFAULT '0',
   `modalidade` varchar(5) NOT NULL,
   `instituicao` varchar(30) NOT NULL,
-  `data` date NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=39 ;
+  `data` date NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `user_atividadecomp`
 --
 
 INSERT INTO `user_atividadecomp` (`user_id`, `atividade`, `hora`, `id`, `status`, `modalidade`, `instituicao`, `data`) VALUES
-(2, 0, 0, 17, 1, '', '', '0000-00-00'),
-(2, 0, 0, 18, 2, '', '', '0000-00-00'),
-(1, 0, 26, 25, 1, '', '', '0000-00-00'),
-(1, 0, 0, 26, 2, '', '', '0000-00-00'),
-(1, 0, 0, 27, 2, '', '', '0000-00-00'),
-(1, 0, 50, 28, 2, '', '', '0000-00-00'),
-(1, 0, 200, 30, 1, '', '', '0000-00-00'),
-(1, 0, 100, 31, 2, '', '', '0000-00-00'),
-(1, 0, 50, 32, 1, '', '', '0000-00-00'),
-(1, 0, 50, 33, 1, '', '', '0000-00-00'),
-(2, 0, 20, 34, 1, '', '', '0000-00-00'),
-(2, 0, 10, 35, 2, '', '', '0000-00-00'),
-(1, 0, 0, 36, 2, 'AT', '', '0000-00-00'),
-(1, 0, 0, 37, 2, 'AT', '', '0000-00-00'),
-(1, 0, 0, 38, 2, 'AT', '', '0000-00-00');
+(2, '0', 0, 17, 1, '', '', '0000-00-00'),
+(2, '0', 0, 18, 2, '', '', '0000-00-00'),
+(1, '0', 26, 25, 1, '', '', '0000-00-00'),
+(1, '0', 0, 26, 2, '', '', '0000-00-00'),
+(1, '0', 0, 27, 2, '', '', '0000-00-00'),
+(1, '0', 50, 28, 2, '', '', '0000-00-00'),
+(1, '0', 200, 30, 1, '', '', '0000-00-00'),
+(1, '0', 100, 31, 2, '', '', '0000-00-00'),
+(1, '0', 50, 32, 1, '', '', '0000-00-00'),
+(1, '0', 50, 33, 1, '', '', '0000-00-00'),
+(2, '0', 20, 34, 1, '', '', '0000-00-00'),
+(2, '0', 10, 35, 2, '', '', '0000-00-00'),
+(1, '0', 0, 36, 2, 'AT', '', '0000-00-00'),
+(1, '0', 0, 37, 2, 'AT', '', '0000-00-00'),
+(1, '0', 0, 38, 2, 'AT', '', '0000-00-00'),
+(12, '0', 12, 40, 2, 'AT', 'asasd', '0000-00-00'),
+(12, '0', 12, 41, 1, 'MN', '123', '0000-00-00'),
+(12, '0', 24, 42, 1, 'AT', 'UNIVERSIDADE DE PERNAMBUCO', '2015-11-19'),
+(13, '1', 1, 43, 0, 'AT', '', '2015-10-26'),
+(13, 'ROLA', 0, 44, 0, 'AT', '', '2015-10-26');
 
 -- --------------------------------------------------------
 
@@ -1796,15 +1751,12 @@ INSERT INTO `user_atividadecomp` (`user_id`, `atividade`, `hora`, `id`, `status`
 --
 
 CREATE TABLE IF NOT EXISTS `user_follow` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `object_model` varchar(100) NOT NULL,
   `object_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `send_notifications` tinyint(1) DEFAULT '1',
-  PRIMARY KEY (`id`),
-  KEY `index_user` (`user_id`),
-  KEY `index_object` (`object_model`,`object_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+  `send_notifications` tinyint(1) DEFAULT '1'
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `user_follow`
@@ -1824,8 +1776,7 @@ CREATE TABLE IF NOT EXISTS `user_http_session` (
   `id` char(255) NOT NULL,
   `expire` int(11) DEFAULT NULL,
   `user_id` int(11) DEFAULT NULL,
-  `data` longblob,
-  PRIMARY KEY (`id`)
+  `data` longblob
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -1833,7 +1784,8 @@ CREATE TABLE IF NOT EXISTS `user_http_session` (
 --
 
 INSERT INTO `user_http_session` (`id`, `expire`, `user_id`, `data`) VALUES
-('sqs6ol23smg85n4raem2bco9v3', 1446003485, 13, 0x33356237383866316261396165323339656331623561303065363663316464335f5f72657475726e55726c7c733a34323a222f466f6c6c6f774564752f696e6465782e7068703f723d64617368626f6172642f64617368626f617264223b33356237383866316261396165323339656331623561303065363663316464335f5f69647c733a323a223133223b33356237383866316261396165323339656331623561303065363663316464335f5f6e616d657c733a363a22726f6d756c6f223b33356237383866316261396165323339656331623561303065363663316464335f5f7374617465737c613a313a7b733a353a227469746c65223b623a313b7d);
+('kuhuq7lb99m4s3hcfe0udclbb05b64ggu4qo7lgnua79vu4uad70', 1447886261, 13, 0x43597a476245524a36444459666136574935764878573169725159516e52324e5a6d4f414b313132726534786c4d4c467745727a44416675303353694573385f4b3465726950536a6b456e415043326b326d336e55464146375150357a666958666c7762506f525341437158757235616e52737675786e76325936474b4235647839415253594a4e6d2d48716e76356330736444665a4c66706b6c456a4d4470724a78424a344867313648497639704148327037364c652d6354734c4d544a6658714e66305f725f73686138357570754b75644a4c597a4f5a744f336436427268625343576f527543767444627a754154526e2d4364337958416d676d33334964456e3177314d643779454c31705431704f5f6552396570715f437a76535f616870752d51686a5f39435f50615133755177666d464e4a4e6a5f337441354e7469347769573071664a357254364b474f50787a566a4258436a395335565a58487a6273436e37585645613445457a3358545f446539324f742d6a703748586d7a),
+('rl23u5fi6555rr61n6vtplutkpneq7gkvcte9v9nohrtlu6dsgv0', 1447887168, 13, 0x474a38495f674536453166634278744b4e594d385f43695f66735844786e647a3434586e5955546b6b7532734b384a3071466d514b39706168494a6f4564456c7a6f76767446732d4b704475717a3937735f4159366a356d52554b494853586f3862686d7830657247716b4b63716143563535765a3666584e78594c795a4d6c414d416d7333524a2d61657042334d4f38435f794d477031444e414b4a644747725366796a53386b61457855486a4e503539307432465951506e39303746325950755a495471357a615f30766b4361414135764a775942455171736e4147546b6456316833545650694a5854503146384a544c6c6d4d72654e744730364e57524230457549506a634e706a41706763526f486644327847736a447a7a524432613646676a434e51786a4a5775314f344d47755539765769664a56776f6b6f346c775a7132616f7830326355384c74504d716e5941536c383353704f4b5f73456a303062656c332d533373732e);
 
 -- --------------------------------------------------------
 
@@ -1842,7 +1794,7 @@ INSERT INTO `user_http_session` (`id`, `expire`, `user_id`, `data`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `user_invite` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `user_originator_id` int(11) DEFAULT NULL,
   `space_invite_id` int(11) DEFAULT NULL,
   `email` varchar(45) NOT NULL,
@@ -1852,11 +1804,8 @@ CREATE TABLE IF NOT EXISTS `user_invite` (
   `created_by` int(11) DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
-  `language` varchar(10) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `unique_email` (`email`),
-  UNIQUE KEY `unique_token` (`token`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+  `language` varchar(10) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `user_invite`
@@ -1875,14 +1824,11 @@ INSERT INTO `user_invite` (`id`, `user_originator_id`, `space_invite_id`, `email
 --
 
 CREATE TABLE IF NOT EXISTS `user_mentioning` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `object_model` varchar(100) NOT NULL,
   `object_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `i_user` (`user_id`),
-  KEY `i_object` (`object_model`,`object_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `user_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -1891,13 +1837,11 @@ CREATE TABLE IF NOT EXISTS `user_mentioning` (
 --
 
 CREATE TABLE IF NOT EXISTS `user_module` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `module_id` varchar(255) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `state` int(4) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `index_user_module` (`user_id`,`module_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `state` int(4) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -1906,15 +1850,13 @@ CREATE TABLE IF NOT EXISTS `user_module` (
 --
 
 CREATE TABLE IF NOT EXISTS `user_password` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `user_id` int(10) DEFAULT NULL,
   `algorithm` varchar(20) DEFAULT NULL,
   `password` text,
   `salt` text,
-  `created_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `idx_user_id` (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
+  `created_at` datetime DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `user_password`
@@ -1936,7 +1878,7 @@ INSERT INTO `user_password` (`id`, `user_id`, `algorithm`, `password`, `salt`, `
 --
 
 CREATE TABLE IF NOT EXISTS `user_setting` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `user_id` int(10) DEFAULT NULL,
   `module_id` varchar(100) DEFAULT NULL,
   `name` varchar(100) DEFAULT NULL,
@@ -1944,10 +1886,8 @@ CREATE TABLE IF NOT EXISTS `user_setting` (
   `created_at` datetime DEFAULT NULL,
   `created_by` int(11) DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `idx_user_setting` (`user_id`,`module_id`,`name`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+  `updated_by` int(11) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `user_setting`
@@ -1967,9 +1907,7 @@ INSERT INTO `user_setting` (`id`, `user_id`, `module_id`, `name`, `value`, `crea
 
 CREATE TABLE IF NOT EXISTS `user_tag` (
   `user_id` int(11) NOT NULL,
-  `tag_id` int(11) NOT NULL,
-  KEY `fk0_ut` (`user_id`),
-  KEY `fk1_ut` (`tag_id`)
+  `tag_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -1995,15 +1933,14 @@ INSERT INTO `user_tag` (`user_id`, `tag_id`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `wall` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `object_model` varchar(50) NOT NULL,
   `object_id` int(11) NOT NULL,
   `created_at` datetime DEFAULT NULL,
   `created_by` int(11) DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=113 ;
+  `updated_by` int(11) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=116 DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `wall`
@@ -2033,7 +1970,11 @@ INSERT INTO `wall` (`id`, `object_model`, `object_id`, `created_at`, `created_by
 (108, 'User', 15, '2015-10-27 00:53:59', 1, '2015-10-27 00:53:59', 1),
 (109, 'User', 16, '2015-10-27 00:55:40', 1, '2015-10-27 00:55:40', 1),
 (110, 'Space', 7, '2015-10-27 00:00:00', 16, '2015-10-27 00:00:00', 16),
-(111, 'Space', 11, '2015-10-28 00:00:00', 13, '2015-10-28 00:00:00', 13);
+(111, 'Space', 11, '2015-10-28 00:00:00', 13, '2015-10-28 00:00:00', 13),
+(112, 'Space', 12, '2015-11-17 00:00:00', 13, '2015-11-17 00:00:00', 13),
+(113, 'Space', 14, '2015-11-18 00:00:00', 13, '2015-11-18 00:00:00', 13),
+(114, 'Space', 15, '2015-11-18 00:00:00', 13, '2015-11-18 00:00:00', 13),
+(115, 'Space', 16, '2015-11-18 00:00:00', 13, '2015-11-18 00:00:00', 13);
 
 -- --------------------------------------------------------
 
@@ -2042,15 +1983,14 @@ INSERT INTO `wall` (`id`, `object_model`, `object_id`, `created_at`, `created_by
 --
 
 CREATE TABLE IF NOT EXISTS `wall_entry` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `wall_id` int(11) NOT NULL,
   `content_id` int(11) NOT NULL,
   `created_at` datetime DEFAULT NULL,
   `created_by` int(11) DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=63 ;
+  `updated_by` int(11) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `wall_entry`
@@ -2063,6 +2003,571 @@ INSERT INTO `wall_entry` (`id`, `wall_id`, `content_id`, `created_at`, `created_
 (61, 103, 61, '2015-10-26 23:24:12', 12, '2015-10-26 23:24:12', 12),
 (62, 103, 62, '2015-10-26 23:24:12', 12, '2015-10-26 23:24:12', 12);
 
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `activity`
+--
+ALTER TABLE `activity`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `certificado_conclusao`
+--
+ALTER TABLE `certificado_conclusao`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `codigos_certificados_conclusao`
+--
+ALTER TABLE `codigos_certificados_conclusao`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `codigos_historicos_escolares`
+--
+ALTER TABLE `codigos_historicos_escolares`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `codigo` (`codigo`);
+
+--
+-- Indexes for table `comment`
+--
+ALTER TABLE `comment`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `content`
+--
+ALTER TABLE `content`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `index_object_model` (`object_model`,`object_id`),
+  ADD UNIQUE KEY `index_guid` (`guid`),
+  ADD KEY `index_space_id` (`space_id`),
+  ADD KEY `index_user_id` (`user_id`);
+
+--
+-- Indexes for table `custom_pages_page`
+--
+ALTER TABLE `custom_pages_page`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `file`
+--
+ALTER TABLE `file`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `index_object` (`object_model`,`object_id`);
+
+--
+-- Indexes for table `group`
+--
+ALTER TABLE `group`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `group_admin`
+--
+ALTER TABLE `group_admin`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `unique_admin` (`user_id`,`group_id`);
+
+--
+-- Indexes for table `historico_escolar`
+--
+ALTER TABLE `historico_escolar`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `like`
+--
+ALTER TABLE `like`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `index_object` (`object_model`,`object_id`);
+
+--
+-- Indexes for table `logging`
+--
+ALTER TABLE `logging`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `migration`
+--
+ALTER TABLE `migration`
+  ADD PRIMARY KEY (`version`);
+
+--
+-- Indexes for table `module_enabled`
+--
+ALTER TABLE `module_enabled`
+  ADD PRIMARY KEY (`module_id`);
+
+--
+-- Indexes for table `notification`
+--
+ALTER TABLE `notification`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `index_user_id` (`user_id`),
+  ADD KEY `index_seen` (`seen`),
+  ADD KEY `index_desktop_notified` (`desktop_notified`),
+  ADD KEY `index_desktop_emailed` (`emailed`);
+
+--
+-- Indexes for table `post`
+--
+ALTER TABLE `post`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `profile`
+--
+ALTER TABLE `profile`
+  ADD PRIMARY KEY (`user_id`);
+
+--
+-- Indexes for table `profile_field`
+--
+ALTER TABLE `profile_field`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `index_profile_field_category` (`profile_field_category_id`);
+
+--
+-- Indexes for table `profile_field_category`
+--
+ALTER TABLE `profile_field_category`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `setting`
+--
+ALTER TABLE `setting`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `space`
+--
+ALTER TABLE `space`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `space_membership`
+--
+ALTER TABLE `space_membership`
+  ADD PRIMARY KEY (`space_id`,`user_id`),
+  ADD KEY `index_status` (`status`);
+
+--
+-- Indexes for table `space_module`
+--
+ALTER TABLE `space_module`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `space_setting`
+--
+ALTER TABLE `space_setting`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `idx_space_setting` (`space_id`,`module_id`,`name`);
+
+--
+-- Indexes for table `space_tag`
+--
+ALTER TABLE `space_tag`
+  ADD PRIMARY KEY (`space_id`,`tag_id`),
+  ADD KEY `fk_st2` (`tag_id`);
+
+--
+-- Indexes for table `tag`
+--
+ALTER TABLE `tag`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tb_authors`
+--
+ALTER TABLE `tb_authors`
+  ADD PRIMARY KEY (`fld_username`),
+  ADD KEY `fk_tb_authors_tb_roles_idx` (`fld_role_id`),
+  ADD KEY `fk_tb_authors_tb_status1_idx` (`fld_status_id`);
+
+--
+-- Indexes for table `tb_categories`
+--
+ALTER TABLE `tb_categories`
+  ADD PRIMARY KEY (`fld_id`);
+
+--
+-- Indexes for table `tb_documents`
+--
+ALTER TABLE `tb_documents`
+  ADD PRIMARY KEY (`fld_id`),
+  ADD KEY `fk_tb_documents_tb_doc_types1_idx` (`fld_doc_type_id`),
+  ADD KEY `fk_tb_documents_tb_categories1_idx` (`fld_category_id`),
+  ADD KEY `fk_tb_documents_tb_authors1_idx` (`fld_username`);
+
+--
+-- Indexes for table `tb_documents_active`
+--
+ALTER TABLE `tb_documents_active`
+  ADD PRIMARY KEY (`fld_id`),
+  ADD KEY `fk_tb_documents_history_tb_documents1_idx` (`fld_document_id`),
+  ADD KEY `fk_tb_documents_history_tb_authors1_idx` (`fld_username`);
+
+--
+-- Indexes for table `tb_documents_history`
+--
+ALTER TABLE `tb_documents_history`
+  ADD PRIMARY KEY (`fld_id`),
+  ADD KEY `fk_tb_documents_history_tb_documents1_idx` (`fld_document_id`),
+  ADD KEY `fk_tb_documents_history_tb_authors1_idx` (`fld_username`);
+
+--
+-- Indexes for table `tb_doc_comments`
+--
+ALTER TABLE `tb_doc_comments`
+  ADD PRIMARY KEY (`fld_id`),
+  ADD KEY `fk_tb_doc_updates_tb_documents1_idx` (`fld_document_id`),
+  ADD KEY `fk_tb_doc_updates_tb_authors1_idx` (`fld_username`);
+
+--
+-- Indexes for table `tb_doc_types`
+--
+ALTER TABLE `tb_doc_types`
+  ADD PRIMARY KEY (`fld_id`);
+
+--
+-- Indexes for table `tb_doc_updates`
+--
+ALTER TABLE `tb_doc_updates`
+  ADD PRIMARY KEY (`fld_id`),
+  ADD KEY `fk_tb_doc_updates_tb_documents1_idx` (`fld_document_id`),
+  ADD KEY `fk_tb_doc_updates_tb_authors1_idx` (`fld_username`);
+
+--
+-- Indexes for table `tb_roles`
+--
+ALTER TABLE `tb_roles`
+  ADD PRIMARY KEY (`fld_id`);
+
+--
+-- Indexes for table `tb_roles_x_apps`
+--
+ALTER TABLE `tb_roles_x_apps`
+  ADD PRIMARY KEY (`fld_role_id`,`fld_app_id`),
+  ADD KEY `fk_tb_roles_has_tb_sec_apps_tb_sec_apps1_idx` (`fld_app_id`),
+  ADD KEY `fk_tb_roles_has_tb_sec_apps_tb_roles1_idx` (`fld_role_id`);
+
+--
+-- Indexes for table `tb_sec_apps`
+--
+ALTER TABLE `tb_sec_apps`
+  ADD PRIMARY KEY (`fld_app_id`);
+
+--
+-- Indexes for table `tb_status`
+--
+ALTER TABLE `tb_status`
+  ADD PRIMARY KEY (`fld_id`);
+
+--
+-- Indexes for table `url_oembed`
+--
+ALTER TABLE `url_oembed`
+  ADD PRIMARY KEY (`url`);
+
+--
+-- Indexes for table `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `unique_email` (`email`),
+  ADD UNIQUE KEY `unique_username` (`username`),
+  ADD UNIQUE KEY `unique_guid` (`guid`),
+  ADD UNIQUE KEY `unique_wall_id` (`wall_id`);
+
+--
+-- Indexes for table `user_atividadecomp`
+--
+ALTER TABLE `user_atividadecomp`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `user_follow`
+--
+ALTER TABLE `user_follow`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `index_user` (`user_id`),
+  ADD KEY `index_object` (`object_model`,`object_id`);
+
+--
+-- Indexes for table `user_http_session`
+--
+ALTER TABLE `user_http_session`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `user_invite`
+--
+ALTER TABLE `user_invite`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `unique_email` (`email`),
+  ADD UNIQUE KEY `unique_token` (`token`);
+
+--
+-- Indexes for table `user_mentioning`
+--
+ALTER TABLE `user_mentioning`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `i_user` (`user_id`),
+  ADD KEY `i_object` (`object_model`,`object_id`);
+
+--
+-- Indexes for table `user_module`
+--
+ALTER TABLE `user_module`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `index_user_module` (`user_id`,`module_id`);
+
+--
+-- Indexes for table `user_password`
+--
+ALTER TABLE `user_password`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idx_user_id` (`user_id`);
+
+--
+-- Indexes for table `user_setting`
+--
+ALTER TABLE `user_setting`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `idx_user_setting` (`user_id`,`module_id`,`name`);
+
+--
+-- Indexes for table `user_tag`
+--
+ALTER TABLE `user_tag`
+  ADD KEY `fk0_ut` (`user_id`),
+  ADD KEY `fk1_ut` (`tag_id`);
+
+--
+-- Indexes for table `wall`
+--
+ALTER TABLE `wall`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `wall_entry`
+--
+ALTER TABLE `wall_entry`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `activity`
+--
+ALTER TABLE `activity`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=48;
+--
+-- AUTO_INCREMENT for table `certificado_conclusao`
+--
+ALTER TABLE `certificado_conclusao`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
+--
+-- AUTO_INCREMENT for table `codigos_certificados_conclusao`
+--
+ALTER TABLE `codigos_certificados_conclusao`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `codigos_historicos_escolares`
+--
+ALTER TABLE `codigos_historicos_escolares`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=36;
+--
+-- AUTO_INCREMENT for table `comment`
+--
+ALTER TABLE `comment`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `content`
+--
+ALTER TABLE `content`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=63;
+--
+-- AUTO_INCREMENT for table `custom_pages_page`
+--
+ALTER TABLE `custom_pages_page`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
+--
+-- AUTO_INCREMENT for table `file`
+--
+ALTER TABLE `file`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `group`
+--
+ALTER TABLE `group`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `group_admin`
+--
+ALTER TABLE `group_admin`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `historico_escolar`
+--
+ALTER TABLE `historico_escolar`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=64;
+--
+-- AUTO_INCREMENT for table `like`
+--
+ALTER TABLE `like`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `logging`
+--
+ALTER TABLE `logging`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=84;
+--
+-- AUTO_INCREMENT for table `notification`
+--
+ALTER TABLE `notification`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=21;
+--
+-- AUTO_INCREMENT for table `post`
+--
+ALTER TABLE `post`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT for table `profile_field`
+--
+ALTER TABLE `profile_field`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=35;
+--
+-- AUTO_INCREMENT for table `profile_field_category`
+--
+ALTER TABLE `profile_field_category`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `setting`
+--
+ALTER TABLE `setting`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=42;
+--
+-- AUTO_INCREMENT for table `space`
+--
+ALTER TABLE `space`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=17;
+--
+-- AUTO_INCREMENT for table `space_module`
+--
+ALTER TABLE `space_module`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `space_setting`
+--
+ALTER TABLE `space_setting`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `tag`
+--
+ALTER TABLE `tag`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
+--
+-- AUTO_INCREMENT for table `tb_categories`
+--
+ALTER TABLE `tb_categories`
+  MODIFY `fld_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+--
+-- AUTO_INCREMENT for table `tb_documents`
+--
+ALTER TABLE `tb_documents`
+  MODIFY `fld_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
+--
+-- AUTO_INCREMENT for table `tb_documents_active`
+--
+ALTER TABLE `tb_documents_active`
+  MODIFY `fld_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=41;
+--
+-- AUTO_INCREMENT for table `tb_doc_comments`
+--
+ALTER TABLE `tb_doc_comments`
+  MODIFY `fld_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `tb_doc_types`
+--
+ALTER TABLE `tb_doc_types`
+  MODIFY `fld_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
+--
+-- AUTO_INCREMENT for table `tb_doc_updates`
+--
+ALTER TABLE `tb_doc_updates`
+  MODIFY `fld_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `tb_roles`
+--
+ALTER TABLE `tb_roles`
+  MODIFY `fld_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT for table `tb_status`
+--
+ALTER TABLE `tb_status`
+  MODIFY `fld_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `user`
+--
+ALTER TABLE `user`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=18;
+--
+-- AUTO_INCREMENT for table `user_atividadecomp`
+--
+ALTER TABLE `user_atividadecomp`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=45;
+--
+-- AUTO_INCREMENT for table `user_follow`
+--
+ALTER TABLE `user_follow`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
+--
+-- AUTO_INCREMENT for table `user_invite`
+--
+ALTER TABLE `user_invite`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT for table `user_mentioning`
+--
+ALTER TABLE `user_mentioning`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `user_module`
+--
+ALTER TABLE `user_module`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `user_password`
+--
+ALTER TABLE `user_password`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=18;
+--
+-- AUTO_INCREMENT for table `user_setting`
+--
+ALTER TABLE `user_setting`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT for table `wall`
+--
+ALTER TABLE `wall`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=116;
+--
+-- AUTO_INCREMENT for table `wall_entry`
+--
+ALTER TABLE `wall_entry`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=63;
 --
 -- Constraints for dumped tables
 --
