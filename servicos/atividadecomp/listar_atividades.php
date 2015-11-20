@@ -28,7 +28,7 @@ $result = $conn->query($sql);
 if ($result->num_rows > 0) {
     // output data of each row
      echo"
-        <table style='width:100% border='1'>'
+        <table style='width:100% border='1' class='table'>'
         <thead>
            <tr>
              <th>Atividade</th>
@@ -55,7 +55,7 @@ if ($result->num_rows > 0) {
             $status = "<font color='red'>Reprovado</font>";
         }
         
-        
+        $id = $row["id"];
         echo"<tr>
         
         <form action='deletar_atividade.php' method='GET'>
@@ -63,9 +63,10 @@ if ($result->num_rows > 0) {
         <input type='hidden' name='status' value=".$row["status"].">
         <td>".$row["atividade"]. "</td>
         <td>".$row["hora"]."</td>
-        <td>". $row["id"]. "</td>
+        <td>". $id. "</td>
         <td>". $status. "</td>"
-        ."<td><input type='submit' onclick='return confirm(\"Tem certeza que deseja deletar esse item?\")' value='Deletar' /></td>". "</tr></form>";
+        ."<td><a href='uploads/$id.jpg'>Comprovante</a></td>"
+        ."<td><input class = 'btn-danger' type='submit' onclick='return confirm(\"Tem certeza que deseja deletar esse item?\")' value='Deletar' /></td>". "</tr></form>";
         
         
         
@@ -79,7 +80,7 @@ if ($result->num_rows > 0) {
     echo "0 results";
 }
 
-echo "<br><br>Você completou $total_horas de $quant_horas horas de atividades complementares.";
+echo "<h2>Você completou $total_horas de $quant_horas horas de atividades complementares.</h2>";
 if($total_horas > $quant_horas){
     
     echo "<font color='red'><br>ATENÇÃO: Você concluiu a carga horária de atividades requerida pelo curso. O pedido de sua documentação já foi realizado à escolaridade.</font>"

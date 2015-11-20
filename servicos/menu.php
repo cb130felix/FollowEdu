@@ -1,4 +1,8 @@
 <html>
+    <head>
+        <link href="/FollowEdu/css/bootstrap.min.css?ver=0.11.2" rel="stylesheet">
+        
+    </head>
     <body>
 <!--         <h1>Esse serviço se encontra temporariamente indisponível.</h1> -->
         

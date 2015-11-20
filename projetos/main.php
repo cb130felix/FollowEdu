@@ -10,7 +10,7 @@
     <p>Escolha um projeto que deseja participar. Sua solicitação será encaminhada automaticamente
     para o criador do projeto, você precisará aguardar até a notícia da aprovação ou não de seu
     ingresso no projeto. Periodicamente você também receberá sugestões de projetos de acordo
-    com as <a href="/FollowEdu/index.php?r=custom_pages/view&id=8" target="_blank">habilidades definidas no seu perfil</a> através do sistema de notificações.</p>
+    com as <a href="index.php?r=custom_pages/view&id=8" target="_blank">habilidades definidas no seu perfil</a> através do sistema de notificações.</p>
 
 
     <?php
