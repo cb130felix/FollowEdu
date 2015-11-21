@@ -1,3 +1,7 @@
+
+<head>
+    <meta http-equiv="refresh" content="0; url=tag.php" />
+</head>
 <?php
 require_once '../../database/datanoob.php';
 
@@ -28,4 +32,4 @@ if (mysqli_query($conn, $sql)) {
 
 
 $conn->close();
-header("location:tag.php");
+//header("location:tag.php");
